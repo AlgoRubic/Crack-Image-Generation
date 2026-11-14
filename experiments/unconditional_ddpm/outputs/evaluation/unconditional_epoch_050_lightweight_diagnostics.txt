@@ -1,0 +1,9 @@
+Generated images: 1000
+Real comparison images: 1000
+Generated mean pixel value: 0.5682
+Real mean pixel value: 0.6330
+Generated pixel std: 0.1513
+Real pixel std: 0.1117
+Mean pairwise generated distance: 20.5188
+Mean nearest-real pixel distance: 11.1758
+These are lightweight diagnostic proxies, not standard FID/KID/LPIPS.

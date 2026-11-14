@@ -1,0 +1,74 @@
+{
+  "classes": {
+    "non_cracked": {
+      "samples": 16,
+      "clean_surface_rate": 0.9375,
+      "false_positive_rate": 0.0625
+    },
+    "flexural": {
+      "samples": 16,
+      "crack_presence_rate": 0.9375,
+      "mechanism_adherence_rate": 0.9375,
+      "mean_max_length_px": 111.3,
+      "mean_continuity_ratio": 0.322,
+      "mean_curvature_deg": 16.3,
+      "mean_taper_ratio": 0.99,
+      "mean_sig_components": 13.4
+    },
+    "flexure_shear": {
+      "samples": 16,
+      "crack_presence_rate": 0.875,
+      "mechanism_adherence_rate": 0.5,
+      "mean_max_length_px": 87.5,
+      "mean_continuity_ratio": 0.293,
+      "mean_curvature_deg": 21.4,
+      "mean_taper_ratio": 1.05,
+      "mean_sig_components": 14.21
+    },
+    "web_shear": {
+      "samples": 16,
+      "crack_presence_rate": 0.9375,
+      "mechanism_adherence_rate": 0.625,
+      "mean_max_length_px": 88.1,
+      "mean_continuity_ratio": 0.302,
+      "mean_curvature_deg": 14.3,
+      "mean_taper_ratio": 1.01,
+      "mean_sig_components": 15.2
+    },
+    "torsion": {
+      "samples": 16,
+      "crack_presence_rate": 0.8125,
+      "mechanism_adherence_rate": 0.9375,
+      "mean_max_length_px": 105.9,
+      "mean_continuity_ratio": 0.292,
+      "mean_curvature_deg": 17.7,
+      "mean_taper_ratio": 0.9,
+      "mean_sig_components": 14.0
+    },
+    "corrosion_splitting": {
+      "samples": 16,
+      "crack_presence_rate": 0.625,
+      "mechanism_adherence_rate": 0.625,
+      "mean_max_length_px": 86.9,
+      "mean_continuity_ratio": 0.409,
+      "mean_curvature_deg": 8.4,
+      "mean_taper_ratio": 0.93,
+      "mean_sig_components": 9.1
+    },
+    "shrinkage_map": {
+      "samples": 16,
+      "crack_presence_rate": 0.8125,
+      "mechanism_adherence_rate": 1.0,
+      "mean_max_length_px": 88.2,
+      "mean_continuity_ratio": 0.268,
+      "mean_curvature_deg": 8.4,
+      "mean_taper_ratio": 1.01,
+      "mean_sig_components": 14.92
+    }
+  },
+  "fidelity": {
+    "frechet_inception_distance": 170.582,
+    "kernel_inception_distance_mean": 0.03931,
+    "kernel_inception_distance_std": 0.01168
+  }
+}

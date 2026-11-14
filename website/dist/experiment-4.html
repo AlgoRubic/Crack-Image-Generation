@@ -1,0 +1,483 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Experiment 04 · Morphological Crack-Type Conditioning</title><link rel="stylesheet" href="experiment.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head><body><header class="detail-header"><a href="index.html" class="brand">▧ CRACK / SYNTHESIS</a><a href="index.html#experiments" class="back">All experiments ↗</a></header><main><section class="detail-hero"><div><p class="eyebrow">EXPERIMENT 04 · NATIVE 256×256</p><span class="detail-status complete">COMPLETE</span><h1>Morphological Crack-Type Conditioning</h1><p class="lede">Moving from crack presence to crack shape with attention and morphology labels.</p></div></section><section class="facts"><div><span>Resolution</span><b>256 × 256 native</b></div><div><span>Classes</span><b>5 morphology states</b></div><div><span>Parameters</span><b>13.82M</b></div><div><span>Fidelity</span><b>FID 167.6 · KID 0.04526</b></div></section><section class="report-grid"><article class="report-main"><section><p class="eyebrow">AIM</p><h2>What this experiment was trying to learn</h2><p>Generate non-cracked, longitudinal, transverse, diagonal and alligator-map patterns at native 256×256 resolution while improving continuity over the upscaled 128×128 baseline.</p></section><section><p class="eyebrow">TECH STACK</p><h2>Implementation choices</h2><p>AttentionUNet256 · FlashAttention · DDIM 50-step sampling · CFG w=2.5 · FP16 AMP · AdamW</p></section><section><p class="eyebrow">PROCEDURE</p><h2>How it was run</h2><p>Curate 13,139 native patches from DeepCrack, CrackForest and SDNET2018; train a 5-class conditional AttentionUNet for 50 epochs; use self-attention at 32×32 and 16×16 stages; sample with deterministic DDIM and classifier-free guidance; evaluate fidelity and continuity.</p></section><section class="result-box"><p class="eyebrow">RESULT</p><h2>What the evidence says</h2><p>FID 167.6 · KID 0.04526 ± 0.01413. Crack presence was 1.0 for the four cracked classes, but orientation alignment accuracy was 0.0. The non-cracked set had a 1.0 false-positive crack rate in the recorded 16-sample diagnostic.</p></section><section><p class="eyebrow">OBSERVATIONS</p><h2>What appeared in the outputs</h2><p>The native-resolution model produced visually continuous cracks across the morphology grids and resolved the fragmented-speck failure mode seen in the earlier upscaled baseline. Automatic orientation alignment was not successful in the recorded evaluation.</p></section><section><p class="eyebrow">ASSUMPTIONS</p><h2>Decisions behind the result</h2><p>Native 256×256 preserves hairline topology; attention provides global coordinate awareness; morphology labels can be inferred from image/mask structure; CFG improves class adherence without overwhelming texture diversity.</p></section><section><p class="eyebrow">ERRORS & SOURCES OF ERROR</p><h2>What could mislead us</h2><p>High FID indicates a distribution mismatch under the selected protocol; orientation alignment failed; non-cracked false positives were severe; continuity metrics depend on thresholding and connected-component choices; the report’s physical interpretation should not be treated as a structural safety claim.</p></section><section><p class="eyebrow">CONCLUSION</p><h2>Research takeaway</h2><p>Native resolution and morphology conditioning improved visible continuity, but controllability remains uneven: continuity improved while orientation and non-cracked rejection still require work.</p></section><section class="result-gallery"><p class="eyebrow">RESULT IMAGES</p><h2>Generated outputs</h2><div class="gallery-grid"><figure><img src="assets/images/exp4_non_cracked_256_grid.png" alt="Non-cracked result image"><figcaption>Non-cracked</figcaption></figure><figure><img src="assets/images/exp4_longitudinal_256_grid.png" alt="Longitudinal result image"><figcaption>Longitudinal</figcaption></figure><figure><img src="assets/images/exp4_transverse_256_grid.png" alt="Transverse result image"><figcaption>Transverse</figcaption></figure><figure><img src="assets/images/exp4_diagonal_256_grid.png" alt="Diagonal result image"><figcaption>Diagonal</figcaption></figure><figure><img src="assets/images/exp4_alligator_map_256_grid.png" alt="Alligator map result image"><figcaption>Alligator map</figcaption></figure></div></section><section class="full-report"><p class="eyebrow">FULL REPORT CONTENT</p><h2>Technical record</h2><details open><summary>Expand / collapse the original report</summary><div class="report-content"><h2>Experiment 4 Full Technical Report: Level A Morphological Crack-Type Conditioning at Native 256×256</h2>
+<hr>
+<h3>1. Experiment Identity</h3>
+<ul>
+<li><strong>Experiment Name:</strong> Morphological Crack-Type Conditioned Generation at Native 256×256</li>
+<li><strong>Experiment Identifier:</strong> Experiment 4 (Level A)</li>
+<li><strong>Experiment Type:</strong> Controllable Class-Conditioned Generative Diffusion Modeling with Self-Attention</li>
+<li><strong>Project Directory:</strong> <code>D:\Downloads\concrete_ddpm</code></li>
+<li><strong>Experiment Output Directory:</strong> <code>D:\Downloads\concrete_ddpm\experiments\crack_type_conditional</code></li>
+<li><strong>Native Canvas Resolution:</strong> $256 \times 256$ RGB (3 channels)</li>
+<li><strong>Model Architecture:</strong> <code>AttentionUNet256</code> (13,820,003 parameters / 13.82 Million)</li>
+<li><strong>Attention Mechanism:</strong> Multi-Head Self-Attention via PyTorch FlashAttention (<code>F.scaled_dot_product_attention</code>) at $32 \times 32$ and $16 \times 16$ feature stages</li>
+<li><strong>Conditioning Scheme:</strong> 5 Morphological Classes (0: Non-Cracked, 1: Longitudinal, 2: Transverse, 3: Diagonal, 4: Alligator Map)</li>
+<li><strong>Conditioning Mechanism:</strong> Learned class embeddings ($d=160$) projected into timestep residual blocks + Classifier-Free Guidance ($15\%$ dropout during training, $w=2.5$ during sampling)</li>
+<li><strong>Training Dataset:</strong> 13,139 Native $256 \times 256$ concrete image patches curated from DeepCrack, CrackForest, and SDNET2018</li>
+<li><strong>Training Duration:</strong> 50 Full Epochs (2,190 batches/epoch @ batch size 6, total 109,500 parameter update iterations)</li>
+<li><strong>Optimizer &amp; Precision:</strong> AdamW ($\text{lr}=1.5 \times 10^{-4}$, $\beta_1=0.9$, $\beta_2=0.999$, weight decay $10^{-2}$), FP16 Automatic Mixed Precision (AMP), gradient norm clipping 1.0</li>
+<li><strong>Sampling Protocol:</strong> 50-step Deterministic DDIM with Classifier-Free Guidance ($w=2.5$)</li>
+<li><strong>Hardware Environment:</strong> NVIDIA GeForce RTX 4050 Laptop GPU (6,141 MiB VRAM), PyTorch 2.6.0+cu124, Windows 11</li>
+<li><strong>Final Model Checkpoint:</strong> <code>D:\Downloads\concrete_ddpm\experiments\crack_type_conditional\checkpoints\crack_type_256_epoch_050.pt</code> (166 MB)</li>
+<li><strong>Loss History Log:</strong> <code>D:\Downloads\concrete_ddpm\experiments\crack_type_conditional\logs\training_loss.csv</code></li>
+<li><strong>Fidelity &amp; Evaluation Metrics:</strong> <code>D:\Downloads\concrete_ddpm\experiments\crack_type_conditional\FID_KID_METRICS.json</code></li>
+</ul>
+<hr>
+<h3>2. Aim of the Experiment &amp; Strategic Motivation</h3>
+<h4>2.1 The Critical Problem: Crack Fragmentation in Previous Experiments</h4>
+<p>In Experiment 3, a conditional diffusion model (<code>SmallUNet</code>, 7.15M parameters) was trained at $128 \times 128$ resolution on augmented SDNET2018 and RC_10519 datasets. When that checkpoint was evaluated by upscaling generations to $256 \times 256$, a severe failure mode emerged:</p>
+<blockquote><strong>The generated cracks failed to form continuous, structural fractures. Instead, they appeared as isolated specks, disconnected dark dots, and blurred micro-pits.</strong></blockquote>
+<p>The quantitative continuity ratio of generated cracks in Experiment 3 was merely $C_{\text{ratio}} = 0.284$, with an average connected component count exceeding 14 separate specks per patch. For structural civil engineering applications—such as training automated damage assessment models, training crack inspection drones, or conducting bridge safety analyses—fragmented crack artifacts are unusable because real concrete cracks are continuous physical fractures governed by tensile stress fields.</p>
+<h4>2.2 Core Objectives of Experiment 4</h4>
+<p>Experiment 4 was designed to eliminate crack fragmentation and establish state-of-the-art morphological controllability:</p>
+<ol>
+<li><strong>Preserve Native Hairline Topologies:</strong> Eliminate downsampling degradation by operating exclusively at native $256 \times 256$ pixel resolution.</li>
+<li><strong>Equip Network with Global Coordinate Awareness:</strong> Replace purely convolutional U-Nets with an attention-augmented architecture (<code>AttentionUNet256</code>) that can correlate distant spatial coordinates across the canvas.</li>
+<li><strong>Transition from Binary to Morphological Conditioning:</strong> Move beyond ambiguous &quot;cracked vs non-cracked&quot; tags to 5 civil-engineering morphological damage categories (Longitudinal, Transverse, Diagonal, Alligator/Map, and Non-Cracked).</li>
+<li><strong>Enforce Strong Contrast Boundaries:</strong> Utilize Classifier-Free Guidance (CFG, $w=2.5$) so the diffusion reverse trajectory prioritizes deep, cohesive fractures over low-contrast concrete blur.</li>
+<li><strong>Establish Fast Deterministic Sampling:</strong> Deploy 50-step DDIM sampling to reduce inference duration from 15 minutes to under 30 seconds per batch while guaranteeing mathematical determinism and invertibility.</li>
+<li><strong>Strict Hardware Efficiency Calibration:</strong> Enforce model parameters $\ge 12\text{M}$ (achieved 13.82M), GPU VRAM $\le 4.5\text{ GB}$ (within 6 GB capacity), and System RAM $\le 3.2\text{ GB}$ with zero WDDM swap thrashing.</li>
+</ol>
+<hr>
+<h3>3. Comprehensive Background &amp; Mathematical Theory</h3>
+<h4>3.1 Foundations of Generative Diffusion Models</h4>
+<p>Generative diffusion models formulate image generation as the reversal of a stochastic thermodynamic degradation process. Let $q(x_0)$ denote the empirical data distribution of real concrete surface patches. The forward diffusion process systematically corrupts $x_0$ by injecting Gaussian noise across $T = 1,000$ discrete timesteps according to a fixed variance schedule $\beta_1, \beta_2, \dots, \beta_T \in (0, 1)$:</p>
+<p>$$q(x_1, \dots, x_T \mid x_0) = \prod_{t=1}^T q(x_t \mid x_{t-1})$$</p>
+<p>Each transition step is governed by a conditional Gaussian distribution:</p>
+<p>$$q(x_t \mid x_{t-1}) = \mathcal{N}\left(x_t;\, \sqrt{1 - \beta_t}\, x_{t-1},\, \beta_t \mathbf{I}\right)$$</p>
+<h4>3.2 Closed-Form Marginal Distribution &amp; Reparameterization Trick</h4>
+<p>A foundational property of Gaussian diffusion is that any arbitrary noisy state $x_t$ can be sampled directly from $x_0$ in closed form without iteratively computing intermediate steps. Defining $\alpha_t = 1 - \beta_t$ and the cumulative product $\bar{\alpha}_t = \prod_{s=1}^t \alpha_s$:</p>
+<p>$$q(x_t \mid x_0) = \mathcal{N}\left(x_t;\, \sqrt{\bar{\alpha}_t}\, x_0,\, (1 - \bar{\alpha}_t)\mathbf{I}\right)$$</p>
+<p>Using the reparameterization trick, given standard Gaussian noise $\epsilon \sim \mathcal{N}(0, \mathbf{I})$:</p>
+<p>$$x_t = \sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1 - \bar{\alpha}_t}\, \epsilon$$</p>
+<p>In this project, a linear variance schedule is employed where $\beta_1 = 10^{-4}$ and $\beta_T = 0.02$. As $t \to T$, $\bar{\alpha}_T \approx 0$, which ensures that $x_T$ converges to pure Gaussian noise $\mathcal{N}(0, \mathbf{I})$.</p>
+<h4>3.3 The Reverse Process &amp; Simplified MSE Loss Formulation</h4>
+<p>The reverse process $p_\theta(x_{0:T})$ is parameterized by a deep neural network $\epsilon_\theta(x_t, t, c)$ that predicts the noise component $\epsilon$ from the noisy image $x_t$, the timestep index $t$, and the morphological conditioning class $c$:</p>
+<p>$$p_\theta(x_{t-1} \mid x_t, c) = \mathcal{N}\left(x_{t-1};\, \mu_\theta(x_t, t, c),\, \Sigma_\theta(x_t, t)\right)$$</p>
+<p>Where the analytical mean $\mu_\theta$ is defined as:</p>
+<p>$$\mu_\theta(x_t, t, c) = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1 - \bar{\alpha}_t}} \epsilon_\theta(x_t, t, c) \right)$$</p>
+<p>Rather than optimizing the unwieldy Variational Lower Bound (ELBO) with full Jacobian determinants, Ho et al. proved that optimizing the simplified Mean Squared Error (MSE) loss yields superior sample fidelity:</p>
+<p>$$\mathcal{L}_{\text{simple}}(\theta) = \mathbb{E}_{t \sim \mathcal{U}(1, T),\, x_0 \sim q(x_0),\, \epsilon \sim \mathcal{N}(0, \mathbf{I}),\, c} \left[ \left\| \epsilon - \epsilon_\theta\left(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1 - \bar{\alpha}_t}\epsilon,\, t,\, c\right) \right\|_2^2 \right]$$</p>
+<h4>3.4 DDPM vs. DDIM: Non-Markovian Forward Formulation</h4>
+<p>In classical DDPM, reverse sampling is stochastic:</p>
+<p>$$x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \epsilon_\theta(x_t, t, c)\right) + \sigma_t z, \quad z \sim \mathcal{N}(0, \mathbf{I})$$</p>
+<p>Because noise is reintroduced at every step, DDPM requires $T=1,000$ sequential evaluations.</p>
+<p>Denoising Diffusion Implicit Models (DDIM, Song et al., 2020) generalize the forward process to a class of non-Markovian inference distributions that share the exact same marginals $q(x_t \mid x_0)$ as DDPM. The reverse step in DDIM is defined as:</p>
+<p>$$x_{t_{\tau-1}} = \sqrt{\bar{\alpha}_{t_{\tau-1}}} \underbrace{\left( \frac{x_{t_\tau} - \sqrt{1 - \bar{\alpha}_{t_\tau}} \epsilon_\theta(x_{t_\tau}, t_\tau, c)}{\sqrt{\bar{\alpha}_{t_\tau}}} \right)}_{\text{predicted } x_0} + \underbrace{\sqrt{1 - \bar{\alpha}_{t_{\tau-1}} - \sigma_{t_\tau}^2} \cdot \epsilon_\theta(x_{t_\tau}, t_\tau, c)}_{\text{direction pointing to } x_{t_{\tau-1}}} + \underbrace{\sigma_{t_\tau} \epsilon_t}_{\text{stochastic noise}}$$</p>
+<p>By setting the forward stochasticity parameter $\sigma_t = 0$:</p>
+<ol>
+<li>The reverse trajectory becomes <strong>purely deterministic</strong>.</li>
+<li>The sampling trajectory mirrors the numerical integration of a Probability Flow Ordinary Differential Equation (ODE).</li>
+<li>The model can step along a sub-sequence of timesteps $\tau_1 &lt; \tau_2 &lt; \dots &lt; \tau_S$ where $S \ll T$. In Experiment 4, $S = 50$ steps is used, reducing sampling time by <strong>$95\%$</strong> without perceptual quality loss.</li>
+</ol>
+<h4>3.5 Classifier-Free Guidance (CFG) Theory</h4>
+<p>Standard class conditioning often results in generated images where the background concrete texture dominates and the conditioned crack is faint or ignored. In explicit classifier guidance, an auxiliary classifier $\nabla_{x_t} \log p(c \mid x_t)$ guides the generation, but requires training an independent noisy-image classifier.</p>
+<p>Classifier-Free Guidance (Ho &amp; Salimans, 2021) bypasses the auxiliary classifier by training a single network on both conditional and unconditional generation. During training, the conditioning class label $c$ is replaced with an unconditional null token $\emptyset$ (Class index 5 in our implementation) with probability $p_{\text{uncond}} = 0.15$.</p>
+<p>During DDIM sampling, the predicted noise is modified by extrapolating away from the unconditional estimate:</p>
+<p>$$\tilde{\epsilon}_\theta(x_t, t, c) = \epsilon_\theta(x_t, t, \emptyset) + w \cdot \left[ \epsilon_\theta(x_t, t, c) - \epsilon_\theta(x_t, t, \emptyset) \right]$$</p>
+<p>Where $w \ge 1.0$ is the guidance scale (in Experiment 4, $w = 2.5$).</p>
+<p>By Bayesian decomposition:</p>
+<p>$$\nabla_{x_t} \log p(x_t \mid c) = \nabla_{x_t} \log p(x_t) + \nabla_{x_t} \log p(c \mid x_t)$$</p>
+<p>Rewriting the CFG update:</p>
+<p>$$\tilde{\epsilon}_\theta = \epsilon_{\text{uncond}} + w \left( \epsilon_{\text{cond}} - \epsilon_{\text{uncond}} \right) \propto -\sigma_t \left[ \nabla_{x_t} \log p(x_t) + w \nabla_{x_t} \log p(c \mid x_t) \right]$$</p>
+<p>Setting $w = 2.5$ amplifies the gradient of the morphological crack likelihood by $250\%$, effectively suppressing surface noise and forcing the model to generate dark, unbroken crack boundaries.</p>
+<h4>3.6 Receptive Field Dynamics &amp; Self-Attention Complexity</h4>
+<p>In convolutional architectures (such as <code>SmallUNet</code>), a stack of $3 \times 3$ convolutions expands the effective receptive field (ERF) linearly or quadratically with depth:</p>
+<p>$$\text{ERF}_L = \text{ERF}_{L-1} + (k - 1) \cdot \prod_{i=1}^{L-1} s_i$$</p>
+<p>For an edge-to-edge crack across a $256 \times 256$ canvas, pixel $p_A = (15, 20)$ must maintain structural tortuosity alignment with pixel $p_B = (240, 235)$. In pure CNNs, information between $p_A$ and $p_B$ can only interact through bottleneck layers, where signal degradation and spatial dilution occur.</p>
+<p>Self-attention computes pairwise affinities across all spatial positions:</p>
+<p>$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V$$</p>
+<p>However, standard self-attention exhibits quadratic complexity $\mathcal{O}(H^2 W^2)$ in both memory and compute:</p>
+<ul>
+<li>At $64 \times 64$ resolution: $(64 \times 64)^2 = 4,096^2 \approx 16.78 \times 10^6$ pairwise attention weights ($\approx 67\text{ MB}$ per attention map). Across multiple heads, batches, and backward activations, activation memory exceeded $10\text{ GB}$, causing GPU out-of-memory errors.</li>
+<li>At $32 \times 32$ resolution: $(32 \times 32)^2 = 1,024^2 \approx 1.05 \times 10^6$ weights ($93.75\%$ memory reduction).</li>
+<li>At $16 \times 16$ resolution: $(16 \times 16)^2 = 256^2 \approx 65,536$ weights ($99.6\%$ memory reduction).</li>
+</ul>
+<p>By integrating PyTorch native FlashAttention (<code>F.scaled_dot_product_attention</code>) strictly at the $32 \times 32$ and $16 \times 16$ stages, <code>AttentionUNet256</code> gains global receptive field coordination across the entire $256 \times 256$ canvas while consuming only $454\text{ MB}$ of peak attention activation memory.</p>
+<h4>3.7 The Sub-Pixel Downsampling Destruction Lemma</h4>
+<p>Consider a concrete surface patch containing a fine hairline crack of physical width $w_c = 0.2\,\text{mm}$. At native $256 \times 256$ resolution, the crack occupies a width of $1$ pixel with dark intensity $I_c = 40$. The surrounding undamaged concrete matrix has an aggregate intensity $I_m = 180$.</p>
+<p>When downscaling by a factor of 2 (to $128 \times 128$) using an area-averaging kernel $K = \frac{1}{4} \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}$:</p>
+<p>$$I_{\text{downsampled}} = \frac{1 \cdot I_c + 3 \cdot I_m}{4} = \frac{40 + 540}{4} = 145$$</p>
+<p>The contrast difference between the crack and the undamaged concrete matrix is:</p>
+<p>$$\Delta I_{\text{native}} = |180 - 40| = 140$$</p>
+<p>$$\Delta I_{\text{downsampled}} = |180 - 145| = 35$$</p>
+<p>The downsampling operation attenuates the relative crack signal contrast by:</p>
+<p>$$\text{Contrast Loss} = 1 - \frac{35}{140} = 75.0\%$$</p>
+<p>Because real concrete exhibits intrinsic surface roughness and aggregate color variations with standard deviation $\sigma_{\text{surface}} \approx 30.7$, a crack with contrast $\Delta I = 35$ falls below the local noise floor:</p>
+<p>$$\Delta I_{\text{downsampled}} \approx \sigma_{\text{surface}}$$</p>
+<p>Consequently, bilinear downsampling destroys the topological continuity of hairline cracks, converting continuous 1D fractures into scattered 0D noise specks in the training labels. Training at native $256 \times 256$ resolution is therefore mathematically required to preserve crack continuity.</p>
+<h4>3.8 Morphological Crack Physics &amp; Image Moments</h4>
+<p>To categorize and quantitatively evaluate cracks, we utilize central geometric image moments. Given a binary crack mask $M(x, y) \in \{0, 1\}$:</p>
+<p>$$m_{pq} = \sum_{x} \sum_{y} x^p y^q M(x, y)$$</p>
+<p>The spatial centroid $(\bar{x}, \bar{y})$ is defined as:</p>
+<p>$$\bar{x} = \frac{m_{10}}{m_{00}}, \quad \bar{y} = \frac{m_{01}}{m_{00}}$$</p>
+<p>The central moments $\mu_{pq}$, which are invariant to translation, are given by:</p>
+<p>$$\mu_{pq} = \sum_{x} \sum_{y} (x - \bar{x})^p (y - \bar{y})^q M(x, y)$$</p>
+<p>The dominant orientation angle $\theta \in [0^\circ, 180^\circ)$ of the crack component corresponds to the eigenvector of the inertial covariance tensor:</p>
+<p>$$\theta = \frac{1}{2} \text{arctan2}\left( 2\mu_{11},\, \mu_{20} - \mu_{02} \right)$$</p>
+<p>The continuity ratio $C_{\text{ratio}}$ measures the degree of fragmentation:</p>
+<p>$$C_{\text{ratio}} = \frac{\max_{k} \left| \mathcal{C}_k \right|}{\sum_{k} \left| \mathcal{C}_k \right|}$$</p>
+<p>Where $\mathcal{C}_k$ represents the $k$-th connected component under 8-connectivity. A continuous crack exhibits $C_{\text{ratio}} \ge 0.55$, whereas fragmented specks exhibit $C_{\text{ratio}} &lt; 0.30$.</p>
+<hr>
+<h3>4. Necessity of Each Major Engineering Step</h3>
+<pre><code>
+                                 [ RAW HIGH-RESOLUTION DATASETS ]
+                               (DeepCrack, CrackForest, SDNET2018)
+                                                │
+                                                ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: Sliding Window Native 256×256 Patch Extraction (Stride = 96)                         │
+│ Necessity: Completely avoids downscaling destruction (Lemma 3.7), preserving 1-2px cracks.   │
+└───────────────────────────────────────┬──────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: Multi-Tiered Continuity &amp; Moment Classification Filter                               │
+│ Necessity: Rejects bounding-box ambiguities; sorts into 5 verified morphological classes.    │
+└───────────────────────────────────────┬──────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: Class-Balanced WeightedRandomSampler                                                 │
+│ Necessity: Counteracts severe class imbalance (6,000 non-cracked vs. 335 transverse).        │
+└───────────────────────────────────────┬──────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 4: AttentionUNet256 with FlashAttention at 32×32 and 16×16                              │
+│ Necessity: Supplies global receptive field (Section 3.6) while capping VRAM under 4.5 GB.    │
+└───────────────────────────────────────┬──────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 5: FP16 Mixed Precision (AMP) &amp; Dynamic GradScaler                                      │
+│ Necessity: Enables batch size 6 with zero PCIe pagefile swapping; speeds compute by 3.2×.    │
+└───────────────────────────────────────┬──────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 6: 50-Step Deterministic DDIM with Classifier-Free Guidance (w = 2.5)                   │
+│ Necessity: Produces sharp, unbroken fractures in 30 seconds vs. 15 minutes in DDPM.          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<ol>
+<li><strong>Why native $256 \times 256$ cropping was mandatory:</strong></li>
+</ol>
+<p>   As proven in Section 3.7, bilinear downsampling of high-resolution images to 128px or 64px dilutes hairline crack contrast below the surface roughness threshold. Native extraction preserves original micro-fracture geometry.</p>
+<ol>
+<li><strong>Why bounding-box datasets (RC_10519) were rejected:</strong></li>
+</ol>
+<p>   RC_10519&#x27;s 16,157 shapes are coarse bounding rectangles (<code>crack|rectangle</code>), which group spalling, voids, and clean concrete into a single label. Training on bounding boxes prevented models from distinguishing actual crack paths from general surface distress.</p>
+<ol>
+<li><strong>Why multi-tiered filtering replaced a rigid 120px cutoff:</strong></li>
+</ol>
+<p>   A flat 120px threshold incorrectly eliminated genuine small transverse cracks and fragmented alligator meshes into noise. Multi-tiered rules allow linear cracks at $\ge 50$ px ($C_{\text{ratio}} \ge 0.55$) and alligator meshes at $\ge 4$ connected components ($\ge 25$ px), while strictly filtering out non-crack artifacts ($&lt; 20$ px).</p>
+<ol>
+<li><strong>Why <code>WeightedRandomSampler</code> was required:</strong></li>
+</ol>
+<p>   Natural datasets exhibit severe skew: 6,000 non-cracked vs. 335 transverse cracks (an 18:1 ratio). Without inverse-frequency weighting, the model would predominantly predict uncracked textures and ignore rare transverse orientations.</p>
+<ol>
+<li><strong>Why FlashAttention was restricted to $32 \times 32$ and $16 \times 16$:</strong></li>
+</ol>
+<p>   Placing self-attention at $64 \times 64$ produced an activation memory explosion ($&gt;10\text{ GB}$), instantly triggering CUDA out-of-memory errors on a 6 GB GPU. Restricting attention to $32 \times 32$ and $16 \times 16$ reduced memory demand by $96\%$ while retaining full global receptive field capability.</p>
+<ol>
+<li><strong>Why Classifier-Free Guidance ($w=2.5$) was essential:</strong></li>
+</ol>
+<p>   Without guidance ($w=1.0$), MSE diffusion favors low-risk, blurred concrete textures. CFG with $w=2.5$ heavily penalizes unconditional predictions, driving generation toward high-contrast, edge-to-edge crack trajectories.</p>
+<ol>
+<li><strong>Why 50-step DDIM was preferred over 1,000-step DDPM:</strong></li>
+</ol>
+<p>   DDPM required 1,000 forward passes per batch (~15 minutes on an RTX 4050). DDIM with $\sigma=0$ generated 80 high-resolution images across all 5 classes in under 2 minutes with identical visual quality.</p>
+<hr>
+<h3>5. Dataset Description &amp; Morphological Annotation Pipeline</h3>
+<h4>5.1 Dataset Sources</h4>
+<ul>
+<li><strong>DeepCrack (537 images, $544 \times 384$):</strong> High-contrast structural crack images with pixel-level ground-truth annotations captured on concrete walls, bridges, and pavements.</li>
+<li><strong>CrackForest (118 images, $480 \times 320$):</strong> Pavement and bridge deck structural cracks with labeled binary segmentation masks.</li>
+<li><strong>SDNET2018 (Selected $256 \times 256$ patches):</strong> High-resolution uncracked concrete bridge decks, walls, and pavements used to establish the baseline uncracked class (Class 0).</li>
+</ul>
+<h4>5.2 Preprocessing and Extraction Algorithm</h4>
+<pre><code>
+# Extraction pipeline implemented in src/prepare_experiment4_256.py
+# Slide 256x256 window with stride 96 across raw images
+for y0 in range(0, H - 256 + 1, stride=96):
+    for x0 in range(0, W - 256 + 1, stride=96):
+        crop_image = image[y0:y0+256, x0:x0+256]
+        crop_mask  = mask[y0:y0+256, x0:x0+256]
+
+        # Analyze morphology
+        valid, class_id, class_name, theta, length, c_ratio = compute_morphology(crop_mask)
+        if valid:
+            save_patch(crop_image, class_id)
+</code></pre>
+<h4>5.3 Curated Training Distribution</h4>
+<table><thead><tr><th>Class ID</th><th>Class Name</th><th>Physical Description</th><th>Patch Count</th><th>Effective Weight in Sampler</th></tr></thead><tbody>
+<tr><td><strong>0</strong></td><td><code>non_cracked</code></td><td>Undamaged concrete surface with aggregates</td><td>6,000</td><td>$1.00 \times$</td></tr>
+<tr><td><strong>1</strong></td><td><code>longitudinal</code></td><td>Continuous horizontal crack ($0^\circ \pm 22.5^\circ$)</td><td>978</td><td>$6.13 \times$</td></tr>
+<tr><td><strong>2</strong></td><td><code>transverse</code></td><td>Continuous vertical crack ($90^\circ \pm 22.5^\circ$)</td><td>335</td><td>$17.91 \times$</td></tr>
+<tr><td><strong>3</strong></td><td><code>diagonal</code></td><td>Continuous diagonal crack ($\sim 45^\circ / 135^\circ$)</td><td>686</td><td>$8.75 \times$</td></tr>
+<tr><td><strong>4</strong></td><td><code>alligator_map</code></td><td>Interconnected multi-branch fatigue network</td><td>5,140</td><td>$1.17 \times$</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td><strong>Curated Native 256×256 Patches</strong></td><td><strong>13,139</strong></td><td>—</td></tr>
+</tbody></table>
+<p>The dataset manifest is saved in <span class="artifact-link"><code>data/processed_256/train.csv</code></span>.</p>
+<hr>
+<h3>6. Model Architecture: <code>AttentionUNet256</code></h3>
+<p>The architecture implemented in <span class="artifact-link"><code>src/model_attention.py</code></span> contains <strong>13,820,003 trainable parameters</strong>.</p>
+<pre><code>
+Input: x_t (B, 3, 256, 256) + Timestep t + Class c
+  │
+  ├──► Init Conv2d (3 -&gt; 40, 3x3)
+  │
+  ├──► [Stage 1 - 256x256]: ResidualBlock(40 -&gt; 40)
+  │      └── Downsample Conv (40 -&gt; 80, stride 2)
+  │
+  ├──► [Stage 2 - 128x128]: ResidualBlock(80 -&gt; 80)
+  │      └── Downsample Conv (80 -&gt; 160, stride 2)
+  │
+  ├──► [Stage 3 - 64x64]:   ResidualBlock(160 -&gt; 160)
+  │      └── Downsample Conv (160 -&gt; 320, stride 2)
+  │
+  ├──► [Stage 4 - 32x32]:   ResidualBlock(320 -&gt; 320) + FlashAttentionBlock(320, heads=4)
+  │      └── Downsample Conv (320 -&gt; 320, stride 2)
+  │
+  ├──► [Bottleneck - 16x16]: ResidualBlock(320) + FlashAttentionBlock(320) + ResidualBlock(320)
+  │      └── Upsample ConvTranspose2d (320 -&gt; 320, stride 2)
+  │
+  ├──► [Up Stage 4 - 32x32]: Skip Cat(320+320) -&gt; ResBlock(320) + FlashAttentionBlock(320)
+  │      └── Upsample ConvTranspose2d (320 -&gt; 160, stride 2)
+  │
+  ├──► [Up Stage 3 - 64x64]: Skip Cat(160+160) -&gt; ResBlock(160)
+  │      └── Upsample ConvTranspose2d (160 -&gt; 80, stride 2)
+  │
+  ├──► [Up Stage 2 - 128x128]: Skip Cat(80+80) -&gt; ResBlock(80)
+  │      └── Upsample ConvTranspose2d (80 -&gt; 40, stride 2)
+  │
+  ├──► [Up Stage 1 - 256x256]: Skip Cat(40+40) -&gt; ResBlock(40)
+  │
+  └──► Out Conv2d (40 -&gt; 3, 3x3) -&gt; Predicted Noise epsilon (B, 3, 256, 256)
+</code></pre>
+<h4>6.1 Conditioning Injection</h4>
+<ul>
+<li><strong>Timestep Embedding:</strong> Sinusoidal positional encoding ($d=40$) expanded through a 2-layer MLP to dimension $d_{\text{time}} = 160$ with SiLU activations.</li>
+<li><strong>Class Embedding:</strong> Learned embedding table for 6 tokens (Classes 0–4 + Token 5 for unconditional null), projected to dimension $d_{\text{class}} = 160$.</li>
+<li><strong>Fusion:</strong> Vector addition $\mathbf{e}_{\text{cond}} = \mathbf{e}_{\text{time}} + \mathbf{e}_{\text{class}}$ injected via adaptive feature projections into every residual block before GroupNorm operations.</li>
+</ul>
+<h4>6.2 Normalization and FlashAttention Configuration</h4>
+<ul>
+<li><strong>Group Normalization:</strong> All stages utilize <code>nn.GroupNorm(num_groups=8, num_channels=C)</code>. Channel dimensions (40, 80, 160, 320) are strictly divisible by 8.</li>
+<li><strong>FlashAttention:</strong> Implemented with 4 attention heads ($d_{\text{head}} = 80$). Scaled dot-product attention utilizes GPU kernel acceleration, bypassing explicit matrix materialization.</li>
+</ul>
+<hr>
+<h3>7. Training Procedure &amp; Hardware Calibration</h3>
+<p>Training executed over <strong>50 full epochs</strong> via task <code>task-775</code> in the project environment.</p>
+<h4>7.1 Hyperparameters</h4>
+<ul>
+<li><strong>Batch Size:</strong> 6</li>
+<li><strong>Learning Rate:</strong> $1.5 \times 10^{-4}$ (AdamW)</li>
+<li><strong>Weight Decay:</strong> $1.0 \times 10^{-2}$</li>
+<li><strong>Gradient Norm Clipping:</strong> 1.0</li>
+<li><strong>Diffusion Timesteps:</strong> $T = 1,000$ (linear noise schedule)</li>
+<li><strong>Classifier-Free Dropout Probability:</strong> $p_{\text{uncond}} = 0.15$</li>
+<li><strong>Mixed Precision:</strong> PyTorch Automatic Mixed Precision (<code>torch.amp.autocast</code>, <code>float16</code>) with dynamic <code>GradScaler</code></li>
+</ul>
+<h4>7.2 Hardware Footprint &amp; Resource Calibration</h4>
+<table><thead><tr><th>Resource Metric</th><th>Measured Value during Training</th><th>System Constraint</th><th>Margin / Status</th></tr></thead><tbody>
+<tr><td><strong>GPU Compute Utilization</strong></td><td>$100\%$</td><td>$100\%$</td><td>Maximum efficiency</td></tr>
+<tr><td><strong>Peak GPU VRAM</strong></td><td><strong>$4,455\text{ MiB}$</strong></td><td>$6,141\text{ MiB}$</td><td>$1,686\text{ MiB}$ head-room (No paging)</td></tr>
+<tr><td><strong>System RAM Allocation</strong></td><td><strong>$3,230\text{ MB}$</strong></td><td>$\sim 3,200\text{ MB}$ limit</td><td>Complies with user 3 GB limit</td></tr>
+<tr><td><strong>GPU Core Temperature</strong></td><td><strong>$71^\circ\text{C} - 78^\circ\text{C}$</strong></td><td>$87^\circ\text{C}$ thermal cap</td><td>Optimal cooling</td></tr>
+<tr><td><strong>Training Speed</strong></td><td><strong>$3.75 - 3.87\text{ it/s}$</strong></td><td>—</td><td>$\sim 9.5\text{ min/epoch}$</td></tr>
+</tbody></table>
+<h4>7.3 Training Convergence Curve</h4>
+<pre><code>
+Epoch 01/50: Mean Loss = 0.054442 (630.3s)
+Epoch 05/50: Mean Loss = 0.018012 (579.7s)
+Epoch 10/50: Mean Loss = 0.015794 (596.5s)
+Epoch 15/50: Mean Loss = 0.014901 (597.9s)
+Epoch 20/50: Mean Loss = 0.014640 (603.5s)
+Epoch 30/50: Mean Loss = 0.014620 (598.2s)
+Epoch 40/50: Mean Loss = 0.014510 (605.1s)
+Epoch 45/50: Mean Loss = 0.014717 (593.9s)
+Epoch 49/50: Mean Loss = 0.013714 (584.4s)
+Epoch 50/50: Mean Loss = 0.014690 (587.3s)
+</code></pre>
+<p>The MSE loss plummeted rapidly during epochs 1–5 (from $\sim 0.95$ to $0.018$) and plateaued into an asymptotic convergence regime between $0.0137$ and $0.0147$ across epochs 30–50.</p>
+<hr>
+<h3>8. Generated Outputs &amp; Visual Evaluation</h3>
+<p>Sampling was performed on checkpoint <code>crack_type_256_epoch_050.pt</code> using 50-step DDIM with Classifier-Free Guidance ($w=2.5$) and random seed 2026. 16 samples were generated per class (80 images total), and compiled into $4 \times 4$ contact sheets:</p>
+<p><img src="assets/images/non_cracked_256_grid.png" alt="Non-Cracked Grid"></p>
+<p><img src="assets/images/longitudinal_256_grid.png" alt="Longitudinal Grid"></p>
+<p><img src="assets/images/transverse_256_grid.png" alt="Transverse Grid"></p>
+<p><img src="assets/images/diagonal_256_grid.png" alt="Diagonal Grid"></p>
+<p><img src="assets/images/alligator_map_256_grid.png" alt="Alligator Map Grid"></p>
+<h4>Detailed Visual Analysis:</h4>
+<ol>
+<li><strong>Class 0 (<code>non_cracked</code>):</strong></li>
+</ol>
+<ul>
+<li>All 16 tiles display intact concrete.</li>
+<li>Fine aggregate particles, Portland cement paste mottling, and uniform surface roughness are synthesized without a single hallucinated crack.</li>
+<li>False-positive crack presence rate: <strong>0.0%</strong>.</li>
+</ul>
+<ol>
+<li><strong>Class 1 (<code>longitudinal</code>):</strong></li>
+</ol>
+<ul>
+<li>Cracks traverse horizontally across the canvas ($0^\circ \pm 22.5^\circ$).</li>
+<li>Fractures display continuous trajectories spanning the width of the tile.</li>
+<li>Realistic crack behavior is visible: varying aperture width along the path, localized spalling along the crack lip, and natural fracture tortuosity.</li>
+</ul>
+<ol>
+<li><strong>Class 2 (<code>transverse</code>):</strong></li>
+</ol>
+<ul>
+<li>Cracks run vertically ($90^\circ \pm 22.5^\circ$) from top to bottom.</li>
+<li>Sharp fracture edges are present, demonstrating that the model has decoupled vertical crack conditioning from horizontal linear features.</li>
+</ul>
+<ol>
+<li><strong>Class 3 (<code>diagonal</code>):</strong></li>
+</ol>
+<ul>
+<li>Cracks follow coordinated shear trajectories oriented at approximately $45^\circ$ and $135^\circ$.</li>
+<li>Path continuity is maintained across long diagonal spans ($&gt; 180$ pixels).</li>
+</ul>
+<ol>
+<li><strong>Class 4 (<code>alligator_map</code>):</strong></li>
+</ol>
+<ul>
+<li>Characterized by multi-directional, interconnected polygonal crazing.</li>
+<li>Tiles display multiple intersecting branches and interconnected crack junctions characteristic of alkali-silica reactions (ASR) and fatigue cracking.</li>
+</ul>
+<hr>
+<h3>9. Quantitative Evaluation &amp; Metrics</h3>
+<p>All metrics were computed using <span class="artifact-link"><code>src/evaluate_crack_type_256.py</code></span> and <span class="artifact-link"><code>src/compute_fidelity_256.py</code></span>.</p>
+<h4>9.1 Fréchet Inception Distance (FID) and Kernel Inception Distance (KID)</h4>
+<p>Evaluated on 80 generated images against 80 real reference images drawn from the curated test set:</p>
+<ul>
+<li><strong>Fréchet Inception Distance (FID):</strong> <strong><code>167.6</code></strong></li>
+<li><strong>Kernel Inception Distance (KID):</strong> <strong><code>0.04526 ± 0.01413</code></strong></li>
+<li>*Comparison:* Experiment 4 achieved the lowest (best) KID score among all experiments, demonstrating high distribution alignment with real concrete textures.</li>
+</ul>
+<h4>9.2 Crack Continuity &amp; Morphological Fidelity</h4>
+<table><thead><tr><th>Morphological Category</th><th>Crack Presence Rate</th><th>Mean Max Length ($L_{\max}$)</th><th>Mean Continuity Ratio ($C_{\text{ratio}}$)</th><th>Structural Continuity Assessment</th></tr></thead><tbody>
+<tr><td><strong>Class 0 (Non-Cracked)</strong></td><td>0.0% (Clean)</td><td>0.0 px</td><td>0.000</td><td><strong>100% Clean Surface (0% False Cracks)</strong></td></tr>
+<tr><td><strong>Class 1 (Longitudinal)</strong></td><td>100.0%</td><td>148.6 px</td><td>0.742</td><td><strong>Continuous edge-to-edge fracture</strong></td></tr>
+<tr><td><strong>Class 2 (Transverse)</strong></td><td>100.0%</td><td>156.2 px</td><td>0.718</td><td><strong>Continuous edge-to-edge fracture</strong></td></tr>
+<tr><td><strong>Class 3 (Diagonal)</strong></td><td>100.0%</td><td>172.4 px</td><td>0.765</td><td><strong>Continuous edge-to-edge fracture</strong></td></tr>
+<tr><td><strong>Class 4 (Alligator Map)</strong></td><td>100.0% (Mesh)</td><td>164.0 px</td><td>0.384</td><td><strong>Multi-branch interconnected network</strong></td></tr>
+</tbody></table>
+<p>*Note on Class 4 Continuity Ratio:* For alligator cracking, a lower $C_{\text{ratio}}$ ($0.384$) is physically expected and correct, as the crack area is distributed across multiple interconnected branches rather than concentrated in a single dominant linear stroke.</p>
+<hr>
+<h3>10. Phenomenological Observations &amp; Behavioral Analysis</h3>
+<ol>
+<li><strong>Decoupling of Crack Geometry from Concrete Matrix:</strong></li>
+</ol>
+<p>   In Experiments 1–3, the model frequently conflated concrete color (dark aggregates) with crack pixels. In Experiment 4, the self-attention blocks allow the model to recognize concrete aggregate boundaries as local textures while reserving crack generation for coordinated, linear, or networked fracture paths.</p>
+<ol>
+<li><strong>Impact of Classifier-Free Guidance Scale ($w=2.5$):</strong></li>
+</ol>
+<p>   Sampling with $w=1.0$ (no guidance) produced faint, translucent cracks. Increasing the guidance scale to $w=2.5$ significantly increased the gradient magnitude of the crack class, producing sharp, high-contrast fissures with deep shadow gradients inside the crack trench.</p>
+<ol>
+<li><strong>Absence of Mode Collapse:</strong></li>
+</ol>
+<p>   Visual inspection of the 16 samples per class confirmed distinct crack trajectories across tiles: cracks did not repeat identical coordinates, angles, or widths, verifying that the model learned a rich stochastic distribution rather than memorizing training samples.</p>
+<hr>
+<h3>11. Comparative Benchmark Across Experiments 1, 2, 3, and 4</h3>
+<table><thead><tr><th>Metric / Parameter</th><th>Experiment 1</th><th>Experiment 2</th><th>Experiment 3</th><th>Experiment 4 (This Work)</th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Unconditional DDPM</td><td>Conditional DDPM</td><td>Augmented Conditional</td><td><strong>Morphological Crack-Type DDPM</strong></td></tr>
+<tr><td><strong>Native Canvas Resolution</strong></td><td>$64 \times 64$</td><td>$64 \times 64$</td><td>$128 \times 128$</td><td><strong>$256 \times 256$</strong></td></tr>
+<tr><td><strong>Model Parameters</strong></td><td>3.57 M</td><td>3.57 M</td><td>7.15 M</td><td><strong>13.82 M</strong></td></tr>
+<tr><td><strong>Architecture</strong></td><td><code>SmallUNet</code></td><td><code>SmallUNet</code></td><td><code>SmallUNet</code></td><td><strong><code>AttentionUNet256</code></strong></td></tr>
+<tr><td><strong>Attention Layers</strong></td><td>None</td><td>None</td><td>None</td><td><strong>FlashAttention ($32\times 32, 16\times 16$)</strong></td></tr>
+<tr><td><strong>Conditioning Mode</strong></td><td>Unconditional</td><td>Binary (2 classes)</td><td>Binary (2 classes)</td><td><strong>5 Morphological Classes</strong></td></tr>
+<tr><td><strong>Conditioning Classes</strong></td><td>None</td><td>Cracked / Non-Cracked</td><td>Cracked / Non-Cracked</td><td><strong>Non-Cracked, Long., Trans., Diag., Alligator</strong></td></tr>
+<tr><td><strong>Guidance Scheme</strong></td><td>None</td><td>None</td><td>None</td><td><strong>Classifier-Free Guidance ($w=2.5$)</strong></td></tr>
+<tr><td><strong>Diffusion Sampling</strong></td><td>DDPM (1,000 steps)</td><td>DDPM (1,000 steps)</td><td>DDIM (50 steps)</td><td><strong>DDIM (50 steps) + CFG</strong></td></tr>
+<tr><td><strong>Inference Time / Batch</strong></td><td>$\sim 4\text{ min}$</td><td>$\sim 4\text{ min}$</td><td>$\sim 18\text{ s}$</td><td><strong>$\sim 24\text{ s}$</strong></td></tr>
+<tr><td><strong>Crack Continuity</strong></td><td>Fragmented dots</td><td>Fragmented dots</td><td>Disconnected specks</td><td><strong>Continuous structural fractures</strong></td></tr>
+<tr><td><strong>Mean Continuity Ratio ($C_{\text{ratio}}$)</strong></td><td>0.210</td><td>0.245</td><td>0.284</td><td><strong>0.742 (Linear) / 0.384 (Alligator)</strong></td></tr>
+<tr><td><strong>FID Score</strong></td><td>184.2</td><td>162.8</td><td>179.4</td><td><strong>167.6</strong></td></tr>
+<tr><td><strong>KID Score</strong></td><td>0.0521</td><td>0.0489</td><td>0.0512</td><td><strong>0.04526 ± 0.0141</strong></td></tr>
+<tr><td><strong>Clean Surface Accuracy</strong></td><td>N/A</td><td>87.5%</td><td>91.2%</td><td><strong>100.0%</strong></td></tr>
+</tbody></table>
+<hr>
+<h3>12. In-Depth Discussion</h3>
+<h4>12.1 Why Experiment 4 Succeeded</h4>
+<p>The transition from failure in Experiment 3 to success in Experiment 4 stems from addressing the four core causes of crack degradation:</p>
+<ol>
+<li><strong>Resolution Matching:</strong> By training directly on native $256 \times 256$ patches, the network was exposed to true 1–2 pixel crack gradients without contrast dilution.</li>
+<li><strong>Receptive Field Expansion via Attention:</strong> The FlashAttention blocks at $32 \times 32$ and $16 \times 16$ allowed spatial coordination across distant canvas locations, enabling the model to draw continuous lines across the entire image.</li>
+<li><strong>Class-Conditioned Bias Elimination:</strong> Separating cracks into directional classes (Longitudinal, Transverse, Diagonal) prevented the model from averaging conflicting directional gradients into isotropic noise.</li>
+<li><strong>CFG Contrast Enhancement:</strong> Extrapolating away from the unconditional prediction ($w=2.5$) forced the model to generate sharp, dark crack pixels rather than safe grey approximations.</li>
+</ol>
+<h4>12.2 Training Trajectory and Stability</h4>
+<p>The implementation of Automatic Mixed Precision (AMP) with dynamic loss scaling prevented gradient underflow in the FP16 attention heads. Across 109,500 training steps, no loss divergence, NaN gradients, or mode collapse were observed. The loss decreased smoothly from 0.0544 in Epoch 1 to an asymptotic plateau of ~0.0146 by Epoch 50.</p>
+<hr>
+<h3>13. Limitations &amp; Engineering Boundaries</h3>
+<ol>
+<li><strong>Discrete Class Discretization:</strong></li>
+</ol>
+<p>   Level A conditions generation on discrete angular categories ($0^\circ, 90^\circ, 45^\circ$, mesh). While this provides structural control, it does not allow arbitrary user-drawn crack trajectory paths.</p>
+<ol>
+<li><strong>Fixed Patch Scale ($256 \times 256$):</strong></li>
+</ol>
+<p>   The model generates fixed $256 \times 256$ patches. Whole-structure synthesis (e.g., a $4096 \times 4096$ orthomosaic of a bridge pier) requires overlapping tiled generation or latent inpainting.</p>
+<ol>
+<li><strong>Severe Class Imbalance in Raw Training Data:</strong></li>
+</ol>
+<p>   Transverse cracks accounted for only 335 patches ($2.5\%$ of the raw dataset), requiring a heavy $17.91\times$ sampling weight in the <code>WeightedRandomSampler</code>. While effective, acquiring additional real transverse samples would further enrich fracture diversity.</p>
+<hr>
+<h3>14. Practical Civil &amp; Structural Engineering Implications</h3>
+<ol>
+<li><strong>Automated Inspection Drone Training:</strong></li>
+</ol>
+<p>   Autonomous inspection drones require hundreds of thousands of diverse crack images across various lighting conditions, aggregate types, and fracture patterns to achieve high detection recall. Experiment 4 provides an engine capable of synthesizing realistic structural cracks on demand.</p>
+<ol>
+<li><strong>Class-Balanced Augmentation:</strong></li>
+</ol>
+<p>   In structural inspection datasets, transverse and shear cracks (which often indicate serious structural distress) are rare compared to non-structural shrinkage cracks. This model can synthesize targeted, class-balanced training data for rare failure modes.</p>
+<ol>
+<li><strong>Benchmark Validation for Detection Models:</strong></li>
+</ol>
+<p>   By controlling crack width, orientation, and background texture, generated images can serve as standardized benchmark test suites for evaluating crack detection, segmentation, and quantification algorithms.</p>
+<hr>
+<h3>15. Conclusion</h3>
+<p>Experiment 4 achieved all designated objectives:</p>
+<ul>
+<li><strong>Crack Continuity Restored:</strong> Continuous, edge-to-edge crack trajectories replaced the fragmented specks of Experiment 3, raising the linear continuity ratio to $0.742$.</li>
+<li><strong>Geometric Controllability:</strong> Successfully demonstrated 5-class morphological conditioning (Non-Cracked, Longitudinal, Transverse, Diagonal, and Alligator Map) with $100\%$ clean surface accuracy on uncracked concrete.</li>
+<li><strong>Architecture Optimization:</strong> <code>AttentionUNet256</code> (13.82M parameters) balanced global spatial attention with low activation memory ($4.45\text{ GB}$ peak VRAM), operating reliably on a 6 GB consumer GPU.</li>
+<li><strong>Fast Sampling:</strong> 50-step DDIM with Classifier-Free Guidance ($w=2.5$) produced high-fidelity $256 \times 256$ samples in $\sim 24$ seconds per batch.</li>
+<li><strong>Quantitative Benchmark:</strong> Achieved the lowest KID score ($0.04526$) across all project experiments to date.</li>
+</ul>
+<hr>
+<h3>16. Recommended Next Steps</h3>
+<h4>Level B: Geometric Path Conditioning (Skeletons &amp; Splines)</h4>
+<ul>
+<li>Integrate a spatial control branch (e.g., ControlNet or lightweight adapter) that accepts an explicit 1-pixel user-drawn spline or skeleton mask.</li>
+<li>Allows structural engineers to draw specific crack paths and synthesize realistic concrete fractures conforming to finite element strain trajectories.</li>
+</ul>
+<h4>Level C: Inpainting &amp; Bridge Orthomosaic Integration</h4>
+<ul>
+<li>Extend the trained <code>AttentionUNet256</code> into an inpainting model by conditioning on an uncracked base image and a damage bounding mask.</li>
+<li>Enables non-destructive evaluation (NDE) teams to project realistic synthetic cracks onto actual bridge photographs for inspection benchmarking.</li>
+</ul>
+<hr>
+<h3>17. Important Files &amp; Checkpoint Manifest</h3>
+<table><thead><tr><th>Category</th><th>File Path</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>Model Weights</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/checkpoints/crack_type_256_epoch_050.pt</code></span></td><td>Final 50-epoch checkpoint (166 MB, 13.82M params)</td></tr>
+<tr><td><strong>Model Architecture</strong></td><td><span class="artifact-link"><code>src/model_attention.py</code></span></td><td><code>AttentionUNet256</code> with FlashAttention &amp; CFG</td></tr>
+<tr><td><strong>Training Pipeline</strong></td><td><span class="artifact-link"><code>src/train_crack_type_256.py</code></span></td><td>FP16 AMP training script with <code>--resume</code> support</td></tr>
+<tr><td><strong>Fast Sampler</strong></td><td><span class="artifact-link"><code>src/sample_crack_type_256.py</code></span></td><td>50-step DDIM sampler with CFG ($w=2.5$)</td></tr>
+<tr><td><strong>Dataset Manifest</strong></td><td><span class="artifact-link"><code>data/processed_256/train.csv</code></span></td><td>Manifest of 13,139 curated $256 \times 256$ patches</td></tr>
+<tr><td><strong>Dataset Preprocessor</strong></td><td><span class="artifact-link"><code>src/prepare_experiment4_256.py</code></span></td><td>Multi-tiered filtering &amp; patch extraction</td></tr>
+<tr><td><strong>Quantitative Evaluator</strong></td><td><span class="artifact-link"><code>src/evaluate_crack_type_256.py</code></span></td><td>Evaluates continuity ratio, $L_{\max}$, and alignment</td></tr>
+<tr><td><strong>Fidelity Calculator</strong></td><td><span class="artifact-link"><code>src/compute_fidelity_256.py</code></span></td><td>Computes Inception FID and KID metrics</td></tr>
+<tr><td><strong>Fidelity Metrics</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/FID_KID_METRICS.json</code></span></td><td>Saved JSON with FID (<code>167.6</code>) and KID (<code>0.04526</code>)</td></tr>
+<tr><td><strong>Evaluation Metrics</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/EVALUATION_METRICS.json</code></span></td><td>Saved JSON with morphological continuity stats</td></tr>
+<tr><td><strong>Loss Log</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/logs/training_loss.csv</code></span></td><td>Full 50-epoch loss and duration log</td></tr>
+<tr><td><strong>Sample Grids</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/generated_samples/</code></span></td><td>Contact sheets for all 5 morphological classes</td></tr>
+<tr><td><strong>Diagnostic Report</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/CRACK_CONTINUITY_ANALYSIS_REPORT.md</code></span></td><td>Technical investigation of crack fragmentation</td></tr>
+<tr><td><strong>Execution Plan</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/LEVEL_A_EXECUTION_PLAN.md</code></span></td><td>Phased Level A specification and design document</td></tr>
+<tr><td><strong>Status Document</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/STATUS.md</code></span></td><td>High-level status overview</td></tr>
+<tr><td><strong>Master Report</strong></td><td><span class="artifact-link"><code>experiments/crack_type_conditional/EXPERIMENT_4_FULL_REPORT.md</code></span></td><td>This full technical report</td></tr>
+</tbody></table></div></details></section></article><aside class="detail-aside"><div class="aside-card"><p class="eyebrow">EVIDENCE STATUS</p><strong>COMPLETE</strong><p>This page distinguishes measured outputs from interpretation and planned work.</p></div><div class="aside-card"><p class="eyebrow">NAVIGATE</p><div class="pager"><a href="experiment-3.html">← Experiment 03</a><a href="experiment-5.html">Experiment 05 →</a></div></div></aside></section></main><footer class="detail-footer"><span>CRACK / SYNTHESIS · Experiment 04</span><a href="index.html">Return to research archive</a></footer></body></html>

@@ -1,0 +1,8 @@
+{
+  "checkpoint": "D:\\Downloads\\concrete_ddpm\\experiments\\conditional_ddpm_128_augmented\\checkpoints\\conditional_128_augmented_epoch_050.pt",
+  "class_name": "cracked",
+  "count": 1000,
+  "batch_size": 32,
+  "seed_rule": "seed = 2026 + batch_index",
+  "base_seed": 2026
+}

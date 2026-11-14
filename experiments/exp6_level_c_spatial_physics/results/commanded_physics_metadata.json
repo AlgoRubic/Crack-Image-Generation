@@ -1,0 +1,672 @@
+{
+  "non_cracked": [
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    },
+    {
+      "class_id": 0,
+      "class_name": "non_cracked"
+    }
+  ],
+  "flexural": [
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 73.7,
+      "y_NA": 66.7,
+      "w_bot": 4.15
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 127.4,
+      "y_NA": 51.7,
+      "w_bot": 3.4
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 111.4,
+      "y_NA": 49.5,
+      "w_bot": 3.72
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 178.4,
+      "y_NA": 36.8,
+      "w_bot": 3.66
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 170.4,
+      "y_NA": 25.0,
+      "w_bot": 3.67
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 80.5,
+      "y_NA": 37.2,
+      "w_bot": 4.03
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 169.5,
+      "y_NA": 67.0,
+      "w_bot": 4.47
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 113.5,
+      "y_NA": 43.8,
+      "w_bot": 3.32
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 93.7,
+      "y_NA": 63.7,
+      "w_bot": 4.63
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 182.3,
+      "y_NA": 41.4,
+      "w_bot": 4.04
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 170.1,
+      "y_NA": 40.3,
+      "w_bot": 4.31
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 121.4,
+      "y_NA": 62.4,
+      "w_bot": 4.59
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 117.9,
+      "y_NA": 44.9,
+      "w_bot": 4.17
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 57.4,
+      "y_NA": 44.0,
+      "w_bot": 3.31
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 186.8,
+      "y_NA": 26.1,
+      "w_bot": 3.21
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "x_root": 169.5,
+      "y_NA": 35.5,
+      "w_bot": 3.97
+    }
+  ],
+  "flexure_shear": [
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 130.6,
+      "y_elbow": 140.1,
+      "shear_deg": -142.7
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 128.3,
+      "y_elbow": 163.9,
+      "shear_deg": -39.2
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 138.5,
+      "y_elbow": 159.9,
+      "shear_deg": -140.5
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 111.1,
+      "y_elbow": 161.3,
+      "shear_deg": -45.1
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 106.3,
+      "y_elbow": 153.5,
+      "shear_deg": -36.2
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 151.8,
+      "y_elbow": 148.5,
+      "shear_deg": -142.1
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 164.6,
+      "y_elbow": 163.8,
+      "shear_deg": -138.7
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 156.3,
+      "y_elbow": 149.0,
+      "shear_deg": -134.2
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 81.6,
+      "y_elbow": 153.1,
+      "shear_deg": -41.2
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 118.6,
+      "y_elbow": 141.4,
+      "shear_deg": -42.1
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 148.0,
+      "y_elbow": 140.0,
+      "shear_deg": -137.6
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 79.2,
+      "y_elbow": 164.0,
+      "shear_deg": -41.3
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 155.5,
+      "y_elbow": 137.8,
+      "shear_deg": -141.8
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 163.2,
+      "y_elbow": 160.5,
+      "shear_deg": -134.1
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 60.1,
+      "y_elbow": 155.4,
+      "shear_deg": -46.0
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "x_root": 75.0,
+      "y_elbow": 141.2,
+      "shear_deg": -42.9
+    }
+  ],
+  "web_shear": [
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 39.5,
+      "w_mid": 4.36
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 140.4,
+      "w_mid": 3.66
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 42.7,
+      "w_mid": 3.6
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 39.1,
+      "w_mid": 4.33
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 39.9,
+      "w_mid": 4.44
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 136.6,
+      "w_mid": 3.86
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 44.7,
+      "w_mid": 3.55
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 42.9,
+      "w_mid": 4.35
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 43.6,
+      "w_mid": 3.79
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 135.8,
+      "w_mid": 3.92
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 50.2,
+      "w_mid": 3.7
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 45.4,
+      "w_mid": 3.59
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 44.6,
+      "w_mid": 3.36
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 129.2,
+      "w_mid": 4.22
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 138.4,
+      "w_mid": 3.49
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "diag_deg": 134.7,
+      "w_mid": 3.4
+    }
+  ],
+  "torsion": [
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 129.7,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 44.4,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 41.2,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 139.1,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 38.7,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 50.2,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 44.5,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 136.4,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 132.9,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 139.4,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 138.5,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 138.5,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 140.0,
+      "n_echelons": 3
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 136.8,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 136.7,
+      "n_echelons": 2
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "base_deg": 42.9,
+      "n_echelons": 2
+    }
+  ],
+  "corrosion_splitting": [
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 130.8,
+      "horiz_deg": -2.4
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 153.7,
+      "horiz_deg": 4.5
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 130.5,
+      "horiz_deg": 4.0
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 76.8,
+      "horiz_deg": 0.4
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 159.3,
+      "horiz_deg": -4.4
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 73.2,
+      "horiz_deg": 1.8
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 85.8,
+      "horiz_deg": 1.2
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 84.5,
+      "horiz_deg": -1.9
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 108.8,
+      "horiz_deg": -1.9
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 90.4,
+      "horiz_deg": -0.9
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 117.6,
+      "horiz_deg": -0.1
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 115.1,
+      "horiz_deg": -0.8
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 166.7,
+      "horiz_deg": 1.0
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 127.7,
+      "horiz_deg": 3.9
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 144.0,
+      "horiz_deg": -1.4
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "y_bar": 129.4,
+      "horiz_deg": -3.9
+    }
+  ],
+  "shrinkage_map": [
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 8
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 7
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 8
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 7
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 8
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 10
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 10
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 8
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 8
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 7
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 8
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 9
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 7
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 10
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 9
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "n_voronoi_cells": 7
+    }
+  ]
+}

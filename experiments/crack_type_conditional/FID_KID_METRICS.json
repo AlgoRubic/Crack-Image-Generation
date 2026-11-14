@@ -1,0 +1,7 @@
+{
+  "frechet_inception_distance": 167.6,
+  "kernel_inception_distance_mean": 0.04526,
+  "kernel_inception_distance_std": 0.01413,
+  "sample_count": 80,
+  "reference_count": 80
+}

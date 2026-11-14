@@ -1,0 +1,2 @@
+.exp-open{display:grid;place-items:center;align-self:start;line-height:1;text-decoration:none;padding:0;margin-top:2px}
+.exp-open:hover{border-color:var(--orange);color:var(--orange)}

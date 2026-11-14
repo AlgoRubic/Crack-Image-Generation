@@ -1,0 +1,42 @@
+# Local Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+node_modules/
+.deck_build_exp_presentation/
+
+# Training checkpoints and optimizer state (too large for normal GitHub storage)
+**/checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Raw datasets and archives (download separately; do not commit redistribution copies)
+data/*
+!data/splits/
+!data/splits/*.csv
+*.zip
+*.7z
+*.tar
+*.tar.gz
+
+# Per-sample generated dumps and physics masks; curated result grids remain tracked
+**/sample_*.png
+**/phys_*.npy
+**/physics_masks/
+**/generated_samples/*/
+**/generated_samples/
+**/samples_*/
+**/test_*/
+**/determinism/
+
+# Local logs and temporary report renders
+*.log
+*.tmp
+**/rendered_*/
+
+# Website-local build cache
+website/__pycache__/

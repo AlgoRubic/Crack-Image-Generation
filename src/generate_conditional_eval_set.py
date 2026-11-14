@@ -1,0 +1,63 @@
+"""Generate individual conditional DDPM images for evaluation."""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+import torch
+from torchvision.utils import save_image
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from diffusion import GaussianDiffusion
+from model import SmallUNet
+from sample_conditional import sample
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--checkpoint", required=True)
+    parser.add_argument("--class-name", choices=["cracked", "non_cracked"], required=True)
+    parser.add_argument("--count", type=int, default=1000)
+    parser.add_argument("--batch-size", type=int, default=16)
+    parser.add_argument("--seed", type=int, default=2026)
+    args = parser.parse_args()
+
+    root = Path(__file__).resolve().parents[1]
+    output_dir = root / "outputs" / "evaluation" / f"conditional_{args.class_name}"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    class_id = 1 if args.class_name == "cracked" else 0
+
+    model = SmallUNet(num_classes=2).to(device)
+    checkpoint = torch.load(args.checkpoint, map_location=device)
+    model.load_state_dict(checkpoint["model"])
+    model.eval()
+    diffusion = GaussianDiffusion(device=device)
+
+    generated = 0
+    batch_number = 0
+    while generated < args.count:
+        batch_count = min(args.batch_size, args.count - generated)
+        torch.manual_seed(args.seed + batch_number)
+        if device.type == "cuda":
+            torch.cuda.manual_seed_all(args.seed + batch_number)
+        images = sample(model, diffusion, batch_count, class_id, device)
+        for image in images:
+            save_image(
+                image,
+                output_dir / f"image_{generated:04d}.png",
+                normalize=True,
+                value_range=(-1, 1),
+            )
+            generated += 1
+        batch_number += 1
+        print(f"{args.class_name}: generated {generated}/{args.count}")
+
+    print(f"Device: {device}")
+    print(f"Saved individual images to: {output_dir}")
+
+
+if __name__ == "__main__":
+    main()

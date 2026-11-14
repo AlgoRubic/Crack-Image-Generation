@@ -1,0 +1,81 @@
+{
+  "classes": {
+    "non_cracked": {
+      "samples": 16,
+      "clean_surface_rate": 1.0,
+      "false_positive_rate": 0.0,
+      "mean_chromatic_deviation": 2.48
+    },
+    "flexural": {
+      "samples": 16,
+      "crack_presence_rate": 1.0,
+      "mechanism_adherence_rate": 1.0,
+      "spatial_trajectory_recall": 0.9934,
+      "mean_max_length_px": 157.2,
+      "mean_continuity_ratio": 0.916,
+      "mean_curvature_deg": 2.3,
+      "mean_taper_ratio": 1.5,
+      "mean_chromatic_deviation": 1.78
+    },
+    "flexure_shear": {
+      "samples": 16,
+      "crack_presence_rate": 1.0,
+      "mechanism_adherence_rate": 1.0,
+      "spatial_trajectory_recall": 1.0,
+      "mean_max_length_px": 230.8,
+      "mean_continuity_ratio": 0.965,
+      "mean_curvature_deg": 37.1,
+      "mean_taper_ratio": 1.32,
+      "mean_chromatic_deviation": 1.77
+    },
+    "web_shear": {
+      "samples": 16,
+      "crack_presence_rate": 1.0,
+      "mechanism_adherence_rate": 1.0,
+      "spatial_trajectory_recall": 0.9964,
+      "mean_max_length_px": 197.3,
+      "mean_continuity_ratio": 0.974,
+      "mean_curvature_deg": 2.0,
+      "mean_taper_ratio": 1.03,
+      "mean_chromatic_deviation": 1.79
+    },
+    "torsion": {
+      "samples": 16,
+      "crack_presence_rate": 1.0,
+      "mechanism_adherence_rate": 1.0,
+      "spatial_trajectory_recall": 0.9974,
+      "mean_max_length_px": 170.3,
+      "mean_continuity_ratio": 0.421,
+      "mean_curvature_deg": 2.0,
+      "mean_taper_ratio": 1.03,
+      "mean_chromatic_deviation": 1.19
+    },
+    "corrosion_splitting": {
+      "samples": 16,
+      "crack_presence_rate": 1.0,
+      "mechanism_adherence_rate": 1.0,
+      "spatial_trajectory_recall": 1.0,
+      "mean_max_length_px": 225.6,
+      "mean_continuity_ratio": 1.0,
+      "mean_curvature_deg": 0.3,
+      "mean_taper_ratio": 1.01,
+      "mean_chromatic_deviation": 1.86
+    },
+    "shrinkage_map": {
+      "samples": 16,
+      "crack_presence_rate": 1.0,
+      "mechanism_adherence_rate": 1.0,
+      "spatial_trajectory_recall": 0.9349,
+      "mean_max_length_px": 348.7,
+      "mean_continuity_ratio": 0.907,
+      "mean_curvature_deg": 23.9,
+      "mean_taper_ratio": 0.96,
+      "mean_chromatic_deviation": 0.73
+    }
+  },
+  "fidelity": {
+    "frechet_inception_distance": 332.847,
+    "kernel_inception_distance_mean": 0.17539,
+    "kernel_inception_distance_std": 0.0207
+  }
+}
