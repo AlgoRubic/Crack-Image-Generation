@@ -1,0 +1,7 @@
+{
+  "release_url": "https://github.com/AlgoRubic/Crack-Image-Generation/releases/tag/historical-models-v1",
+  "bundle_url": "https://github.com/AlgoRubic/Crack-Image-Generation/releases/download/historical-models-v1/crack-generation-final-models-v1.zip",
+  "bundle_size_bytes": 519677075,
+  "bundle_sha256": "b6c05b48d3faf0b5b4298a92f9ad8daf0bb31b1f65f489a5f7593031b7dc775a",
+  "lineage": "Historical pretrained checkpoints, not research_v4-clean models"
+}

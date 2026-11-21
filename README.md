@@ -17,7 +17,7 @@ python -m venv .venv
 # CPU alternative: use https://download.pytorch.org/whl/cpu for the PyTorch command.
 ```
 
-Extract `crack-generation-final-models-v1.zip` into this repository, preserving its `models/weights/` paths. Verify the weights with `python pipeline/checkpoints.py verify`, then use `pipeline/generate_cracks.py`. Raw datasets are not needed for inference. The six-model bundle is separate from normal Git history; see `CHECKPOINTS.md` for distribution status. All six experiments passed one-image generation checks in an isolated source/weight copy without datasets, using the installed local environment. A fresh dependency installation has not yet been verified.
+Run `python pipeline/download_models.py` to download and checksum-verify all six historical models. Alternatively, download `crack-generation-final-models-v1.zip` from the [published model release](https://github.com/AlgoRubic/Crack-Image-Generation/releases/tag/historical-models-v1) and extract it into the repository root, preserving `models/weights/` paths. Verify with `python pipeline/checkpoints.py verify`, then use `pipeline/generate_cracks.py` with a fresh output directory. Raw datasets are not needed for inference. All six experiments passed one-image generation checks in an isolated source/weight copy without datasets, using the installed local environment. A fresh dependency installation has not yet been verified.
 
 ```powershell
 # One training batch and one validation batch; only a pipeline check.
@@ -31,6 +31,8 @@ python pipeline/train_research.py --experiment 4 --run-id exp4-clean-seed2026-co
 ```
 
 Smoke runs have passed for Experiments 4–6. The two-epoch Experiment 6 restart check matched uninterrupted model and EMA tensors exactly on this machine. This is a bounded reproducibility check, not a cross-platform determinism guarantee. Full research training, expert label validation, external evaluation and ablations remain outstanding. See `pipeline/research_protocol.json` for the prospective protocol.
+
+`pipeline/train_research.py --experiment 6 --conditioning class_only` provides a matched five-channel control with constant null spatial fields. The default Experiment 6 mode uses spatial fields; both modes share architecture, data and image preprocessing. A class-only control smoke run passed. The [prepared clean campaign](experiments/clean_campaign_plan.json) contains 12 explicit training commands and measured short-batch runtime estimates; it has not been launched. The [batch-6 GPU profile](experiments/training_resource_profile_batch6.json) measured about 2.9 GiB peak allocated memory. Runtime estimates vary substantially with laptop load and exclude checkpoint overhead; they are planning estimates, not observed full-training durations.
 
 ---
 

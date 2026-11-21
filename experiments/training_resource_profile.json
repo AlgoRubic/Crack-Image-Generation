@@ -1,0 +1,80 @@
+{
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "torch": "2.14.0+cu126",
+  "results": [
+    {
+      "experiment": 4,
+      "batch_size": 4,
+      "train_images": 10325,
+      "validation_images": 1537,
+      "timings": {
+        "train": {
+          "measured_batches": 5,
+          "median_batch_seconds": 0.24999639999987266,
+          "min_batch_seconds": 0.24319780000041646,
+          "max_batch_seconds": 0.2546573999998145
+        },
+        "validation": {
+          "measured_batches": 3,
+          "median_batch_seconds": 0.2037489000003916,
+          "min_batch_seconds": 0.16340330000002723,
+          "max_batch_seconds": 0.21146390000012616
+        }
+      },
+      "peak_allocated_gpu_gib": 2.029076099395752,
+      "estimated_epoch_minutes": 12.065567188330366,
+      "estimated_50_epoch_hours": 10.054639323608638,
+      "smoke_profile_only": true
+    },
+    {
+      "experiment": 5,
+      "batch_size": 4,
+      "train_images": 12368,
+      "validation_images": 1564,
+      "timings": {
+        "train": {
+          "measured_batches": 5,
+          "median_batch_seconds": 0.3191500000002634,
+          "min_batch_seconds": 0.30634289999943576,
+          "max_batch_seconds": 0.33148030000029394
+        },
+        "validation": {
+          "measured_batches": 3,
+          "median_batch_seconds": 0.2000493000005008,
+          "min_batch_seconds": 0.19591270000000804,
+          "max_batch_seconds": 0.20157789999939268
+        }
+      },
+      "peak_allocated_gpu_gib": 2.022230625152588,
+      "estimated_epoch_minutes": 17.75051793835017,
+      "estimated_50_epoch_hours": 14.792098281958475,
+      "smoke_profile_only": true
+    },
+    {
+      "experiment": 6,
+      "batch_size": 4,
+      "train_images": 12368,
+      "validation_images": 1564,
+      "timings": {
+        "train": {
+          "measured_batches": 5,
+          "median_batch_seconds": 0.3493496999999479,
+          "min_batch_seconds": 0.3469642999998541,
+          "max_batch_seconds": 0.3684981999995216
+        },
+        "validation": {
+          "measured_batches": 3,
+          "median_batch_seconds": 0.19581879999986995,
+          "min_batch_seconds": 0.18422309999914432,
+          "max_batch_seconds": 0.19887479999943025
+        }
+      },
+      "peak_allocated_gpu_gib": 2.031412124633789,
+      "estimated_epoch_minutes": 19.279240386663137,
+      "estimated_50_epoch_hours": 16.066033655552612,
+      "smoke_profile_only": true
+    }
+  ],
+  "estimate_limitations": "Short-batch extrapolation, not observed full-epoch runtime. Includes data loading, field extraction and EMA; excludes checkpoint I/O and long-run thermal/power changes.",
+  "trained_weights_saved": false
+}

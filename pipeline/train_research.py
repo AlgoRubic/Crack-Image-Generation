@@ -77,6 +77,9 @@ class Images(Dataset):
 
 
 def run(args):
+    args.conditioning=args.conditioning or ('spatial' if args.experiment==6 else 'class_only')
+    if args.experiment!=6 and args.conditioning!='class_only':
+        raise ValueError('Spatial conditioning is available only for Experiment 6')
     if not 1 <= args.batch_size <= 8 or args.epochs < 1:
         raise ValueError('Batch size must be 1..8 and epochs positive')
     if Path(args.run_id).name != args.run_id or args.run_id in ('.', '..'):
@@ -120,7 +123,7 @@ def run(args):
     scaler = torch.amp.GradScaler('cuda', enabled=device.type == 'cuda')
     diffusion = GaussianDiffusion(device=device)
     generator = torch.Generator().manual_seed(args.seed)
-    loaders = {s: DataLoader(Images(rows[s], spatial, s == 'train'), batch_size=args.batch_size,
+    loaders = {s: DataLoader(Images(rows[s], spatial and args.conditioning=='spatial', s == 'train'), batch_size=args.batch_size,
                             shuffle=s == 'train', generator=generator if s == 'train' else None,
                             num_workers=0) for s in ('train', 'validation')}
     best = float('inf')
@@ -133,8 +136,8 @@ def run(args):
             raise ValueError('Resume checkpoint does not have a clean scratch lineage')
         if previous['smoke_only'] != args.smoke:
             raise ValueError('Smoke checkpoints cannot seed full research runs')
-        for key in ('experiment', 'seed', 'batch_size', 'ema_decay', 'lr', 'manifests', 'script_sha256'):
-            if previous[key] != config[key]:
+        for key in ('experiment', 'conditioning', 'seed', 'batch_size', 'ema_decay', 'lr', 'manifests', 'script_sha256'):
+            if previous.get(key) != config[key]:
                 raise ValueError(f'Resume configuration mismatch: {key}')
         model.load_state_dict(state['model'])
         ema.load_state_dict(state['ema'])
@@ -239,4 +242,6 @@ if __name__ == '__main__':
     parser.add_argument('--resume', help='Trusted local research checkpoint; validates clean lineage and matching manifests')
     parser.add_argument('--split-version', choices=['research_v1','research_v2','research_v3','research_v4'], default='research_v4',
                         help='v4 groups sibling acquisitions and all original byte/decoded-RGB aliases')
+    parser.add_argument('--conditioning',choices=['class_only','spatial'],default=None,
+                        help='Exp6 class_only keeps the same five-channel model but uses constant null spatial fields')
     run(parser.parse_args())

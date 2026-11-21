@@ -63,6 +63,10 @@ def main(commit,publish):
         uploaded.append(dict(name=path.name,url=existing['browser_download_url'],size=existing['size'],digest=existing.get('digest')))
     published=authenticated_request(API+'/releases/'+str(release['id']),method='PATCH',
                                    data=json.dumps(dict(draft=False,body=body)).encode(),extra_headers=headers)
+    # Refresh URLs after publication: draft uploads can have temporary untagged URLs.
+    published=authenticated_request(API+'/releases/'+str(release['id']))
+    uploaded=[dict(name=a['name'],url=a['browser_download_url'],size=a['size'],digest=a.get('digest'))
+              for a in published['assets'] if a['name'] in (bundle.name,manifest.name)]
     report=dict(release_url=published['html_url'],tag=tag,source_commit=commit,assets=uploaded,
                 status='published' if not published['draft'] else 'draft')
     (out/'published_release.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
