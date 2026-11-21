@@ -34,6 +34,15 @@ Smoke runs have passed for Experiments 4–6. The two-epoch Experiment 6 restart
 
 `pipeline/train_research.py --experiment 6 --conditioning class_only` provides a matched five-channel control with constant null spatial fields. The default Experiment 6 mode uses spatial fields; both modes share architecture, data and image preprocessing. A class-only control smoke run passed. The [prepared clean campaign](experiments/clean_campaign_plan.json) contains 12 explicit training commands and measured short-batch runtime estimates; it has not been launched. The [batch-6 GPU profile](experiments/training_resource_profile_batch6.json) measured about 2.9 GiB peak allocated memory. Runtime estimates vary substantially with laptop load and exclude checkpoint overhead; they are planning estimates, not observed full-training durations.
 
+For a newly trained Experiment 5/6 research checkpoint, sample with `pipeline/sample_research.py` (EMA by default), then evaluate the saved artifacts with `pipeline/evaluate_research.py`. Replace `RUN_ID` with the training run directory:
+
+```powershell
+python pipeline/sample_research.py --checkpoint experiments/exp6_level_c_spatial_physics/research_runs/RUN_ID/best.pt --run-id evaluation-seed2026 --seed 2026 --count 200
+python pipeline/evaluate_research.py --samples experiments/exp6_level_c_spatial_physics/research_samples/evaluation-seed2026
+```
+
+These commands refuse smoke checkpoints/samples unless `--allow-smoke` is explicitly supplied. Sampling has no hidden color transform, records image/command/noise hashes, and never overwrites a run directory. Evaluation checks artifact hashes and class membership and adds balanced trajectory precision/recall/F1 with conditional distances. These remain morphology proxies. `pipeline/verify_research_pair.py` checks matched class-only/spatial sampling and training protocols. The smoke handoff passed for seven paired classes; it is not evidence of trained-model quality. Experiment 4 research sampling is implemented; its new-sample evaluation adapter remains outstanding.
+
 ---
 
 ## 1. Separated Repository Architecture (`datasets/`, `pipeline/`, `models/`, `experiments/`)

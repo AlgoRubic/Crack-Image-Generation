@@ -537,7 +537,7 @@ def generate_error_plots(summary: dict, conf_mat: np.ndarray, per_class_stats: d
     ax.legend()
 
     fig.suptitle(
-        "Experiment 6 (Level C): Large-Scale Quantitative Error Analysis (N = 200 per Class / 1,400 Total 256x256 Images)",
+        f"Seven-class descriptive heuristic analysis (N={int(conf_mat.sum())}, 256x256)\n{summary.get('protocol',{}).get('figure_note','')}",
         fontsize=13,
         fontweight="bold",
         y=0.98,
@@ -548,24 +548,28 @@ def generate_error_plots(summary: dict, conf_mat: np.ndarray, per_class_stats: d
 
 
 def main() -> None:
-    global OUT_JSON, OUT_CSV, OUT_PLOT
+    global OUT_JSON, OUT_CSV, OUT_PLOT, SAMPLES_DIR
     parser = argparse.ArgumentParser()
     parser.add_argument('--output-dir', type=Path, default=EXP_DIR / 'evaluation_corrected')
     parser.add_argument('--with-fidelity', action='store_true', help='Run optional legacy fidelity after saving structural results')
     parser.add_argument('--reference-csv', type=Path, help='Explicit held-out reference manifest required for fidelity')
+    parser.add_argument('--samples-dir',type=Path,default=SAMPLES_DIR,help='Saved sample tree with class directories and paired physics masks')
+    parser.add_argument('--figure-note',default='',help='Provenance/smoke label printed on diagnostic figures')
     args = parser.parse_args()
     if args.with_fidelity and (args.reference_csv is None or not args.reference_csv.is_file()):
         parser.error('--with-fidelity requires an existing --reference-csv; training references are not selected automatically')
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    SAMPLES_DIR=args.samples_dir
     OUT_JSON = args.output_dir / 'EVALUATION_METRICS.json'
     OUT_CSV = args.output_dir / 'PER_SAMPLE_ERROR_LOG.csv'
     OUT_PLOT = args.output_dir / 'exp6_error_analysis_plots.png'
-    print("\n--- Large-Scale Error Analysis: Experiment 6 (Level C: N=200/class, 1,400 Total Images) ---\n")
+    print(f'\n--- Descriptive error analysis: {SAMPLES_DIR} ---\n')
     summary: dict = {"classes": {}, "confusion_matrix": {}, "protocol": {
         "prediction": "Morphology-only heuristic, independent of requested class and commanded mask",
         "adherence": "Separate target-dependent descriptive rule; not classification accuracy",
         "held_out_validation": False,
         "fidelity_status": "not_requested",
+        "figure_note": args.figure_note,
     }}
     all_fake_paths = []
     conf_mat = np.zeros((7, 7), dtype=int)

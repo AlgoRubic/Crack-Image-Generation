@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "paired_images": 7,
+  "smoke_only": true,
+  "control_manifest_sha256": "a2be759e00e2d83c3685d41734e9761b981e8eb1493c151ff56747a0f1cbff61",
+  "spatial_manifest_sha256": "19ab126e6bff097ee16bc2144a9dd67adaa2fe9b824aeaf06d9875c4540f662f",
+  "caveat": "Protocol pairing verification only; no scientific quality or mechanism-validity claim"
+}

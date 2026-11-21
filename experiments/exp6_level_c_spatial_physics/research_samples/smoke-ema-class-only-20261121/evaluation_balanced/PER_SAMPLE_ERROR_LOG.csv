@@ -1,0 +1,8 @@
+class_id,class_name,sample_file,has_crack,adhered,predicted_class_id,predicted_class_name,traj_recall,traj_mae_px,traj_rmse_px,traj_h95_px,cmd_theta_deg,gen_theta_deg,angle_error_deg,cmd_curvature_deg,gen_curvature_deg,curvature_error_deg,cmd_taper_ratio,gen_taper_ratio,taper_error,max_span_px,continuity_ratio,fp_area_rate,chroma_dev
+0,non_cracked,sample_0000.png,0,1,0,non_cracked,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.08409,91.01
+1,flexural,sample_0000.png,0,0,0,non_cracked,0.9944,61.573,72.898,126.479,93.26,0.0,90.0,0.55,0.0,45.0,2.667,1.0,1.0,0.0,0.0,0.30067,62.6
+2,flexure_shear,sample_0000.png,0,0,0,non_cracked,0.8605,62.816,79.541,150.233,62.34,0.0,90.0,33.65,0.0,45.0,1.414,1.0,1.0,0.0,0.0,0.1329,23.85
+3,web_shear,sample_0000.png,0,0,0,non_cracked,0.9442,56.233,69.933,135.059,43.7,0.0,90.0,2.25,0.0,45.0,1.0,1.0,1.0,0.0,0.0,0.13002,47.7
+4,torsion,sample_0000.png,1,1,6,shrinkage_map,0.9918,29.975,39.335,80.722,41.78,0.56,41.21,4.56,14.05,9.49,1.0,0.707,0.293,69.9,0.037,0.3298,111.21
+5,corrosion_splitting,sample_0000.png,0,0,0,non_cracked,0.8254,57.79,70.333,127.012,4.24,0.0,90.0,1.63,0.0,45.0,0.745,1.0,1.0,0.0,0.0,0.1293,43.39
+6,shrinkage_map,sample_0000.png,0,0,0,non_cracked,0.9512,23.118,33.555,75.672,138.37,0.0,90.0,3.97,0.0,45.0,3.162,1.0,1.0,0.0,0.0,0.21739,17.2
