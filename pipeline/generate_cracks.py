@@ -20,6 +20,9 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
+import math
 import sys
 from pathlib import Path
 
@@ -171,7 +174,7 @@ def main() -> None:
         "--seed",
         type=int,
         default=2026,
-        help="Random seed (use 2026 to replicate report results, or any other integer for new images)",
+        help="Random seed for repeatable runs with identical code, settings and hardware",
     )
     parser.add_argument(
         "--steps",
@@ -192,6 +195,8 @@ def main() -> None:
         help="Custom output folder (defaults to replicate_and_generate_suite/generated_outputs/exp<N>)",
     )
     args = parser.parse_args()
+    if args.count < 1 or not 2 <= args.steps <= 1000 or not math.isfinite(args.cfg_scale) or args.cfg_scale < 0 or not 0 <= args.seed < 2**32:
+        parser.error('Use positive count, 2..1000 steps, finite nonnegative guidance and seed 0..2^32-1')
 
     exp_id = args.experiment
     ckpt_path = CHECKPOINTS[exp_id]
@@ -206,6 +211,18 @@ def main() -> None:
         else SUITE_DIR / "generated_outputs" / f"exp{exp_id}"
     )
     out_base.mkdir(parents=True, exist_ok=True)
+    manifest_path=out_base/'inference_manifest.json'
+    if any(out_base.iterdir()):
+        parser.error('Output directory is not empty; choose a fresh --output-dir to preserve prior results')
+    h=hashlib.sha256()
+    with ckpt_path.open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''): h.update(block)
+    run_record=dict(experiment=exp_id,count_per_class=args.count,classes=[name for _,name in target_classes],
+                    seed=args.seed,steps=args.steps if exp_id>=4 else 1000,cfg_scale=args.cfg_scale if exp_id>=4 else None,
+                    checkpoint_path=str(ckpt_path.relative_to(ROOT)),checkpoint_sha256=h.hexdigest(),
+                    torch_version=torch.__version__,status='running',
+                    scope='Historical pretrained inference; no retraining or independent mechanism-validation claim')
+    manifest_path.write_text(json.dumps(run_record,indent=2),encoding='utf-8')
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"==================================================================")
@@ -369,6 +386,10 @@ def main() -> None:
                 grid = make_grid(torch.stack(first_grid_imgs, dim=0), nrow=4, padding=4)
                 save_image(grid, out_base / f"{cname}_256_grid.png")
             print(f"[SUCCESS] Saved {args.count} individual 256x256 PNGs + physics masks to: {class_dir}")
+
+
+    run_record['status']='completed'
+    manifest_path.write_text(json.dumps(run_record,indent=2),encoding='utf-8')
 
 
 if __name__ == "__main__":

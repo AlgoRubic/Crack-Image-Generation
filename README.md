@@ -1,5 +1,7 @@
 # Synthetic Reinforced-Concrete Crack Generation Framework (Experiments 1 to 6)
 
+Browse the current [research archive and audit](https://concrete-crack-synthesis.beigetoad12.chatgpt.site/research.html) for all experiment plots, corrected evaluations, dataset audits and methodological limitations.
+
 This repository implements six experiments in synthetic concrete-crack image generation, progressing from an unconditional 64 × 64 DDPM to spatial trajectory and aperture-field conditioning at 256 × 256. The corrected Experiment 6 evaluation gives **87.86% agreement with a morphology-only heuristic classifier on 1,400 generated images**. This is a descriptive proxy score, not independently validated structural-mechanism accuracy. The earlier 99.29% figure used target-dependent assignments and is superseded.
 
 Research preparation: run `python pipeline/research.py prepare` to reconstruct original-image provenance, then `python pipeline/hash_source_images.py` for the resumable source-content audit. Run `python pipeline/prepare_acquisition_splits.py --version research_v4` to create the current prospective splits. This groups sibling SDNET tiles by inferred acquisition ID and connects identical byte and decoded-RGB content across all experiments. Earlier split versions remain audit history, not the training default. Creation refuses to overwrite existing version directories. Existing checkpoints have already seen the historical images, so these splits require a new training lineage. Raw image paths and historical training manifests are preserved. Near-duplicate and structure/site independence checks remain outstanding.
@@ -85,6 +87,6 @@ cd D:\Downloads\concrete_ddpm
 # Generate 1,234 new flexural crack images using Experiment 6 (Level C) or Experiment 5 (Level B)
 .\.venv\Scripts\python.exe pipeline/generate_cracks.py --experiment 6 --crack-type flexure --count 1234 --seed 999
 
-# Replicate the 16 report images across all 7 classes
+# Generate 16 fixed-seed examples across all 7 classes
 .\.venv\Scripts\python.exe pipeline/generate_cracks.py --experiment 6 --crack-type all --count 16 --seed 2026
 ```

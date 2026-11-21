@@ -6,9 +6,13 @@ import json
 import os
 import subprocess
 import urllib.request
+from urllib.parse import urlsplit
 
 
-def authenticated_request(url):
+def authenticated_request(url,method='GET',data=None,extra_headers=None):
+    parsed=urlsplit(url)
+    if parsed.scheme!='https' or parsed.hostname not in ('api.github.com','uploads.github.com') or not parsed.path.startswith('/repos/AlgoRubic/Crack-Image-Generation'):
+        raise ValueError('Request is outside the selected GitHub repository')
     env=dict(os.environ,GIT_TERMINAL_PROMPT='0',GCM_INTERACTIVE='never')
     result=subprocess.run(['git','credential','fill'],input='protocol=https\nhost=github.com\n\n',
                           env=env,capture_output=True,text=True,timeout=30)
@@ -17,9 +21,11 @@ def authenticated_request(url):
     values=dict(line.split('=',1) for line in result.stdout.splitlines() if '=' in line)
     token=values.get('password')
     if not token: raise RuntimeError('GitHub credential has no token')
-    request=urllib.request.Request(url,headers={'Authorization':'Bearer '+token,
-             'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10','User-Agent':'Crack-Image-Generation-research-handoff'})
-    with urllib.request.urlopen(request,timeout=30) as response:
+    headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json',
+             'X-GitHub-Api-Version':'2026-03-10','User-Agent':'Crack-Image-Generation-research-handoff'}
+    headers.update(extra_headers or {})
+    request=urllib.request.Request(url,headers=headers,method=method,data=data)
+    with urllib.request.urlopen(request,timeout=600 if method=='POST' else 30) as response:
         return json.load(response)
 
 
