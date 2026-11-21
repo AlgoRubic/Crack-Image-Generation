@@ -1,0 +1,6 @@
+requested_class,predicted_class,path,has_crack,continuity_ratio,max_span_px
+non_cracked,alligator_map,non_cracked/sample_0000.png,True,0.004576375999287105,10.63014581273465
+longitudinal,alligator_map,longitudinal/sample_0000.png,True,0.0035187176194714912,12.041594578792296
+transverse,alligator_map,transverse/sample_0000.png,True,0.004781609191005417,16.1245154965971
+diagonal,alligator_map,diagonal/sample_0000.png,True,0.00681686885799141,27.784887978899608
+alligator_map,alligator_map,alligator_map/sample_0000.png,True,0.009079959228629687,33.1058907144937

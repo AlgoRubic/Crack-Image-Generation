@@ -1,0 +1,54 @@
+{
+  "experiment": 4,
+  "smoke_only": true,
+  "sampling_manifest_sha256": "41190bd0fb49b69bfb5782e1c5af33719f6b3a90e31d76153d834d8ad216e34d",
+  "checkpoint_sha256": "92dd19ed3c8f12d83a8b91b1ef24bc83f264d4a83c2eec8c4503c3282a798050",
+  "weights": "ema",
+  "class_order": [
+    "non_cracked",
+    "longitudinal",
+    "transverse",
+    "diagonal",
+    "alligator_map"
+  ],
+  "confusion_counts": [
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "requested_class_agreement": 0.2,
+  "detector": "Fixed shared local-darkness segmentation (23px,24.5,2x2 opening) with historical morphology rules",
+  "caveat": "Descriptive morphology agreement; detector thresholds and orientation labels require independent validation"
+}

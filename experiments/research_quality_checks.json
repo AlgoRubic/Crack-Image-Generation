@@ -1,33 +1,33 @@
 {
-  "created_utc": "2026-11-21T07:37:16.727152+00:00",
+  "created_utc": "2026-11-21T07:44:24.525388+00:00",
   "checks": [
     {
       "script": "pipeline/test_research.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 4.735s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 6.234s\n\nOK\n"
     },
     {
       "script": "pipeline/test_acquisition_splits.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 1.329s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 1.537s\n\nOK\n"
     },
     {
       "script": "pipeline/test_source_hashes.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nOK\n"
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nOK\n"
     },
     {
       "script": "pipeline/test_detector.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.009s\n\nOK\n"
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.011s\n\nOK\n"
     },
     {
       "script": "pipeline/test_ablation.py",
@@ -41,21 +41,28 @@
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.042s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.052s\n\nOK\n"
     },
     {
       "script": "pipeline/test_research_handoff.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.003s\n\nOK\n"
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_fidelity_protocol.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n"
     },
     {
       "script": "src/test_evaluation_independence.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nOK\n"
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nOK\n"
     },
     {
       "script": "website/verify_site.py",
