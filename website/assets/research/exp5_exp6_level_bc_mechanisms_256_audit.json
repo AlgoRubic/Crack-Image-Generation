@@ -1,38 +1,38 @@
 {
   "dataset": "exp5_exp6_level_bc_mechanisms_256",
   "rows": 15440,
-  "unique_groups": 5245,
+  "unique_groups": 4811,
   "acquisition_overlap": 0,
   "split_counts": {
-    "train": 12368,
-    "test": 1508,
-    "validation": 1564
+    "train": 12357,
+    "test": 1518,
+    "validation": 1565
   },
   "class_counts": {
     "train": {
-      "corrosion_splitting": 2888,
-      "web_shear": 2157,
+      "corrosion_splitting": 2880,
+      "web_shear": 2154,
       "flexure_shear": 651,
-      "torsion": 1285,
-      "flexural": 744,
-      "shrinkage_map": 1896,
+      "torsion": 1291,
+      "flexural": 745,
+      "shrinkage_map": 1889,
       "non_cracked": 2747
     },
     "validation": {
-      "web_shear": 306,
-      "shrinkage_map": 205,
-      "torsion": 183,
-      "corrosion_splitting": 269,
+      "web_shear": 307,
+      "shrinkage_map": 215,
+      "torsion": 178,
+      "corrosion_splitting": 265,
       "flexure_shear": 91,
-      "flexural": 98,
+      "flexural": 97,
       "non_cracked": 412
     },
     "test": {
-      "corrosion_splitting": 349,
-      "web_shear": 279,
-      "shrinkage_map": 197,
+      "corrosion_splitting": 361,
+      "web_shear": 281,
+      "shrinkage_map": 194,
       "flexure_shear": 74,
-      "torsion": 166,
+      "torsion": 165,
       "flexural": 102,
       "non_cracked": 341
     }
@@ -46,14 +46,32 @@
     "datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v1\\provenance.csv": "ca22683565b03b6ecfb80d33960d79841a3752e5d5266048a793486affc763ba"
   },
   "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
-  "linked_acquisitions": 1385,
+  "linked_acquisitions": 2475,
   "source_content_audit_complete": true,
   "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "conservative_similarity_links": {
+    "status": "completed",
+    "pairs": 1111,
+    "source_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+    "descriptors_sha256": "37ede54e96c184917306c92e09ded5ec30909d1d987edf369a6a8ae6576ec5c9",
+    "links_sha256": "9a20756acb4ef76defcd26e3bcb9456d872de9109efa9c7e468acacc4e972846",
+    "protocol": {
+      "phash": "32x32 grayscale LANCZOS; orthonormal DCT-II 8x8; median excluding DC; DC bit zero",
+      "dhash": "9x8 grayscale LANCZOS; horizontal adjacent comparisons",
+      "thresholds": {
+        "phash_hamming_max": 3,
+        "dhash_hamming_max": 6
+      },
+      "enumeration": "Four 16-bit pHash bands; exhaustive within declared pHash threshold"
+    },
+    "policy": "Group ALL declared-threshold similarity candidates, including within-split pairs, before reassigning components. This is conservative isolation, not confirmed-duplicate labeling.",
+    "caveat": "False-positive links can reduce independent group count. Crops/rotations/larger edits and site identity remain unverified."
+  },
   "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
   "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
   "caveats": [
     "Structure/site independence not established",
-    "Near-duplicate audit outstanding",
+    "Limited similarity screen only; crops/rotations/larger edits remain unverified",
     "Existing trained checkpoints are exposed; these are prospective splits only"
   ]
 }

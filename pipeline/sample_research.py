@@ -29,7 +29,9 @@ def validate_config(config,allow_smoke):
     if config.get('experiment') not in (4,5,6) or config.get('conditioning') not in ('class_only','spatial'):
         raise ValueError('Research checkpoint configuration is missing or unsupported')
     if config['experiment']!=6 and config['conditioning']!='class_only':raise ValueError('Invalid experiment/conditioning pairing')
-    if config.get('split_version')!='research_v4':raise ValueError('Current research sampling requires the audited research_v4 lineage')
+    if config.get('split_version') not in ('research_v4','research_v5'):raise ValueError('Research sampling requires an audited research_v4/v5 lineage')
+    if not config.get('smoke_only') and config.get('split_version')!='research_v5':
+        raise ValueError('Full research sampling requires similarity-isolated research_v5 lineage')
 
 
 @torch.no_grad()

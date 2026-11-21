@@ -2,7 +2,7 @@
   "status": "prepared_not_launched",
   "runs": [
     {
-      "run_id": "clean-v4-exp4-morphology-seed2026",
+      "run_id": "clean-v5-exp4-morphology-seed2026",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -11,9 +11,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp4-morphology-seed2026",
+        "clean-v5-exp4-morphology-seed2026",
         "--seed",
         "2026",
         "--epochs",
@@ -25,7 +25,7 @@
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp4-morphology-seed2027",
+      "run_id": "clean-v5-exp4-morphology-seed2027",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -34,9 +34,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp4-morphology-seed2027",
+        "clean-v5-exp4-morphology-seed2027",
         "--seed",
         "2027",
         "--epochs",
@@ -48,7 +48,7 @@
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp4-morphology-seed2028",
+      "run_id": "clean-v5-exp4-morphology-seed2028",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -57,9 +57,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp4-morphology-seed2028",
+        "clean-v5-exp4-morphology-seed2028",
         "--seed",
         "2028",
         "--epochs",
@@ -71,7 +71,7 @@
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp5-mechanism-seed2026",
+      "run_id": "clean-v5-exp5-mechanism-seed2026",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -80,9 +80,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp5-mechanism-seed2026",
+        "clean-v5-exp5-mechanism-seed2026",
         "--seed",
         "2026",
         "--epochs",
@@ -90,11 +90,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 10.022557319414823,
+      "estimated_hours": 10.013415905525967,
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp5-mechanism-seed2027",
+      "run_id": "clean-v5-exp5-mechanism-seed2027",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -103,9 +103,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp5-mechanism-seed2027",
+        "clean-v5-exp5-mechanism-seed2027",
         "--seed",
         "2027",
         "--epochs",
@@ -113,11 +113,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 10.022557319414823,
+      "estimated_hours": 10.013415905525967,
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp5-mechanism-seed2028",
+      "run_id": "clean-v5-exp5-mechanism-seed2028",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -126,9 +126,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp5-mechanism-seed2028",
+        "clean-v5-exp5-mechanism-seed2028",
         "--seed",
         "2028",
         "--epochs",
@@ -136,11 +136,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 10.022557319414823,
+      "estimated_hours": 10.013415905525967,
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp6-matched-five-channel-control-seed2026",
+      "run_id": "clean-v5-exp6-matched-five-channel-control-seed2026",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -149,9 +149,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp6-matched-five-channel-control-seed2026",
+        "clean-v5-exp6-matched-five-channel-control-seed2026",
         "--seed",
         "2026",
         "--epochs",
@@ -159,11 +159,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.260967862487174,
+      "estimated_hours": 19.243833587487185,
       "estimate_proxy": true
     },
     {
-      "run_id": "clean-v4-exp6-matched-five-channel-control-seed2027",
+      "run_id": "clean-v5-exp6-matched-five-channel-control-seed2027",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -172,9 +172,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp6-matched-five-channel-control-seed2027",
+        "clean-v5-exp6-matched-five-channel-control-seed2027",
         "--seed",
         "2027",
         "--epochs",
@@ -182,11 +182,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.260967862487174,
+      "estimated_hours": 19.243833587487185,
       "estimate_proxy": true
     },
     {
-      "run_id": "clean-v4-exp6-matched-five-channel-control-seed2028",
+      "run_id": "clean-v5-exp6-matched-five-channel-control-seed2028",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -195,9 +195,9 @@
         "--conditioning",
         "class_only",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp6-matched-five-channel-control-seed2028",
+        "clean-v5-exp6-matched-five-channel-control-seed2028",
         "--seed",
         "2028",
         "--epochs",
@@ -205,11 +205,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.260967862487174,
+      "estimated_hours": 19.243833587487185,
       "estimate_proxy": true
     },
     {
-      "run_id": "clean-v4-exp6-spatial-seed2026",
+      "run_id": "clean-v5-exp6-spatial-seed2026",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -218,9 +218,9 @@
         "--conditioning",
         "spatial",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp6-spatial-seed2026",
+        "clean-v5-exp6-spatial-seed2026",
         "--seed",
         "2026",
         "--epochs",
@@ -228,11 +228,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.260967862487174,
+      "estimated_hours": 19.243833587487185,
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp6-spatial-seed2027",
+      "run_id": "clean-v5-exp6-spatial-seed2027",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -241,9 +241,9 @@
         "--conditioning",
         "spatial",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp6-spatial-seed2027",
+        "clean-v5-exp6-spatial-seed2027",
         "--seed",
         "2027",
         "--epochs",
@@ -251,11 +251,11 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.260967862487174,
+      "estimated_hours": 19.243833587487185,
       "estimate_proxy": false
     },
     {
-      "run_id": "clean-v4-exp6-spatial-seed2028",
+      "run_id": "clean-v5-exp6-spatial-seed2028",
       "command": [
         "python",
         "pipeline/train_research.py",
@@ -264,9 +264,9 @@
         "--conditioning",
         "spatial",
         "--split-version",
-        "research_v4",
+        "research_v5",
         "--run-id",
-        "clean-v4-exp6-spatial-seed2028",
+        "clean-v5-exp6-spatial-seed2028",
         "--seed",
         "2028",
         "--epochs",
@@ -274,20 +274,20 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.260967862487174,
+      "estimated_hours": 19.243833587487185,
       "estimate_proxy": false
     }
   ],
-  "estimated_total_training_hours": 169.559228354044,
+  "estimated_total_training_hours": 169.42899846237748,
   "profile_source": "experiments\\training_resource_profile_batch6.json",
   "memory_profile": "Measured batch-6 allocated memory below 4 GiB; see native GPU profile",
   "comparison": "Exp6 class_only and spatial share the same five-channel architecture, seven labels, dataset and preprocessing; the class-only control receives constant null fields.",
   "historical_ladder": "Exp4 and Exp5 change label spaces and are not a controlled head-to-head comparison.",
-  "estimate_limits": "Short-batch extrapolation, not observed full-epoch runtime. Includes data loading, field extraction and EMA; excludes checkpoint I/O and long-run thermal/power changes. The class-only five-channel control uses the spatial run throughput as a planning proxy.",
+  "estimate_limits": "Short-batch extrapolation, not observed full-epoch runtime. Includes data loading, field extraction and EMA; excludes checkpoint I/O and long-run thermal/power changes. Estimates recalculate current split row counts using the historical v4 batch profile. The class-only five-channel control uses the spatial run throughput as a planning proxy.",
   "prerequisites": [
     "Choose explicit GPU-time budget before launching a multi-day campaign",
     "Independent label review and generated-image detector validation remain needed for strong mechanism claims",
-    "Complete new-checkpoint sampling/evaluation handoff before running the full campaign"
+    "Review conservative similarity grouping limitations before claiming dataset independence"
   ],
   "evaluation_target": "200 images per class per seed; class-only/spatial paired sampling noise; frozen test set; per-seed and class-level uncertainty"
 }

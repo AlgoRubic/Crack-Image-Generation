@@ -4,7 +4,9 @@ Browse the current [research archive and audit](https://concrete-crack-synthesis
 
 This repository implements six experiments in synthetic concrete-crack image generation, progressing from an unconditional 64 × 64 DDPM to spatial trajectory and aperture-field conditioning at 256 × 256. The corrected Experiment 6 evaluation gives **87.86% agreement with a morphology-only heuristic classifier on 1,400 generated images**. This is a descriptive proxy score, not independently validated structural-mechanism accuracy. The earlier 99.29% figure used target-dependent assignments and is superseded.
 
-Research preparation: run `python pipeline/research.py prepare` to reconstruct original-image provenance, then `python pipeline/hash_source_images.py` for the resumable source-content audit. Run `python pipeline/prepare_acquisition_splits.py --version research_v4` to create the current prospective splits. This groups sibling SDNET tiles by inferred acquisition ID and connects identical byte and decoded-RGB content across all experiments. Earlier split versions remain audit history, not the training default. Creation refuses to overwrite existing version directories. Existing checkpoints have already seen the historical images, so these splits require a new training lineage. Raw image paths and historical training manifests are preserved. Near-duplicate and structure/site independence checks remain outstanding.
+The current prospective manifests are **research_v5**. They group sibling SDNET tiles, exact byte/decoded-RGB aliases, and conservative perceptual-similarity candidates across all experiments. The v4 screen found 386 cross-split candidates among 67,264 originals; v5 keeps all 1,111 declared-threshold candidate links (including within-split links) inside components. Repeating the same search on v5 found zero cross-split candidates. This is limited screening, not proof of complete independence. Crops, rotations and structure/site identity remain unverified. Earlier versions are preserved, and full research training requires v5. Historical pretrained weights are exposed to earlier data and remain a separate lineage.
+
+Reproducible preparation uses `pipeline/research.py prepare`, `pipeline/hash_source_images.py`, `pipeline/screen_near_duplicates.py --split-version research_v4`, `pipeline/prepare_similarity_links.py`, and `pipeline/prepare_acquisition_splits.py --version research_v5`. Versioned manifests are already included; creation refuses to overwrite their directories. Repeat screening with `--split-version research_v5` to verify the new assignments. Raw images and canonical historical manifests are preserved.
 
 The new trainer is `pipeline/train_research.py` for Experiments 4–6. It starts a separate scratch lineage, uses fixed-seed validation noise, tracks EMA weights, and saves optimizer, AMP scaler and random states. `best.pt` is selected by EMA validation loss; use its `ema` key for inference. Historical generation commands continue to use the original pretrained models.
 
@@ -52,6 +54,12 @@ python pipeline/fidelity_research.py --samples experiments/exp6_level_c_spatial_
 This is a command example, not a completed fidelity experiment. Small sample counts limit FID interpretation. The script fails rather than silently reducing an unavailable per-class budget. Optional `common_chroma` applies the same frozen transform to both real and generated images; do not mix that protocol with RGB scores. KID subset standard deviation is not a confidence interval.
 
 ---
+
+## Cross-split perceptual screening
+
+Run `python pipeline/screen_near_duplicates.py` after the exact-content source audit. It verifies the current source files and screens original images across the `research_v4` train, validation and test assignments. Outputs are in `datasets/near_duplicate_screen_v1/`: a resumable local descriptor cache, a versioned candidate CSV with blank review fields, and a summary containing manifest hashes, thresholds and limitations. No images are moved and no split assignments are changed.
+
+Candidates must pass both pHash Hamming distance ≤3 and dHash distance ≤6. Four 16-bit pHash bands cover every pair within the declared pHash threshold; a brute-force comparison test checks this enumeration. Exact decoded duplicates are covered separately by the content audit. Similarity is uncalibrated on this dataset and can produce false positives. V5 conservatively groups all candidates without classifying them as confirmed duplicates; false positives may reduce the independent group count. This screen can miss crops, rotations, flips and larger edits, and cannot establish site or structure independence.
 
 ## 1. Separated Repository Architecture (`datasets/`, `pipeline/`, `models/`, `experiments/`)
 

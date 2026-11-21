@@ -52,8 +52,12 @@ def main():
         for record in ablation['summary'][detector].values():
             if f'{record["mean_recall"]*100:.1f}%' not in research:
                 errors.append('Research page does not match ablation recall')
-    if 'research_v4' not in research or 'No detected crack; distance undefined' not in research:
+    if 'Current research_v5 splits' not in research or 'No detected crack; distance undefined' not in research:
         errors.append('Research split version or missing-detection policy absent')
+    for version in ('research_v4','research_v5'):
+        screen=json.loads((ROOT/f'assets/research/{version}_summary.json').read_text())
+        if f'{screen["cross_split_candidate_pairs"]:,}' not in research:
+            errors.append(f'Research page does not match similarity screen: {version}')
     if (ROOT/'assets/research/PRIVATE_review_key.csv').exists():
         errors.append('Private reviewer key must not be published')
     result = {'pages_checked': 8, 'errors': errors, 'passed': not errors,

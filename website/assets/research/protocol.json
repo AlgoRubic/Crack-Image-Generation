@@ -3,7 +3,7 @@
   "status": "prospective_protocol_not_completed_experiments",
   "seeds": [2026, 2027, 2028],
   "split_seed": 2026,
-  "split_unit": "research_v4 connected components of SDNET acquisition IDs, other original-image paths, and all audited original byte/decoded-RGB SHA256 aliases",
+  "split_unit": "research_v5 connected components of acquisition IDs, exact byte/decoded-RGB aliases, and all conservative similarity links (pHash <=3 AND dHash <=6); similarity links are suspected aliases, not confirmed duplicate labels",
   "train_fraction": 0.8,
   "validation_fraction": 0.1,
   "test_fraction": 0.1,

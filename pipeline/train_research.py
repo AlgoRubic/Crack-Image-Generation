@@ -86,6 +86,8 @@ def run(args):
         raise ValueError('Run ID must be a single directory name')
     if not 0 < args.ema_decay < 1 or args.lr <= 0:
         raise ValueError('EMA decay must be between 0 and 1; learning rate must be positive')
+    if not args.smoke and args.split_version!='research_v5':
+        raise ValueError('Full clean training requires research_v5 similarity-isolated splits; older versions are archival/smoke only')
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -240,8 +242,8 @@ if __name__ == '__main__':
     parser.add_argument('--smoke-epochs', type=int, choices=[1, 2], default=1,
                         help='One batch per phase per epoch; 2 permits resume regression checks')
     parser.add_argument('--resume', help='Trusted local research checkpoint; validates clean lineage and matching manifests')
-    parser.add_argument('--split-version', choices=['research_v1','research_v2','research_v3','research_v4'], default='research_v4',
-                        help='v4 groups sibling acquisitions and all original byte/decoded-RGB aliases')
+    parser.add_argument('--split-version', choices=['research_v1','research_v2','research_v3','research_v4','research_v5'], default='research_v5',
+                        help='v5 also conservatively groups all declared-threshold perceptual similarity candidates')
     parser.add_argument('--conditioning',choices=['class_only','spatial'],default=None,
                         help='Exp6 class_only keeps the same five-channel model but uses constant null spatial fields')
     run(parser.parse_args())

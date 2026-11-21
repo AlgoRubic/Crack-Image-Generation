@@ -16,6 +16,8 @@ class ResearchHandoff(unittest.TestCase):
         with self.assertRaises(ValueError):validate_config(config,False)
         validate_config(config,True)
         with self.assertRaises(ValueError):validate_config(dict(config,initialization='historical'),True)
+        with self.assertRaises(ValueError):validate_config(dict(config,smoke_only=False),False)
+        validate_config(dict(config,smoke_only=False,split_version='research_v5'),False)
 
     def test_noise_coverage_does_not_imply_good_trajectory_f1(self):
         command=np.zeros((2,64,64),np.float32);command[0,:,32]=1

@@ -42,3 +42,7 @@ data/*
 
 # Website-local build cache
 website/__pycache__/
+
+# Reproducible local perceptual-descriptor cache (summary/review candidates remain tracked)
+datasets/near_duplicate_screen_v1/descriptors.csv
+datasets/near_duplicate_screen_v1/LOCAL_ONLY_*

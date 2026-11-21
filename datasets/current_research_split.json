@@ -1,5 +1,5 @@
 {
-  "version": "research_v4",
+  "version": "research_v5",
   "datasets": {
     "exp1_exp2_sdnet_64": {
       "test": 5640,
@@ -8,8 +8,8 @@
     },
     "exp3_augmented_128": {
       "test": 6015,
-      "train": 48072,
-      "validation": 6914
+      "train": 48088,
+      "validation": 6898
     },
     "exp4_level_a_morphology_256": {
       "train": 10325,
@@ -17,10 +17,11 @@
       "validation": 1537
     },
     "exp5_exp6_level_bc_mechanisms_256": {
-      "train": 12368,
-      "test": 1508,
-      "validation": 1564
+      "train": 12357,
+      "test": 1518,
+      "validation": 1565
     }
   },
-  "exact_rgb_content_audit_complete": true
+  "exact_rgb_content_audit_complete": true,
+  "conservative_similarity_isolation": true
 }

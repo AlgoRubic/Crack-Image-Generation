@@ -1,0 +1,71 @@
+{
+  "dataset": "exp4_level_a_morphology_256",
+  "rows": 13139,
+  "unique_groups": 529,
+  "acquisition_overlap": 0,
+  "split_counts": {
+    "train": 10325,
+    "test": 1277,
+    "validation": 1537
+  },
+  "class_counts": {
+    "train": {
+      "longitudinal": 796,
+      "diagonal": 515,
+      "alligator_map": 4024,
+      "transverse": 268,
+      "non_cracked": 4722
+    },
+    "validation": {
+      "diagonal": 107,
+      "alligator_map": 633,
+      "longitudinal": 81,
+      "transverse": 24,
+      "non_cracked": 692
+    },
+    "test": {
+      "longitudinal": 101,
+      "diagonal": 64,
+      "transverse": 43,
+      "alligator_map": 483,
+      "non_cracked": 586
+    }
+  },
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "input_sha256": {
+    "datasets\\exp4_level_a_morphology_256\\research_v1\\provenance.csv": "cc07dfe3d6f6c3f0109167c4ef7bd2e79727eaa40ba90e18fd82a613e40a669a"
+  },
+  "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+  "linked_acquisitions": 2475,
+  "source_content_audit_complete": true,
+  "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "conservative_similarity_links": {
+    "status": "completed",
+    "pairs": 1111,
+    "source_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+    "descriptors_sha256": "37ede54e96c184917306c92e09ded5ec30909d1d987edf369a6a8ae6576ec5c9",
+    "links_sha256": "9a20756acb4ef76defcd26e3bcb9456d872de9109efa9c7e468acacc4e972846",
+    "protocol": {
+      "phash": "32x32 grayscale LANCZOS; orthonormal DCT-II 8x8; median excluding DC; DC bit zero",
+      "dhash": "9x8 grayscale LANCZOS; horizontal adjacent comparisons",
+      "thresholds": {
+        "phash_hamming_max": 3,
+        "dhash_hamming_max": 6
+      },
+      "enumeration": "Four 16-bit pHash bands; exhaustive within declared pHash threshold"
+    },
+    "policy": "Group ALL declared-threshold similarity candidates, including within-split pairs, before reassigning components. This is conservative isolation, not confirmed-duplicate labeling.",
+    "caveat": "False-positive links can reduce independent group count. Crops/rotations/larger edits and site identity remain unverified."
+  },
+  "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+  "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+  "caveats": [
+    "Structure/site independence not established",
+    "Limited similarity screen only; crops/rotations/larger edits remain unverified",
+    "Existing trained checkpoints are exposed; these are prospective splits only"
+  ]
+}

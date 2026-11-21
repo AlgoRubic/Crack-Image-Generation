@@ -1,20 +1,20 @@
 {
   "dataset": "exp3_augmented_128",
   "rows": 61001,
-  "unique_groups": 9364,
+  "unique_groups": 8445,
   "acquisition_overlap": 0,
   "split_counts": {
     "test": 6015,
-    "train": 48072,
-    "validation": 6914
+    "train": 48088,
+    "validation": 6898
   },
   "class_counts": {
     "train": {
       "non_cracked": 33644,
-      "cracked": 14428
+      "cracked": 14444
     },
     "validation": {
-      "cracked": 1900,
+      "cracked": 1884,
       "non_cracked": 5014
     },
     "test": {
@@ -31,14 +31,32 @@
     "datasets\\exp3_augmented_128\\train.csv": "e669bd848a80a96966c55843def34c4bbd70215010b8cc4059534c76c3ba4290"
   },
   "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
-  "linked_acquisitions": 1385,
+  "linked_acquisitions": 2475,
   "source_content_audit_complete": true,
   "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "conservative_similarity_links": {
+    "status": "completed",
+    "pairs": 1111,
+    "source_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+    "descriptors_sha256": "37ede54e96c184917306c92e09ded5ec30909d1d987edf369a6a8ae6576ec5c9",
+    "links_sha256": "9a20756acb4ef76defcd26e3bcb9456d872de9109efa9c7e468acacc4e972846",
+    "protocol": {
+      "phash": "32x32 grayscale LANCZOS; orthonormal DCT-II 8x8; median excluding DC; DC bit zero",
+      "dhash": "9x8 grayscale LANCZOS; horizontal adjacent comparisons",
+      "thresholds": {
+        "phash_hamming_max": 3,
+        "dhash_hamming_max": 6
+      },
+      "enumeration": "Four 16-bit pHash bands; exhaustive within declared pHash threshold"
+    },
+    "policy": "Group ALL declared-threshold similarity candidates, including within-split pairs, before reassigning components. This is conservative isolation, not confirmed-duplicate labeling.",
+    "caveat": "False-positive links can reduce independent group count. Crops/rotations/larger edits and site identity remain unverified."
+  },
   "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
   "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
   "caveats": [
     "Structure/site independence not established",
-    "Near-duplicate audit outstanding",
+    "Limited similarity screen only; crops/rotations/larger edits remain unverified",
     "Existing trained checkpoints are exposed; these are prospective splits only"
   ]
 }

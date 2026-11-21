@@ -28,7 +28,7 @@ def acquisition(row):
     return source+':'+path.as_posix()
 
 
-def main(version='research_v4'):
+def main(version='research_v5'):
     raw=ROOT/'data/raw/SDNET2018/images'
     groups={acquisition(dict(source='SDNET2018',original_path=str(p.relative_to(ROOT)))) for p in raw.rglob('*.jpg')}
     counts=Counter(g.split(':')[1] for g in groups)
@@ -63,7 +63,7 @@ def main(version='research_v4'):
         parents[max(a,b)]=min(a,b)
     known_by_path={r['original_path']:r['original_sha256'] for _,_,rows in prepared.values() for r in rows if r.get('original_sha256')}
     content_index={}
-    if version=='research_v4':
+    if version in ('research_v4','research_v5'):
         index=ROOT/'datasets/source_content_v1/index.csv'
         summary=json.loads(index.with_name('summary.json').read_text())
         if summary['status']!='completed' or hashlib.sha256(index.read_bytes()).hexdigest()!=summary['index_sha256']:
@@ -87,6 +87,18 @@ def main(version='research_v4'):
             if row.get('original_rgb_sha256'):
                 key='rgb:'+row['original_rgb_sha256']
                 union(group,first_by_content.setdefault(key,group))
+    similarity_summary=None
+    if version=='research_v5':
+        links=ROOT/'datasets/near_duplicate_screen_v1/conservative_links.csv'
+        similarity_summary=json.loads(links.with_name('conservative_links_summary.json').read_text())
+        if (similarity_summary['status']!='completed' or
+                similarity_summary['source_index_sha256']!=summary['index_sha256'] or
+                hashlib.sha256(links.read_bytes()).hexdigest()!=similarity_summary['links_sha256']):
+            raise ValueError('Conservative similarity links changed or do not match source audit')
+        path_groups={row['original_path']:acquisition(row) for _,_,rows in prepared.values() for row in rows}
+        with links.open(encoding='utf-8',newline='') as stream:
+            for pair in csv.DictReader(stream):
+                union(path_groups[pair['path_a']],path_groups[pair['path_b']])
     linked_acquisitions=sum(find(k)!=k for k in list(parents))
     for dataset,(folder,inputs,rows) in prepared.items():
         by_group=defaultdict(set)
@@ -111,13 +123,15 @@ def main(version='research_v4'):
                     split_counts=dict(Counter(r['split'] for r in rows)),class_counts=coverage,
                     missing_classes={s:sorted(classes-set(c)) for s,c in coverage.items()},
                     input_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},
-                    grouping='Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases',
+                    grouping='Connected components of acquisitions and exact byte/RGB identities'+('; plus conservative perceptual similarity links' if similarity_summary else ''),
                     linked_acquisitions=linked_acquisitions,
                     source_content_audit_complete=bool(content_index),
                     source_content_index_sha256=summary['index_sha256'] if content_index else None,
+                    conservative_similarity_links=similarity_summary,
                     sdnet_source='https://digitalcommons.usu.edu/all_datasets/48/',
                     inference='SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs',
-                    caveats=['Structure/site independence not established','Near-duplicate audit outstanding',
+                    caveats=['Structure/site independence not established',
+                             'Limited similarity screen only; crops/rotations/larger edits remain unverified' if similarity_summary else 'Near-duplicate audit outstanding',
                              'Existing trained checkpoints are exposed; these are prospective splits only'])
         (out/'audit.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
         reports.append(report)
@@ -126,10 +140,11 @@ def main(version='research_v4'):
         sdnet_acquisition_groups=dict(counts),cross_experiment_assignment_consistent=True),indent=2),encoding='utf-8')
     (ROOT/'datasets/current_research_split.json').write_text(json.dumps(dict(version=version,
         datasets={report['dataset']:report['split_counts'] for report in reports},
-        exact_rgb_content_audit_complete=bool(content_index)),indent=2),encoding='utf-8')
+        exact_rgb_content_audit_complete=bool(content_index),
+        conservative_similarity_isolation=bool(similarity_summary)),indent=2),encoding='utf-8')
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--version',choices=['research_v3','research_v4'],default='research_v4')
+    parser.add_argument('--version',choices=['research_v3','research_v4','research_v5'],default='research_v5')
     main(parser.parse_args().version)

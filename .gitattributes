@@ -1,0 +1,2 @@
+# Dataset CSVs are signed by SHA256. Preserve their exact bytes on every OS.
+datasets/**/*.csv -text

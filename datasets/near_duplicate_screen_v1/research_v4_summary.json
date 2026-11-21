@@ -1,0 +1,45 @@
+{
+  "status": "completed",
+  "created_utc": "2026-11-21T07:59:31.247039+00:00",
+  "split_version": "research_v4",
+  "source_files": 67264,
+  "source_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "manifest_sha256": {
+    "datasets/exp1_exp2_sdnet_64/research_v4/train.csv": "2a40cfdc17611e8ddfd140c8159213f773ad78acd2dbee555ec019520efe20cc",
+    "datasets/exp1_exp2_sdnet_64/research_v4/validation.csv": "ab7aaa29a6c401978833ea68f52f4a25d615cc266fce36c52245423389f69201",
+    "datasets/exp1_exp2_sdnet_64/research_v4/test.csv": "d62d7ea7571d17240085294eea9538ec2ec6262f7013d3f63ac48c7247a8ba85",
+    "datasets/exp3_augmented_128/research_v4/train.csv": "cd22abdd1180d477d0399bab5b06773bfacd5cf4a9ee7c113ce06c03336ebce3",
+    "datasets/exp3_augmented_128/research_v4/validation.csv": "63fc4c186e5ad4202c19c540a56671838da930cb620a9e6e7a267c42334e0f2f",
+    "datasets/exp3_augmented_128/research_v4/test.csv": "9a86363324e523d8cb802e0a9c6540c00a0046882efbbceb7ffce33109aa40e8",
+    "datasets/exp4_level_a_morphology_256/research_v4/train.csv": "ce4f08dde305117c9a5217e7d1b2d6fb3434dd31a00d7456dac7ea371ca86964",
+    "datasets/exp4_level_a_morphology_256/research_v4/validation.csv": "e1f905d0fa92055db74ec46ee408135c62257886ed29a6fd66f319f7f51c820e",
+    "datasets/exp4_level_a_morphology_256/research_v4/test.csv": "5dd990febd20065b8e989f76e9493416ddbede0b96bff1db29acf568c5d37527",
+    "datasets/exp5_exp6_level_bc_mechanisms_256/research_v4/train.csv": "f074d02d85afc8bc452c2d134191842a7366453770e4eb6a30fb33e947cce306",
+    "datasets/exp5_exp6_level_bc_mechanisms_256/research_v4/validation.csv": "ded6c149bf80d6463a2adee58ac7c79907a7a790e1806866836f997c533699d9",
+    "datasets/exp5_exp6_level_bc_mechanisms_256/research_v4/test.csv": "4d811f6d79fcede0a650e8768581b8e2414e49af0659d0e0b3f21af5a39e9969"
+  },
+  "descriptors_sha256": "37ede54e96c184917306c92e09ded5ec30909d1d987edf369a6a8ae6576ec5c9",
+  "candidate_csv_sha256": "0531f0e597650b83cbb6aa4872a177cd1040bfc35f3f1de515d8530431c3dda8",
+  "cross_split_candidate_pairs": 386,
+  "split_pair_counts": {
+    "test+train": 169,
+    "train+validation": 195,
+    "test+validation": 22
+  },
+  "protocol": {
+    "phash": "32x32 grayscale LANCZOS; orthonormal DCT-II 8x8; median excluding DC; DC bit zero",
+    "dhash": "9x8 grayscale LANCZOS; horizontal adjacent comparisons",
+    "thresholds": {
+      "phash_hamming_max": 3,
+      "dhash_hamming_max": 6
+    },
+    "enumeration": "Four 16-bit pHash bands; exhaustive within declared pHash threshold"
+  },
+  "interpretation": "Unreviewed candidates only; no split or label changes applied.",
+  "limitations": [
+    "Not calibrated on this dataset",
+    "Misses crops, rotations, flips and larger edits",
+    "Does not establish site/structure independence",
+    "Exact decoded duplicates excluded because checked by research_v4 content audit"
+  ]
+}
