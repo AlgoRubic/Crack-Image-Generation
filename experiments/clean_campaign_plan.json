@@ -90,7 +90,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 10.013415905525967,
+      "estimated_hours": 9.704839141637926,
       "estimate_proxy": false
     },
     {
@@ -113,7 +113,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 10.013415905525967,
+      "estimated_hours": 9.704839141637926,
       "estimate_proxy": false
     },
     {
@@ -136,7 +136,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 10.013415905525967,
+      "estimated_hours": 9.704839141637926,
       "estimate_proxy": false
     },
     {
@@ -159,7 +159,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.243833587487185,
+      "estimated_hours": 18.645426488876485,
       "estimate_proxy": true
     },
     {
@@ -182,7 +182,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.243833587487185,
+      "estimated_hours": 18.645426488876485,
       "estimate_proxy": true
     },
     {
@@ -205,7 +205,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.243833587487185,
+      "estimated_hours": 18.645426488876485,
       "estimate_proxy": true
     },
     {
@@ -228,7 +228,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.243833587487185,
+      "estimated_hours": 18.645426488876485,
       "estimate_proxy": false
     },
     {
@@ -251,7 +251,7 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.243833587487185,
+      "estimated_hours": 18.645426488876485,
       "estimate_proxy": false
     },
     {
@@ -274,16 +274,17 @@
         "--batch-size",
         "6"
       ],
-      "estimated_hours": 19.243833587487185,
+      "estimated_hours": 18.645426488876485,
       "estimate_proxy": false
     }
   ],
-  "estimated_total_training_hours": 169.42899846237748,
+  "estimated_total_training_hours": 164.91282557904916,
   "profile_source": "experiments\\training_resource_profile_batch6.json",
   "memory_profile": "Measured batch-6 allocated memory below 4 GiB; see native GPU profile",
   "comparison": "Exp6 class_only and spatial share the same five-channel architecture, seven labels, dataset and preprocessing; the class-only control receives constant null fields.",
   "historical_ladder": "Exp4 and Exp5 change label spaces and are not a controlled head-to-head comparison.",
   "estimate_limits": "Short-batch extrapolation, not observed full-epoch runtime. Includes data loading, field extraction and EMA; excludes checkpoint I/O and long-run thermal/power changes. Estimates recalculate current split row counts using the historical v4 batch profile. The class-only five-channel control uses the spatial run throughput as a planning proxy.",
+  "data_quality": "Exp5/6 use strict_rc_geometry_v1 under v5; flagged RC annotation records are excluded without changing base splits or historical data.",
   "prerequisites": [
     "Choose explicit GPU-time budget before launching a multi-day campaign",
     "Independent label review and generated-image detector validation remain needed for strong mechanism claims",

@@ -49,6 +49,9 @@ def main(args):
     config=data['training_config'];experiment=data['experiment']
     dataset='exp4_level_a_morphology_256' if experiment==4 else 'exp5_exp6_level_bc_mechanisms_256'
     base=ROOT/'datasets'/dataset/config['split_version']
+    if config.get('quality_view'):
+        if config['quality_view']!='strict_rc_geometry_v1':raise ValueError('Unsupported dataset quality view')
+        base=base/config['quality_view']
     tables={}
     for role in ('train',args.reference_split):
         path=base/(role+'.csv')

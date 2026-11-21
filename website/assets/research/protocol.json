@@ -9,6 +9,7 @@
   "test_fraction": 0.1,
   "holdout_policy": "Freeze test references before tuning. Do not load any checkpoint or transfer ancestor trained on validation/test originals.",
   "label_policy": "Morphological geometry is a proxy. Structural failure mechanisms require independent expert adjudication and source context.",
+  "data_quality_policy": "Exp5/6 train and reference evaluation use strict_rc_geometry_v1: exclude any flagged RC annotation geometry/metadata record, retain v5 components and original split assignments, preserve historical data. No automatic coordinate repair or mechanism-label validation implied.",
   "evaluation": {
     "generated_per_class_per_seed": 200,
     "inference_batch_size_256": 8,

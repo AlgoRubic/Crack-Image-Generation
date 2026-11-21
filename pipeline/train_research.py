@@ -97,6 +97,16 @@ def run(args):
     torch.backends.cudnn.deterministic = True
     dataset = 'exp4_level_a_morphology_256' if args.experiment == 4 else 'exp5_exp6_level_bc_mechanisms_256'
     folder = ROOT / 'datasets' / dataset / args.split_version
+    quality_view = 'strict_rc_geometry_v1' if args.experiment in (5,6) and args.split_version=='research_v5' else None
+    quality_audit = None
+    if quality_view:
+        folder = folder / quality_view
+        quality_audit = json.loads((folder/'audit.json').read_text())
+        if quality_audit['status']!='completed':
+            raise ValueError('Geometry-qualified dataset view is incomplete')
+        for split in ('train','validation','test'):
+            if sha(folder/(split+'.csv'))!=quality_audit['qualified_manifest_sha256'][split]:
+                raise ValueError('Geometry-qualified manifest changed')
     rows = verify_manifests(folder)
     run_dir = ROOT / 'experiments' / ('crack_type_conditional' if args.experiment == 4 else
               'structural_mechanism_ddpm' if args.experiment == 5 else 'exp6_level_c_spatial_physics') / 'research_runs' / args.run_id
@@ -105,7 +115,8 @@ def run(args):
     source_files=[Path(__file__),ROOT/'src/model_attention.py',ROOT/'src/diffusion.py',ROOT/'src/train_exp6_spatial_physics_256.py']
     for source in source_files:
         shutil.copyfile(source,snapshot/source.name)
-    config = dict(vars(args), initialization='scratch', transfer_ancestors=[],
+    config = dict(vars(args), initialization='scratch', transfer_ancestors=[], quality_view=quality_view,
+                  data_quality_audit=quality_audit,
                   manifests={s: {'path': str(folder / (s + '.csv')), 'sha256': sha(folder / (s + '.csv'))} for s in rows},
                   script_sha256=sha(Path(__file__)), validation_protocol='Fixed noise/timestep seed, no augmentation, full validation each epoch',
                   test_policy='Manifest isolation checked; test images never loaded by trainer',
@@ -138,7 +149,7 @@ def run(args):
             raise ValueError('Resume checkpoint does not have a clean scratch lineage')
         if previous['smoke_only'] != args.smoke:
             raise ValueError('Smoke checkpoints cannot seed full research runs')
-        for key in ('experiment', 'conditioning', 'seed', 'batch_size', 'ema_decay', 'lr', 'manifests', 'script_sha256'):
+        for key in ('experiment', 'conditioning', 'quality_view', 'data_quality_audit', 'seed', 'batch_size', 'ema_decay', 'lr', 'manifests', 'script_sha256'):
             if previous.get(key) != config[key]:
                 raise ValueError(f'Resume configuration mismatch: {key}')
         model.load_state_dict(state['model'])

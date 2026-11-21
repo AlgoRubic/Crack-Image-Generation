@@ -32,6 +32,8 @@ def validate_config(config,allow_smoke):
     if config.get('split_version') not in ('research_v4','research_v5'):raise ValueError('Research sampling requires an audited research_v4/v5 lineage')
     if not config.get('smoke_only') and config.get('split_version')!='research_v5':
         raise ValueError('Full research sampling requires similarity-isolated research_v5 lineage')
+    if not config.get('smoke_only') and config['experiment'] in (5,6) and config.get('quality_view')!='strict_rc_geometry_v1':
+        raise ValueError('Full Exp5/6 sampling requires the geometry-qualified training view')
 
 
 @torch.no_grad()

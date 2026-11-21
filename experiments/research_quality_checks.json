@@ -1,40 +1,54 @@
 {
-  "created_utc": "2026-11-21T08:06:07.971102+00:00",
+  "created_utc": "2026-11-21T08:22:01.914263+00:00",
   "checks": [
     {
       "script": "pipeline/test_research.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 5.036s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 6.095s\n\nOK\n"
     },
     {
       "script": "pipeline/test_acquisition_splits.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 2.080s\n\nOK\n"
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 2.427s\n\nOK\n"
     },
     {
       "script": "pipeline/test_source_hashes.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.016s\n\nOK\n"
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.036s\n\nOK\n"
     },
     {
       "script": "pipeline/test_near_duplicate_screen.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.006s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_rc10519_audit.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_quality_view.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.438s\n\nOK\n"
     },
     {
       "script": "pipeline/test_detector.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.009s\n\nOK\n"
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.014s\n\nOK\n"
     },
     {
       "script": "pipeline/test_ablation.py",
@@ -48,7 +62,7 @@
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.036s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.072s\n\nOK\n"
     },
     {
       "script": "pipeline/test_research_handoff.py",

@@ -1,0 +1,73 @@
+{
+  "status": "completed",
+  "dataset": "exp5_exp6_level_bc_mechanisms_256",
+  "split_version": "research_v5",
+  "quality_view": "strict_rc_geometry_v1",
+  "base_split_counts": {
+    "train": 12357,
+    "test": 1518,
+    "validation": 1565
+  },
+  "qualified_split_counts": {
+    "train": 11986,
+    "validation": 1498,
+    "test": 1475
+  },
+  "excluded_by_split": {
+    "train": 371,
+    "validation": 67,
+    "test": 43
+  },
+  "excluded_total": 481,
+  "excluded_issue_counts": {
+    "out_of_image_bounds": 479,
+    "annotation_image_dimensions_mismatch": 19
+  },
+  "class_counts": {
+    "train": {
+      "corrosion_splitting": 2846,
+      "web_shear": 2118,
+      "flexure_shear": 631,
+      "torsion": 1185,
+      "flexural": 717,
+      "shrinkage_map": 1742,
+      "non_cracked": 2747
+    },
+    "validation": {
+      "web_shear": 298,
+      "shrinkage_map": 196,
+      "torsion": 151,
+      "corrosion_splitting": 258,
+      "flexure_shear": 89,
+      "flexural": 94,
+      "non_cracked": 412
+    },
+    "test": {
+      "corrosion_splitting": 360,
+      "web_shear": 274,
+      "shrinkage_map": 182,
+      "flexure_shear": 71,
+      "torsion": 147,
+      "flexural": 100,
+      "non_cracked": 341
+    }
+  },
+  "input_manifest_sha256": {
+    "datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/train.csv": "70029767d2147618ef80171f1ab733bb00e291bc2123b377cc930748a3bd0e1d",
+    "datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/validation.csv": "67d8a439cbe4ca78d38413c3fe7de1cc0ee65de7fde84aa516ff523e30e77791",
+    "datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/test.csv": "a29329fced9230dd246995a0af96e0051d9a741746bd5c65266ee7ca68134d74"
+  },
+  "annotation_inventory_sha256": "ddf3ca28e3694fafc2464adc46404b98d407734c14aadbd592223e2278a5d44c",
+  "qualified_manifest_sha256": {
+    "train": "ca802abbba5e42d5c263de72cbac5ffb273b767667bb85f9229b5882ed09f71d",
+    "validation": "c87667109eabf0e082748f969aa3514411d346e725cbcb1a75c1da07de2aab6e",
+    "test": "6459136ef8589bb265b58c59a8f30c9f2e9ddab471ab9f55a71b8a7169302138"
+  },
+  "policy": "Exclude any RC image with a flagged annotation geometry/metadata issue. Preserve v5 component IDs and split assignments; other source rows are unchanged.",
+  "rationale": "Exp5/6 proxy labels depend on RC bounding boxes. Exp3 uses image-level labels without those boxes and is not filtered by this view.",
+  "limitations": [
+    "Conservative exclusion is not proof that every excluded label is wrong",
+    "Passing geometry checks does not validate crack presence, boxes, pixel masks, or mechanism proxy labels",
+    "Annotation dimensions are not automatically rescaled or repaired without source evidence"
+  ]
+}

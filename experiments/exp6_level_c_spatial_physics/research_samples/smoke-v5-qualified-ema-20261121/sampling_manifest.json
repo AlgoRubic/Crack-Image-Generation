@@ -1,0 +1,273 @@
+{
+  "status": "completed",
+  "experiment": 6,
+  "conditioning": "spatial",
+  "weights": "ema",
+  "smoke_only": true,
+  "checkpoint_sha256": "78d882e3638f340cf4cfe01676fa9bc92de17e9318ffbcb3009ce854c5a81fa6",
+  "training_config": {
+    "experiment": 6,
+    "run_id": "smoke-v5-qualified-20261121",
+    "epochs": 50,
+    "batch_size": 1,
+    "seed": 2026,
+    "lr": 0.0001,
+    "ema_decay": 0.999,
+    "smoke": true,
+    "smoke_epochs": 1,
+    "resume": null,
+    "split_version": "research_v5",
+    "conditioning": "spatial",
+    "initialization": "scratch",
+    "transfer_ancestors": [],
+    "quality_view": "strict_rc_geometry_v1",
+    "data_quality_audit": {
+      "status": "completed",
+      "dataset": "exp5_exp6_level_bc_mechanisms_256",
+      "split_version": "research_v5",
+      "quality_view": "strict_rc_geometry_v1",
+      "base_split_counts": {
+        "train": 12357,
+        "test": 1518,
+        "validation": 1565
+      },
+      "qualified_split_counts": {
+        "train": 11986,
+        "validation": 1498,
+        "test": 1475
+      },
+      "excluded_by_split": {
+        "train": 371,
+        "validation": 67,
+        "test": 43
+      },
+      "excluded_total": 481,
+      "excluded_issue_counts": {
+        "out_of_image_bounds": 479,
+        "annotation_image_dimensions_mismatch": 19
+      },
+      "class_counts": {
+        "train": {
+          "corrosion_splitting": 2846,
+          "web_shear": 2118,
+          "flexure_shear": 631,
+          "torsion": 1185,
+          "flexural": 717,
+          "shrinkage_map": 1742,
+          "non_cracked": 2747
+        },
+        "validation": {
+          "web_shear": 298,
+          "shrinkage_map": 196,
+          "torsion": 151,
+          "corrosion_splitting": 258,
+          "flexure_shear": 89,
+          "flexural": 94,
+          "non_cracked": 412
+        },
+        "test": {
+          "corrosion_splitting": 360,
+          "web_shear": 274,
+          "shrinkage_map": 182,
+          "flexure_shear": 71,
+          "torsion": 147,
+          "flexural": 100,
+          "non_cracked": 341
+        }
+      },
+      "input_manifest_sha256": {
+        "datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/train.csv": "70029767d2147618ef80171f1ab733bb00e291bc2123b377cc930748a3bd0e1d",
+        "datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/validation.csv": "67d8a439cbe4ca78d38413c3fe7de1cc0ee65de7fde84aa516ff523e30e77791",
+        "datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/test.csv": "a29329fced9230dd246995a0af96e0051d9a741746bd5c65266ee7ca68134d74"
+      },
+      "annotation_inventory_sha256": "ddf3ca28e3694fafc2464adc46404b98d407734c14aadbd592223e2278a5d44c",
+      "qualified_manifest_sha256": {
+        "train": "ca802abbba5e42d5c263de72cbac5ffb273b767667bb85f9229b5882ed09f71d",
+        "validation": "c87667109eabf0e082748f969aa3514411d346e725cbcb1a75c1da07de2aab6e",
+        "test": "6459136ef8589bb265b58c59a8f30c9f2e9ddab471ab9f55a71b8a7169302138"
+      },
+      "policy": "Exclude any RC image with a flagged annotation geometry/metadata issue. Preserve v5 component IDs and split assignments; other source rows are unchanged.",
+      "rationale": "Exp5/6 proxy labels depend on RC bounding boxes. Exp3 uses image-level labels without those boxes and is not filtered by this view.",
+      "limitations": [
+        "Conservative exclusion is not proof that every excluded label is wrong",
+        "Passing geometry checks does not validate crack presence, boxes, pixel masks, or mechanism proxy labels",
+        "Annotation dimensions are not automatically rescaled or repaired without source evidence"
+      ]
+    },
+    "manifests": {
+      "train": {
+        "path": "D:\\Downloads\\concrete_ddpm\\datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v5\\strict_rc_geometry_v1\\train.csv",
+        "sha256": "ca802abbba5e42d5c263de72cbac5ffb273b767667bb85f9229b5882ed09f71d"
+      },
+      "validation": {
+        "path": "D:\\Downloads\\concrete_ddpm\\datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v5\\strict_rc_geometry_v1\\validation.csv",
+        "sha256": "c87667109eabf0e082748f969aa3514411d346e725cbcb1a75c1da07de2aab6e"
+      },
+      "test": {
+        "path": "D:\\Downloads\\concrete_ddpm\\datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v5\\strict_rc_geometry_v1\\test.csv",
+        "sha256": "6459136ef8589bb265b58c59a8f30c9f2e9ddab471ab9f55a71b8a7169302138"
+      }
+    },
+    "script_sha256": "1936dcf8c84ecc3306f84d085b98e17de81b367bc928dd85589369c36bbe803e",
+    "validation_protocol": "Fixed noise/timestep seed, no augmentation, full validation each epoch",
+    "test_policy": "Manifest isolation checked; test images never loaded by trainer",
+    "label_limitation": "Geometry-derived proxy labels; no independent expert validation",
+    "smoke_only": true,
+    "validation_weights": "ema",
+    "best_checkpoint_inference_key": "ema",
+    "source_hashes": {
+      "pipeline\\train_research.py": "1936dcf8c84ecc3306f84d085b98e17de81b367bc928dd85589369c36bbe803e",
+      "src\\model_attention.py": "3e373843f4e50bf93fc4a03a5f7785b9a4fe9ee241c0264acfa349d77112f4db",
+      "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+      "src\\train_exp6_spatial_physics_256.py": "0c0f3cc42aa411db5d3a48bb6eba64fed9341fd68cab64642ba793419672a314"
+    },
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+    "packages": {
+      "absl-py": "2.5.0",
+      "accelerate": "1.15.0",
+      "anyio": "4.15.1",
+      "certifi": "2026.7.22",
+      "charset-normalizer": "3.5.1",
+      "click": "8.5.0",
+      "cloudpickle": "3.1.2",
+      "colorama": "0.4.6",
+      "contourpy": "1.3.2",
+      "cycler": "0.12.1",
+      "diffusers": "0.40.0",
+      "exceptiongroup": "1.3.1",
+      "filelock": "3.32.3",
+      "fonttools": "4.65.0",
+      "fsspec": "2026.7.0",
+      "grpcio": "1.84.0",
+      "h11": "0.16.0",
+      "hf-xet": "1.6.0",
+      "httpcore": "1.0.9",
+      "httpx": "0.28.1",
+      "huggingface_hub": "1.32.0",
+      "idna": "3.20",
+      "importlib_metadata": "9.0.1",
+      "Jinja2": "3.1.6",
+      "joblib": "1.6.0",
+      "kiwisolver": "1.5.1",
+      "lightning-utilities": "0.15.3",
+      "Markdown": "3.10.3",
+      "MarkupSafe": "3.0.3",
+      "matplotlib": "3.10.9",
+      "mpmath": "1.3.0",
+      "networkx": "3.4.2",
+      "numpy": "2.2.6",
+      "packaging": "26.3",
+      "pandas": "2.3.3",
+      "pillow": "12.3.0",
+      "pip": "26.2.1",
+      "protobuf": "7.36.2",
+      "psutil": "7.2.2",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "2.9.0.post0",
+      "pytz": "2026.3.post1",
+      "PyYAML": "6.0.3",
+      "regex": "2026.9.10",
+      "reportlab": "5.0.1",
+      "requests": "2.34.2",
+      "safetensors": "0.8.0",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "setuptools": "78.1.0",
+      "six": "1.17.0",
+      "sympy": "1.14.0",
+      "tensorboard": "2.21.0",
+      "tensorboard-data-server": "0.7.2",
+      "threadpoolctl": "3.7.0",
+      "tomli": "2.4.1",
+      "torch": "2.14.0+cu126",
+      "torchaudio": "2.11.0+cu126",
+      "torchmetrics": "1.9.0",
+      "torchvision": "0.29.0+cu126",
+      "torch_fidelity": "0.4.0",
+      "tqdm": "4.70.1",
+      "typing_extensions": "4.16.0",
+      "tzdata": "2026.4",
+      "urllib3": "2.8.0",
+      "Werkzeug": "3.1.8",
+      "zipp": "4.1.0"
+    }
+  },
+  "count_per_class": 1,
+  "seed": 2026,
+  "steps": 2,
+  "guidance": 2.5,
+  "sampler_sha256": "6f7bab17b9cd49d4f27e7696693b86403808bc6f7a2bd863c2e8ad83869472e4",
+  "postprocessing": "Fixed [-1,1] to [0,1] scaling only; no chroma transform",
+  "images": [
+    {
+      "class_id": 0,
+      "class_name": "non_cracked",
+      "index": 0,
+      "path": "non_cracked/sample_0000.png",
+      "sha256": "de0da2824d62bfe90bc2018331a9c333e284c5beb70518576fb7f037d1ffb651",
+      "initial_noise_sha256": "3cd28bef14e32dda51540381bc811568f1a51685c8908618628c55a2923de2c3",
+      "command_path": "non_cracked_physics_masks/phys_0000.npy",
+      "command_sha256": "fa39876807283a5aa80251117b44cd5b105687c963c9c8cd6b4c6b0ec0743b1e"
+    },
+    {
+      "class_id": 1,
+      "class_name": "flexural",
+      "index": 0,
+      "path": "flexural/sample_0000.png",
+      "sha256": "e17ee0019cc1b64428c065b3fcf06e195569b2160afa3831c54b0dc8a417ced1",
+      "initial_noise_sha256": "4dce26a3835d9d1b2851894786c1fac00865a97687cbf0a4a309a810f89573dc",
+      "command_path": "flexural_physics_masks/phys_0000.npy",
+      "command_sha256": "2a089f32c6f8de52cf50f22f0f1c9cacb8b80f9d16756b62b83f19161e72be75"
+    },
+    {
+      "class_id": 2,
+      "class_name": "flexure_shear",
+      "index": 0,
+      "path": "flexure_shear/sample_0000.png",
+      "sha256": "31d7329d23da0b6baec9729914273be31e314f9c938bd6162ed5e4018d031476",
+      "initial_noise_sha256": "e78ead75c38ed480f91773c7d5226afda2363e31d7bdc6a5071d3cc9dc901d15",
+      "command_path": "flexure_shear_physics_masks/phys_0000.npy",
+      "command_sha256": "bdbc4f315ab985921f8e4f3de08181ed6a0400ec9a9437259a32d68c5a773f27"
+    },
+    {
+      "class_id": 3,
+      "class_name": "web_shear",
+      "index": 0,
+      "path": "web_shear/sample_0000.png",
+      "sha256": "81c463de864496571c6158ed4b4f452b6152d48259f441c6d82436707cf67625",
+      "initial_noise_sha256": "2f1d1bebb6e686835e100268a70fadb1fd28c544a9a9a7e21a1fbaae8b5c576d",
+      "command_path": "web_shear_physics_masks/phys_0000.npy",
+      "command_sha256": "f9c737666f895a78eec9061af3d85c9d85f0708f9447ee1eacbd06479ae63f96"
+    },
+    {
+      "class_id": 4,
+      "class_name": "torsion",
+      "index": 0,
+      "path": "torsion/sample_0000.png",
+      "sha256": "ebd9b639caf942c55faf7a53d90f2fb65f6bbf7c5321f435e9231eb8e984dc99",
+      "initial_noise_sha256": "933d28cd348137ea456b15fea6f1943612acfd2672a1d9bbfad3023e3cd5bd15",
+      "command_path": "torsion_physics_masks/phys_0000.npy",
+      "command_sha256": "1ade5cdeffc0f3b78c5d817577a0848f304f2c2f2c5ffbdf8dac1160f1278e9d"
+    },
+    {
+      "class_id": 5,
+      "class_name": "corrosion_splitting",
+      "index": 0,
+      "path": "corrosion_splitting/sample_0000.png",
+      "sha256": "aa8caae166d8dfe05c51a0d90ea00bbbc1e5e53763119f35550408ff73587e1c",
+      "initial_noise_sha256": "dd9efbe8d8ac84777525a47a285c57160dd5d9f588e49b901e037c108777c73a",
+      "command_path": "corrosion_splitting_physics_masks/phys_0000.npy",
+      "command_sha256": "c8bd6b90622c7fe4a1bebd0d6a678c0824aa11352a689afcef388f583fa5643c"
+    },
+    {
+      "class_id": 6,
+      "class_name": "shrinkage_map",
+      "index": 0,
+      "path": "shrinkage_map/sample_0000.png",
+      "sha256": "ffe373e63bf2e542b1877dfa3679e050b1761d694f62ac989de180d2cb17cc85",
+      "initial_noise_sha256": "985d277ba2884cb28937f18822ebbb22fbe35f0ed0dab9712ffcd4d11ee81f1b",
+      "command_path": "shrinkage_map_physics_masks/phys_0000.npy",
+      "command_sha256": "0e6fbf677073ce9b580cd835142de4364f6572b00428208b47d8439c3690548d"
+    }
+  ]
+}

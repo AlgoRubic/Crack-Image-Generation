@@ -1,2 +1,3 @@
-# Dataset CSVs are signed by SHA256. Preserve their exact bytes on every OS.
+# Audited dataset manifests and metadata retain exact bytes for SHA256 checks.
 datasets/**/*.csv -text
+datasets/**/*.json -text

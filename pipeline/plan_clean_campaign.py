@@ -20,6 +20,8 @@ def main():
                      '--split-version',version,'--run-id',run_id,'--seed',str(seed),
                      '--epochs','50','--batch-size','6']
             counts=split['datasets']['exp4_level_a_morphology_256' if experiment==4 else 'exp5_exp6_level_bc_mechanisms_256']
+            if experiment in (5,6):
+                counts=split['quality_views']['exp5_exp6_level_bc_mechanisms_256']['split_counts']
             seconds=sum(math.ceil(counts[role]/6)*measured[experiment]['timings'][role]['median_batch_seconds'] for role in ('train','validation'))
             runs.append(dict(run_id=run_id,command=command,estimated_hours=seconds*50/3600,
                              estimate_proxy=experiment==6 and conditioning=='class_only'))
@@ -29,6 +31,7 @@ def main():
               comparison='Exp6 class_only and spatial share the same five-channel architecture, seven labels, dataset and preprocessing; the class-only control receives constant null fields.',
               historical_ladder='Exp4 and Exp5 change label spaces and are not a controlled head-to-head comparison.',
               estimate_limits=profile['estimate_limitations']+' Estimates recalculate current split row counts using the historical v4 batch profile. The class-only five-channel control uses the spatial run throughput as a planning proxy.',
+              data_quality='Exp5/6 use strict_rc_geometry_v1 under v5; flagged RC annotation records are excluded without changing base splits or historical data.',
               prerequisites=['Choose explicit GPU-time budget before launching a multi-day campaign',
                              'Independent label review and generated-image detector validation remain needed for strong mechanism claims',
                              'Review conservative similarity grouping limitations before claiming dataset independence'],

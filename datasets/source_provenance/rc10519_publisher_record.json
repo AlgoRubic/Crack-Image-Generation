@@ -1,0 +1,27 @@
+{
+  "verification_date": "2026-11-21",
+  "status": "matching_publisher_record_identified_local_payload_identity_not_verified",
+  "local_alias": "RC_10519",
+  "publisher_url": "https://data.mendeley.com/datasets/3ghxck2wd5/1",
+  "dataset_doi": "10.17632/3ghxck2wd5.1",
+  "title": "Reinforced concrete structure crack detection dataset 10519",
+  "contributor": "Jiehui Wang",
+  "published": "2026-02-02",
+  "version": 1,
+  "publisher_declared_license": "CC BY 4.0",
+  "publisher_description_paraphrase": "Describes 10,519 cracked images and the same number of intact images, with binary crack/intact annotations, assembled from an earlier collection.",
+  "requested_paper_citation": {
+    "authors": ["Jiehui Wang", "Pujin Wang", "Lei Qu", "Zheng Pei", "Tamon Ueda"],
+    "title": "Automatic detection of building surface cracks using UAV and deep learning-combined approach",
+    "journal": "Structural Concrete",
+    "year": 2024,
+    "volume": 25,
+    "issue": 4,
+    "pages": "2302-2322",
+    "doi": "10.1002/suco.202300937",
+    "publisher_url": "https://onlinelibrary.wiley.com/doi/10.1002/suco.202300937"
+  },
+  "identity_limit": "The title, image-count alias and archive names match the local collection. No publisher archive checksum was obtained; this does not prove byte identity or reconstruct the original download history.",
+  "annotation_limit": "Crack/intact labels and bounding boxes do not establish structural failure mechanisms or pixel-level crack masks.",
+  "independence_limit": "Local perceptual screening found apparent overlap with other named datasets. Dataset names alone do not establish independent acquisition or an external benchmark."
+}

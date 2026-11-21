@@ -23,5 +23,16 @@
     }
   },
   "exact_rgb_content_audit_complete": true,
-  "conservative_similarity_isolation": true
+  "conservative_similarity_isolation": true,
+  "quality_views": {
+    "exp5_exp6_level_bc_mechanisms_256": {
+      "name": "strict_rc_geometry_v1",
+      "split_counts": {
+        "train": 11986,
+        "validation": 1498,
+        "test": 1475
+      },
+      "audit_sha256": "effc4078ada73011db0e58a48f14475222cd496e694a4dabec0c1bfcef712dd4"
+    }
+  }
 }

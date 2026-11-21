@@ -58,6 +58,12 @@ def main():
         screen=json.loads((ROOT/f'assets/research/{version}_summary.json').read_text())
         if f'{screen["cross_split_candidate_pairs"]:,}' not in research:
             errors.append(f'Research page does not match similarity screen: {version}')
+    qualified=json.loads((ROOT/'assets/research/strict_rc_geometry_audit.json').read_text())
+    for count in qualified['qualified_split_counts'].values():
+        if f'{count}' not in research:
+            errors.append('Research page does not match qualified dataset counts')
+    if 'source-quality' not in research or 'publisher checksums' not in research:
+        errors.append('Source-quality policy or publisher-identity limitation absent')
     if (ROOT/'assets/research/PRIVATE_review_key.csv').exists():
         errors.append('Private reviewer key must not be published')
     result = {'pages_checked': 8, 'errors': errors, 'passed': not errors,

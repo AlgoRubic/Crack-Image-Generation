@@ -1,0 +1,44 @@
+{
+  "status": "completed",
+  "created_utc": "2026-11-21T08:17:10.842611+00:00",
+  "local_image_files": 10519,
+  "annotation_files": 10519,
+  "images_with_no_shapes": 0,
+  "shape_labels": {
+    "crack": 16157
+  },
+  "shape_types": {
+    "rectangle": 16157
+  },
+  "images_with_issues": 1145,
+  "issue_counts": {
+    "out_of_image_bounds": 1122,
+    "annotation_image_dimensions_mismatch": 150
+  },
+  "extra_annotations": [],
+  "archives": [
+    {
+      "path": "data/raw/external_cracks/Reinforced concrete structure crack detection data/images.zip",
+      "size_bytes": 638729000,
+      "sha256": "87e820390580e0207a3ecd9a23666316d3dc4e9423487b160a98ca3289735ba3",
+      "members": 10519,
+      "extracted_mismatches": [],
+      "extracted_extras": [],
+      "interpretation": "CRC/size verifies extraction consistency, not publisher identity or cryptographic authenticity."
+    },
+    {
+      "path": "data/raw/external_cracks/Reinforced concrete structure crack detection data/label_json.zip",
+      "size_bytes": 4229654,
+      "sha256": "684aa8e0da45cd3bd42096fd324200ca8cb772d5a52d510ef6de008bbc149664",
+      "members": 10519,
+      "extracted_mismatches": [],
+      "extracted_extras": [],
+      "interpretation": "CRC/size verifies extraction consistency, not publisher identity or cryptographic authenticity."
+    }
+  ],
+  "source_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "annotation_inventory_sha256": "ddf3ca28e3694fafc2464adc46404b98d407734c14aadbd592223e2278a5d44c",
+  "publisher_record": "datasets/source_provenance/rc10519_publisher_record.json",
+  "label_policy": "No labels changed. The existing Exp3 builder assigns every local RC image to cracked. Annotation presence alone does not independently validate those labels or failure mechanisms.",
+  "limitation": "Local archive/extraction consistency and annotation geometry only; no publisher archive digest, original acquisition history, pixel-mask validity or mechanism-label validation established."
+}

@@ -10,6 +10,8 @@ Reproducible preparation uses `pipeline/research.py prepare`, `pipeline/hash_sou
 
 The new trainer is `pipeline/train_research.py` for Experiments 4–6. It starts a separate scratch lineage, uses fixed-seed validation noise, tracks EMA weights, and saves optimizer, AMP scaler and random states. `best.pt` is selected by EMA validation loss; use its `ema` key for inference. Historical generation commands continue to use the original pretrained models.
 
+Experiments 5/6 now use the `strict_rc_geometry_v1` view inside v5 for both training and fidelity references. The local RC audit found 1,145 source annotations with geometry/metadata flags; 481 records occur in the Exp5/6 base dataset and are conservatively excluded from the new view (371 train, 67 validation, 43 test). It retains 11,986 train, 1,498 validation and 1,475 test records with all seven proxy classes present. Base manifests and historical models are preserved. This filter does not prove that excluded labels are wrong or remaining labels are correct; structural mechanism labels still need independent review. Reproduce the local inventory with `pipeline/audit_rc10519.py` and create the view with `pipeline/prepare_quality_view.py` when its versioned output does not already exist. Attribution and archive hashes are in `datasets/source_provenance/`.
+
 To run pretrained inference, create a Python 3.10 environment and install a matching PyTorch pair using the official wheel index, then install the remaining dependencies:
 
 ```powershell

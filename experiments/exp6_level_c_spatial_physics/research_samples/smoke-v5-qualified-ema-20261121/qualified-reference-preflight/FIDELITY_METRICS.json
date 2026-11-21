@@ -1,0 +1,107 @@
+{
+  "status": "preflight_complete",
+  "smoke_only": true,
+  "reference_split": "validation",
+  "sampling_manifest_sha256": "4d6b7cad7d5af375c4313607d4af81ee9cee6e91d6af3e124e00ad2741189392",
+  "per_class": 1,
+  "real_images": 7,
+  "fake_images": 7,
+  "unique_reference_acquisitions": 7,
+  "unique_reference_rgb_images": 7,
+  "selected_reference_training_patch_overlap": 0,
+  "selection_seed": 2026,
+  "preprocessing": "rgb",
+  "reference_selection": [
+    {
+      "path": "data/processed_exp5_mechanisms/train/0ac41f03be38e480.png",
+      "class_id": 0,
+      "acquisition_group": "SDNET2018:P:040",
+      "sha256": "848e6d0032c2a71a93537c587f545bb8df1c34f54c208b62e6295e02f30b441c",
+      "rgb_sha256": "70834f4dcdfe9c2a01c1b8e9a67da58a941e50d0a7482dd86041ab1dc81eb907"
+    },
+    {
+      "path": "data/processed_exp5_mechanisms/train/74f1bcb04944453e.png",
+      "class_id": 1,
+      "acquisition_group": "DeepCrack:data/raw/DeepCrack-master/dataset/train_img/IMG25-5.jpg",
+      "sha256": "152ca2b5c21a23c6abaa9f1f7411a3d469b4649ba371b3ff3985f6980a878d82",
+      "rgb_sha256": "a00440f733e1818203f53b8364ad2f39068f3e9215761500f0f4818f03b8585d"
+    },
+    {
+      "path": "data/processed_exp5_mechanisms/train/17ff5190a9844b24.png",
+      "class_id": 2,
+      "acquisition_group": "DeepCrack:data/raw/DeepCrack-master/dataset/test_img/11296-19.jpg",
+      "sha256": "2b3c84171d1f8d6c095aa17ea95870bcc6e838fc70a83a55aa6c8efa657d8c76",
+      "rgb_sha256": "831370ee60fb2c69a14fe7ea9c19f52204d0ed357f06745b4bd4a5fe6fc5f9e2"
+    },
+    {
+      "path": "data/processed_exp5_mechanisms/train/22f783ed4559d857.png",
+      "class_id": 3,
+      "acquisition_group": "DeepCrack:data/raw/DeepCrack-master/dataset/train_img/11188.jpg",
+      "sha256": "2bc6afabe17875b3080a04577879b055644789364df33e60656eede29bf0bd4b",
+      "rgb_sha256": "72a7ed1e48d852170b4ba105386be7ebce210b5d94f9ae1a52522493116d86f7"
+    },
+    {
+      "path": "data/processed_exp5_mechanisms/train/bf38957949b46638.png",
+      "class_id": 4,
+      "acquisition_group": "RC_10519:data/raw/external_cracks/Reinforced concrete structure crack detection data/images/crack21589.jpg",
+      "sha256": "4e9933100c459d119ea794f31626641be6ca6f1d557ad65b729a05bd0ef2c04c",
+      "rgb_sha256": "850ba3bc5c319cda803169be8afce387c90e81bc29234d5ae787af001afa39cf"
+    },
+    {
+      "path": "data/processed_exp5_mechanisms/train/086005e51bf8aa73.png",
+      "class_id": 5,
+      "acquisition_group": "CrackForest:data/raw/CrackForest-dataset-master/image/048.jpg",
+      "sha256": "a2f61884c8b4d03f9e1d5eb6e4d7a0e297f84dde567c6a510237440ba03b8139",
+      "rgb_sha256": "22be29852889b3908efe6d102d84d465df35680e9d9247759783d21dca87683a"
+    },
+    {
+      "path": "data/processed_exp5_mechanisms/train/af5f1bd3596e8df0.png",
+      "class_id": 6,
+      "acquisition_group": "RC_10519:data/raw/external_cracks/Reinforced concrete structure crack detection data/images/crack15460.jpg",
+      "sha256": "5debae4a79ed9d6e03e224041d5d16130e301b6b30642476cb6d716fcb0c29e1",
+      "rgb_sha256": "ed29288d3bf106fbc587b114c7e69e0da2a2ba7550d8462907bb24ed1841384a"
+    }
+  ],
+  "fake_selection": [
+    {
+      "path": "non_cracked/sample_0000.png",
+      "sha256": "de0da2824d62bfe90bc2018331a9c333e284c5beb70518576fb7f037d1ffb651",
+      "class_id": 0
+    },
+    {
+      "path": "flexural/sample_0000.png",
+      "sha256": "e17ee0019cc1b64428c065b3fcf06e195569b2160afa3831c54b0dc8a417ced1",
+      "class_id": 1
+    },
+    {
+      "path": "flexure_shear/sample_0000.png",
+      "sha256": "31d7329d23da0b6baec9729914273be31e314f9c938bd6162ed5e4018d031476",
+      "class_id": 2
+    },
+    {
+      "path": "web_shear/sample_0000.png",
+      "sha256": "81c463de864496571c6158ed4b4f452b6152d48259f441c6d82436707cf67625",
+      "class_id": 3
+    },
+    {
+      "path": "torsion/sample_0000.png",
+      "sha256": "ebd9b639caf942c55faf7a53d90f2fb65f6bbf7c5321f435e9231eb8e984dc99",
+      "class_id": 4
+    },
+    {
+      "path": "corrosion_splitting/sample_0000.png",
+      "sha256": "aa8caae166d8dfe05c51a0d90ea00bbbc1e5e53763119f35550408ff73587e1c",
+      "class_id": 5
+    },
+    {
+      "path": "shrinkage_map/sample_0000.png",
+      "sha256": "ffe373e63bf2e542b1877dfa3679e050b1761d694f62ac989de180d2cb17cc85",
+      "class_id": 6
+    }
+  ],
+  "caveats": [
+    "Patch samples can share acquisitions; image count is not independent-original count.",
+    "Small-sample FID is sensitive to sample budget; KID subset std is not a confidence interval.",
+    "Morphological labels do not independently establish structural mechanism."
+  ]
+}
