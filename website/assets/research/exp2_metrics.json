@@ -1,0 +1,88 @@
+{
+  "experiment": "Experiment 2: Binary Conditional 64x64 DDPM",
+  "resolution": "64x64",
+  "total_evaluated_samples": 2000,
+  "classes": {
+    "non_cracked": {
+      "samples": 1000,
+      "target_adherence_rate": 0.844,
+      "classification_error_rate": 0.156,
+      "wilson_95_ci": [
+        0.8202,
+        0.8652
+      ],
+      "detected_crack_presence_rate": 0.156,
+      "mean_max_span_px": 17.37,
+      "std_max_span_px": 6.02,
+      "span_error_mae_px": 2.71,
+      "span_error_rmse_px": 7.26,
+      "mean_continuity_ratio": 0.281,
+      "mean_fissure_area_ratio": 0.04526,
+      "mean_chromatic_deviation": 6.44,
+      "std_chromatic_deviation": 6.56
+    },
+    "cracked": {
+      "samples": 1000,
+      "target_adherence_rate": 0.325,
+      "classification_error_rate": 0.675,
+      "wilson_95_ci": [
+        0.2967,
+        0.3547
+      ],
+      "detected_crack_presence_rate": 0.325,
+      "mean_max_span_px": 21.59,
+      "std_max_span_px": 9.32,
+      "span_error_mae_px": 30.88,
+      "span_error_rmse_px": 32.63,
+      "mean_continuity_ratio": 0.4,
+      "mean_fissure_area_ratio": 0.05203,
+      "mean_chromatic_deviation": 6.58,
+      "std_chromatic_deviation": 6.73
+    }
+  },
+  "confusion_matrix": {
+    "matrix_counts": [
+      [
+        844,
+        156
+      ],
+      [
+        675,
+        325
+      ]
+    ],
+    "class_order": [
+      "non_cracked",
+      "cracked"
+    ],
+    "overall_accuracy": 0.5845,
+    "overall_error_rate": 0.4155,
+    "per_class_classification_metrics": {
+      "non_cracked": {
+        "true_positives": 844,
+        "false_positives": 675,
+        "false_negatives": 156,
+        "precision": 0.5556,
+        "recall": 0.844,
+        "f1_score": 0.6701,
+        "error_rate": 0.156
+      },
+      "cracked": {
+        "true_positives": 325,
+        "false_positives": 156,
+        "false_negatives": 675,
+        "precision": 0.6757,
+        "recall": 0.325,
+        "f1_score": 0.4389,
+        "error_rate": 0.675
+      }
+    }
+  },
+  "fidelity": {
+    "frechet_inception_distance": 61.206,
+    "kernel_inception_distance_mean": 0.01921,
+    "kernel_inception_distance_std": 0.00214,
+    "evaluated_fake_samples": 160,
+    "evaluated_real_samples": 160
+  }
+}

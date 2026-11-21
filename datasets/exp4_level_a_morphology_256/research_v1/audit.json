@@ -1,0 +1,47 @@
+{
+  "dataset": "exp4_level_a_morphology_256",
+  "input_sha256": "c329ab54ceedccc28a9ad60c03b2564a76190bbc88bf325e88eb25b0cdde0957",
+  "total_rows": 13139,
+  "recovered": 13139,
+  "unresolved": 0,
+  "original_content_overlap": 0,
+  "split_counts": {
+    "train": 10498,
+    "test": 1361,
+    "validation": 1280
+  },
+  "class_counts": {
+    "train": {
+      "longitudinal": 814,
+      "diagonal": 547,
+      "alligator_map": 4095,
+      "transverse": 273,
+      "non_cracked": 4769
+    },
+    "validation": {
+      "diagonal": 68,
+      "transverse": 14,
+      "longitudinal": 77,
+      "alligator_map": 517,
+      "non_cracked": 604
+    },
+    "test": {
+      "longitudinal": 87,
+      "diagonal": 71,
+      "transverse": 48,
+      "alligator_map": 528,
+      "non_cracked": 627
+    }
+  },
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "seed": 2026,
+  "split_unit": "SHA256 of original image bytes; 80/10/10 hash assignment",
+  "usable_for_existing_checkpoint_validation": false,
+  "prospective_split_ready": true,
+  "limitation": "Original-photo grouping does not guarantee structure/site independence. Mechanism labels are morphological proxies, requiring expert annotation.",
+  "next_training_requirement": "Train new checkpoint lineage using only research_v1/train.csv, including transfer-learning ancestors; old weights have held-out exposure."
+}

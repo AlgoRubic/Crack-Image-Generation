@@ -1,0 +1,65 @@
+{
+  "paired_rng_verified": true,
+  "noncracked_controls_byte_identical": true,
+  "generated_images": 126,
+  "seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "summary": {
+    "fixed": {
+      "correct": {
+        "n": 36,
+        "mean_recall": 0.9861129871205938,
+        "no_detection": 0,
+        "conditional_mae_px": 0.47385375256313556,
+        "distance_samples": 36
+      },
+      "zero": {
+        "n": 36,
+        "mean_recall": 0.0,
+        "no_detection": 36,
+        "conditional_mae_px": null,
+        "distance_samples": 0
+      },
+      "shuffled": {
+        "n": 36,
+        "mean_recall": 0.11254660346642471,
+        "no_detection": 0,
+        "conditional_mae_px": 27.95476963459335,
+        "distance_samples": 36
+      }
+    },
+    "calibrated": {
+      "correct": {
+        "n": 36,
+        "mean_recall": 0.9806593521932148,
+        "no_detection": 0,
+        "conditional_mae_px": 0.5097516004111526,
+        "distance_samples": 36
+      },
+      "zero": {
+        "n": 36,
+        "mean_recall": 0.0,
+        "no_detection": 36,
+        "conditional_mae_px": null,
+        "distance_samples": 0
+      },
+      "shuffled": {
+        "n": 36,
+        "mean_recall": 0.11072652971902652,
+        "no_detection": 0,
+        "conditional_mae_px": 27.917913625951865,
+        "distance_samples": 36
+      }
+    }
+  },
+  "limitations": [
+    "Small historical-checkpoint pilot, not clean-lineage generalization.",
+    "Zero-field/requested-class pairing may be outside the training distribution.",
+    "Calibrated detector has only exploratory real-mask evidence, not generated-domain validation.",
+    "Distances are conditional on nonempty detections; compare alongside no-detection counts.",
+    "Legacy summary MAE used a 50px penalty for absent detections; this report omits those distances."
+  ]
+}

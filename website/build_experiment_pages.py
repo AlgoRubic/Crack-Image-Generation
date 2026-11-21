@@ -2,10 +2,8 @@ from pathlib import Path
 import html
 import re
 
-ROOT = Path(r"D:\Downloads\concrete_project_website")
-if not ROOT.exists():
-    ROOT = Path(r"D:\Downloads\crack_project_website")
-PROJECT = Path(r"D:\Downloads\concrete_ddpm")
+ROOT = Path(__file__).resolve().parent
+PROJECT = ROOT.parent / 'concrete_ddpm'
 
 def markdown_to_html(text: str) -> str:
     lines = text.splitlines()
@@ -129,7 +127,11 @@ result_images = {
 
 def page(n, d):
     report_path = PROJECT / ("experiments/unconditional_ddpm/EXPERIMENT_1_FULL_REPORT.md" if n == 1 else d["report"] .replace("assets/reports/", "experiments/"))
-    if d["report_kind"] == "md":
+    if d['report_kind'] == 'archive':
+        body = d['archive_body']
+    elif d["report_kind"] == "md":
+        if n == 2: report_path = PROJECT / 'experiments/conditional_ddpm/EXPERIMENT_2_FULL_REPORT.md'
+        if n == 3: report_path = PROJECT / 'experiments/conditional_ddpm_128_augmented/EXPERIMENT_3_FULL_REPORT.md'
         if n == 4: report_path = PROJECT / "experiments/crack_type_conditional/EXPERIMENT_4_FULL_REPORT.md"
         if n == 5: report_path = PROJECT / "experiments/structural_mechanism_ddpm/EXPERIMENT_5_FULL_REPORT.md"
         if n == 6: report_path = PROJECT / "experiments/exp6_level_c_spatial_physics/EXPERIMENT_6_FULL_REPORT.md"
@@ -143,6 +145,7 @@ def page(n, d):
     nxt = f'<a href="experiment-{n+1}.html">Experiment {n+1:02d} →</a>' if n < 6 else '<a href="index.html#archive">Back to archive →</a>'
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Experiment {n:02d} · {html.escape(d['title'])}</title><link rel="stylesheet" href="experiment.css"><script>window.MathJax={{tex:{{inlineMath:[['$','$'],['\\\\(','\\\\)']],displayMath:[['$$','$$'],['\\\\[','\\\\]']]}},options:{{skipHtmlTags:['script','noscript','style','textarea','pre','code']}}}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script></head><body><header class="detail-header"><a href="index.html" class="brand">▧ CRACK / SYNTHESIS</a><a href="index.html#experiments" class="back">All experiments ↗</a></header><main><section class="detail-hero"><div><p class="eyebrow">{d['kicker']}</p><span class="detail-status {d['status_class']}">{d['status']}</span><h1>{html.escape(d['title'])}</h1><p class="lede">{html.escape(d['subtitle'])}</p></div></section><section class="facts">{facts}</section><section class="report-grid"><article class="report-main"><section><p class="eyebrow">AIM</p><h2>What this experiment was trying to learn</h2><p>{html.escape(d['aim'])}</p></section><section><p class="eyebrow">TECH STACK</p><h2>Implementation choices</h2><p>{html.escape(d['stack'])}</p></section><section><p class="eyebrow">PROCEDURE</p><h2>How it was run</h2><p>{html.escape(d['procedure'])}</p></section><section class="result-box"><p class="eyebrow">RESULT</p><h2>What the evidence says</h2><p>{html.escape(d['results'])}</p></section><section><p class="eyebrow">OBSERVATIONS</p><h2>What appeared in the outputs</h2><p>{html.escape(d['observations'])}</p></section><section><p class="eyebrow">ASSUMPTIONS</p><h2>Decisions behind the result</h2><p>{html.escape(d['assumptions'])}</p></section><section><p class="eyebrow">ERRORS & SOURCES OF ERROR</p><h2>What could mislead us</h2><p>{html.escape(d['errors'])}</p></section><section><p class="eyebrow">CONCLUSION</p><h2>Research takeaway</h2><p>{html.escape(d['conclusion'])}</p></section><section class="result-gallery"><p class="eyebrow">RESULT IMAGES</p><h2>Generated outputs</h2><div class="gallery-grid">{gallery}</div></section><section class="full-report"><p class="eyebrow">FULL REPORT CONTENT</p><h2>Technical record</h2><details open><summary>Expand / collapse the original report</summary><div class="report-content">{body}</div></details></section></article><aside class="detail-aside"><div class="aside-card"><p class="eyebrow">EVIDENCE STATUS</p><strong>{d['status']}</strong><p>This page distinguishes measured outputs from interpretation and planned work.</p></div><div class="aside-card"><p class="eyebrow">NAVIGATE</p><div class="pager">{previous}{nxt}</div></div></aside></section></main><footer class="detail-footer"><span>CRACK / SYNTHESIS · Experiment {n:02d}</span><a href="index.html">Return to research archive</a></footer></body></html>'''
 
-for n, data in common.items():
-    (ROOT / f"experiment-{n}.html").write_text(page(n, data), encoding="utf-8")
-print("Generated experiment pages")
+if __name__ == '__main__':
+    for n, data in common.items():
+        (ROOT / f"experiment-{n}.html").write_text(page(n, data), encoding="utf-8")
+    print("Generated experiment pages")

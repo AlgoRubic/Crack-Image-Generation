@@ -1,0 +1,68 @@
+{
+  "isolated_source_root": "D:\\Downloads\\Crack-Image-Generation-sharing\\isolated-inference-20261121-v1",
+  "datasets_present": false,
+  "checks": [
+    {
+      "experiment": 1,
+      "passed": true,
+      "returncode": 0,
+      "output_images": 1,
+      "expected_resolution": 64,
+      "seconds": 12.410083200000372,
+      "image_sha256": "fc23cd9c3bf11aba8c16902f83df9b2db85e41cdc3e1e53d3e4235d184746eb8",
+      "stderr": ""
+    },
+    {
+      "experiment": 2,
+      "passed": true,
+      "returncode": 0,
+      "output_images": 1,
+      "expected_resolution": 64,
+      "seconds": 12.992140400000608,
+      "image_sha256": "892e87590d0781051ec2177d70845675cc0388d18d5048f677f6047789c25d2e",
+      "stderr": ""
+    },
+    {
+      "experiment": 3,
+      "passed": true,
+      "returncode": 0,
+      "output_images": 1,
+      "expected_resolution": 128,
+      "seconds": 13.867025800000192,
+      "image_sha256": "0cd1a24f6a3b2f375e106e74333a7540503c3f4cf5e4df37b2f03f9c663f827c",
+      "stderr": ""
+    },
+    {
+      "experiment": 4,
+      "passed": true,
+      "returncode": 0,
+      "output_images": 1,
+      "expected_resolution": 256,
+      "seconds": 10.387283000000025,
+      "image_sha256": "0b68a1089fa8c15a59c495fd201065850a851a980eaa920b98e6043a037666ec",
+      "stderr": ""
+    },
+    {
+      "experiment": 5,
+      "passed": true,
+      "returncode": 0,
+      "output_images": 1,
+      "expected_resolution": 256,
+      "seconds": 10.98561299999983,
+      "image_sha256": "d77ffba64b562d8b88444ba51b973b469330bd7cc188129c99fec7b92ecc49b3",
+      "stderr": ""
+    },
+    {
+      "experiment": 6,
+      "passed": true,
+      "returncode": 0,
+      "output_images": 1,
+      "expected_resolution": 256,
+      "seconds": 11.501807999999983,
+      "image_sha256": "1602ea3ff0ad35bf5c4282351faf066245311379a51580be5e27d1c7db7cbf80",
+      "stderr": ""
+    }
+  ],
+  "environment": "Existing installed environment reused; not a fresh dependency installation",
+  "scope": "Pretrained inference smoke checks; no training or scientific quality claim"
+}

@@ -1,54 +1,90 @@
-# Concrete Crack Image Generation
+# Synthetic Reinforced-Concrete Crack Generation Framework (Experiments 1 to 6)
 
-Research code and technical records for progressive diffusion-model experiments on synthetic concrete-crack image generation.
+This repository implements six experiments in synthetic concrete-crack image generation, progressing from an unconditional 64 × 64 DDPM to spatial trajectory and aperture-field conditioning at 256 × 256. The corrected Experiment 6 evaluation gives **87.86% agreement with a morphology-only heuristic classifier on 1,400 generated images**. This is a descriptive proxy score, not independently validated structural-mechanism accuracy. The earlier 99.29% figure used target-dependent assignments and is superseded.
 
-The project progresses from an unconditional 64×64 DDPM to binary crack-status conditioning, 128×128 augmentation, native-resolution morphology conditioning, seven-class structural-mechanism conditioning, and finally explicit spatial-physics trajectory/aperture conditioning at 256×256.
+Research preparation: run `python pipeline/research.py prepare` to reconstruct original-image provenance, then `python pipeline/hash_source_images.py` for the resumable source-content audit. Run `python pipeline/prepare_acquisition_splits.py --version research_v4` to create the current prospective splits. This groups sibling SDNET tiles by inferred acquisition ID and connects identical byte and decoded-RGB content across all experiments. Earlier split versions remain audit history, not the training default. Creation refuses to overwrite existing version directories. Existing checkpoints have already seen the historical images, so these splits require a new training lineage. Raw image paths and historical training manifests are preserved. Near-duplicate and structure/site independence checks remain outstanding.
 
-## Experiments
+The new trainer is `pipeline/train_research.py` for Experiments 4–6. It starts a separate scratch lineage, uses fixed-seed validation noise, tracks EMA weights, and saves optimizer, AMP scaler and random states. `best.pt` is selected by EMA validation loss; use its `ema` key for inference. Historical generation commands continue to use the original pretrained models.
 
-1. **Unconditional DDPM** — baseline concrete texture synthesis.
-2. **Crack-status conditional DDPM** — cracked versus non-cracked control.
-3. **128×128 augmented conditional DDPM** — higher resolution with RC_10519 cracked-image augmentation; evaluation intentionally closed before final quality metrics.
-4. **Morphological crack-type conditioning** — five native-resolution morphology states.
-5. **Structural failure mechanism conditioning** — seven physics-grounded mechanism classes.
-6. **Physics-guided spatial control** — trajectory and aperture-field conditioning with `PhysicsControlUNet256`.
-
-Each experiment folder contains the available status records, reports, metrics, logs, generated result grids, and implementation artifacts.
-
-## Research website
-
-The complete interactive archive is included under [`website/`](website/) and is publicly hosted at:
-
-<https://concrete-crack-synthesis.beigetoad12.chatgpt.site>
-
-To run the static site locally:
+To run pretrained inference, create a Python 3.10 environment and install a matching PyTorch pair using the official wheel index, then install the remaining dependencies:
 
 ```powershell
-cd website
-python -m http.server 4173 --bind 127.0.0.1
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install torch==2.14.0 torchvision==0.29.0 --index-url https://download.pytorch.org/whl/cu126
+.\.venv\Scripts\python.exe -m pip install -r requirements-core.txt
+# CPU alternative: use https://download.pytorch.org/whl/cpu for the PyTorch command.
 ```
 
-Then open <http://127.0.0.1:4173/>.
-
-## Code setup
-
-Create a fresh Python environment and install the dependencies appropriate for your CUDA/PyTorch setup. The checked-in source scripts are in [`src/`](src/), including training, sampling, evaluation, dataset preparation, and the Experiment 6 physics trajectory solver.
-
-Example entry points:
+Extract `crack-generation-final-models-v1.zip` into this repository, preserving its `models/weights/` paths. Verify the weights with `python pipeline/checkpoints.py verify`, then use `pipeline/generate_cracks.py`. Raw datasets are not needed for inference. The six-model bundle is separate from normal Git history; see `CHECKPOINTS.md` for distribution status. All six experiments passed one-image generation checks in an isolated source/weight copy without datasets, using the installed local environment. A fresh dependency installation has not yet been verified.
 
 ```powershell
-python src/train.py
-python src/train_conditional.py
-python src/train_exp5_mechanisms_256.py
-python src/train_exp6_spatial_physics_256.py
+# One training batch and one validation batch; only a pipeline check.
+python pipeline/train_research.py --experiment 6 --run-id my-smoke-check --smoke
+
+# Full research training must be launched deliberately in a fresh run directory.
+python pipeline/train_research.py --experiment 4 --run-id exp4-clean-seed2026 --epochs 50 --batch-size 1 --seed 2026
+
+# Resume a trusted local research checkpoint into a fresh run directory.
+python pipeline/train_research.py --experiment 4 --run-id exp4-clean-seed2026-continued --epochs 60 --resume experiments/crack_type_conditional/research_runs/exp4-clean-seed2026/last.pt
 ```
 
-Review each experiment's report and status file before running a long training job.
+Smoke runs have passed for Experiments 4–6. The two-epoch Experiment 6 restart check matched uninterrupted model and EMA tensors exactly on this machine. This is a bounded reproducibility check, not a cross-platform determinism guarantee. Full research training, expert label validation, external evaluation and ablations remain outstanding. See `pipeline/research_protocol.json` for the prospective protocol.
 
-## Large files intentionally excluded
+---
 
-The repository excludes the local virtual environment, raw datasets, model checkpoints, per-sample image dumps, and physics-mask arrays. These are many gigabytes and are not suitable for ordinary GitHub storage; raw datasets should be obtained from their original sources, and checkpoints can be regenerated from the training scripts. Curated result grids, reports, metrics, logs, plots, and presentations are retained.
+## 1. Separated Repository Architecture (`datasets/`, `pipeline/`, `models/`, `experiments/`)
 
-## Evidence and limitations
+The project is cleanly separated into **four primary domains**, and **every folder contains both a `README.md` (human & tester documentation) and an `AGENTS.md` (AI agent operational rules & invariants)**:
 
-FID, KID, LPIPS, crack-presence, continuity, trajectory-recall, and mechanism-adherence values are protocol-specific diagnostics. They do not establish structural safety or full-member physical validity. The technical reports document assumptions, sources of error, and the distinction between measured evidence and interpretation.
+```text
+D:\Downloads\concrete_ddpm\
+├── datasets/                                      # [1] SEPARATED DATASETS & MANIFESTS
+│   ├── exp1_exp2_sdnet_64/                        #     50,482 SDNET2018 64x64 images (train.csv)
+│   ├── exp3_augmented_128/                        #     61,001 SDNET2018 + RC_10519 128x128 images
+│   ├── exp4_level_a_morphology_256/               #     13,139 5-Class Morphological 256x256 images
+│   └── exp5_exp6_level_bc_mechanisms_256/         #     15,440 7-Class Structural Mechanism 256x256 images
+│
+├── pipeline/                                      # [2] SEPARATED CODE PIPELINE (INFERENCE, EVAL & TRAIN)
+│   ├── generate_cracks.py                         #     ONE-COMMAND TESTER (No Retraining Required!)
+│   ├── core/                                      #     Shared diffusion, U-Net & physics solver modules
+│   ├── exp1_unconditional_64/                     #     Experiment 1 pipeline scripts
+│   ├── exp2_conditional_64/                       #     Experiment 2 pipeline scripts
+│   ├── exp3_conditional_128/                      #     Experiment 3 pipeline scripts
+│   ├── exp4_level_a_morphology_256/               #     Experiment 4 (Level A) pipeline scripts
+│   ├── exp5_level_b_mechanisms_256/               #     Experiment 5 (Level B) pipeline scripts
+│   └── exp6_level_c_spatial_physics_256/          #     Experiment 6 (Level C) pipeline scripts
+│
+├── models/                                        # [3] SEPARATED MODEL ARCHITECTURES & PRETRAINED WEIGHTS
+│   ├── architectures/                             #     SmallUNet, AttentionUNet256, GaussianDiffusion
+│   └── weights/                                   #     Pre-trained final .pt weights for Experiments 1-6
+│       ├── exp1_unconditional_64/                 #     exp1_unconditional_64_epoch050.pt (37.4 MB)
+│       ├── exp2_conditional_64/                   #     exp2_conditional_64_epoch050.pt (12.5 MB)
+│       ├── exp3_conditional_128/                  #     exp3_conditional_128_epoch050.pt (12.5 MB)
+│       ├── exp4_level_a_morphology_256/           #     exp4_level_a_morphology_256_epoch050.pt (158.4 MB)
+│       ├── exp5_level_b_mechanisms_256/           #     exp5_level_b_mechanisms_256_epoch025.pt (158.4 MB)
+│       └── exp6_level_c_spatial_physics_256/      #     exp6_level_c_spatial_physics_256_epoch015.pt (158.4 MB)
+│
+└── experiments/                                   # [4] EXPERIMENT RESULTS, ERROR LOGS & FULL REPORTS
+    ├── unconditional_ddpm/                        #     Exp 1: 1,000 test images + error analysis + report
+    ├── conditional_ddpm/                          #     Exp 2: 2,000 test images + error analysis
+    ├── conditional_ddpm_128_augmented/            #     Exp 3: 400 test images + error analysis
+    ├── crack_type_conditional/                    #     Exp 4: Level A results + report
+    ├── structural_mechanism_ddpm/                 #     Exp 5: Level B results + report
+    └── exp6_level_c_spatial_physics/              #     Exp 6: Level C 1,400 test images + error analysis + report
+```
+
+---
+
+## 2. Quick-Start: On-Demand Testing & Image Generation (Zero Retraining Required)
+
+To generate any specific crack type (`flexural`, `flexure_shear`, `web_shear`, `torsion`, `corrosion_splitting`, `shrinkage_map`, `non_cracked`, or `all`) for any number of images (`1` to `1234+`):
+
+```powershell
+cd D:\Downloads\concrete_ddpm
+
+# Generate 1,234 new flexural crack images using Experiment 6 (Level C) or Experiment 5 (Level B)
+.\.venv\Scripts\python.exe pipeline/generate_cracks.py --experiment 6 --crack-type flexure --count 1234 --seed 999
+
+# Replicate the 16 report images across all 7 classes
+.\.venv\Scripts\python.exe pipeline/generate_cracks.py --experiment 6 --crack-type all --count 16 --seed 2026
+```

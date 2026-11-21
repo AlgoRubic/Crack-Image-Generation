@@ -1,0 +1,26 @@
+{
+  "version": "research_v4",
+  "datasets": {
+    "exp1_exp2_sdnet_64": {
+      "test": 5640,
+      "train": 43846,
+      "validation": 6606
+    },
+    "exp3_augmented_128": {
+      "test": 6015,
+      "train": 48072,
+      "validation": 6914
+    },
+    "exp4_level_a_morphology_256": {
+      "train": 10325,
+      "test": 1277,
+      "validation": 1537
+    },
+    "exp5_exp6_level_bc_mechanisms_256": {
+      "train": 12368,
+      "test": 1508,
+      "validation": 1564
+    }
+  },
+  "exact_rgb_content_audit_complete": true
+}

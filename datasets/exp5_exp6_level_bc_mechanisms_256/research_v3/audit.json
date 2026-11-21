@@ -1,0 +1,57 @@
+{
+  "dataset": "exp5_exp6_level_bc_mechanisms_256",
+  "rows": 15440,
+  "unique_groups": 5278,
+  "acquisition_overlap": 0,
+  "split_counts": {
+    "train": 12312,
+    "test": 1553,
+    "validation": 1575
+  },
+  "class_counts": {
+    "train": {
+      "corrosion_splitting": 2889,
+      "web_shear": 2148,
+      "flexure_shear": 650,
+      "torsion": 1284,
+      "flexural": 744,
+      "shrinkage_map": 1875,
+      "non_cracked": 2722
+    },
+    "validation": {
+      "web_shear": 310,
+      "shrinkage_map": 208,
+      "torsion": 185,
+      "corrosion_splitting": 269,
+      "flexure_shear": 92,
+      "flexural": 98,
+      "non_cracked": 413
+    },
+    "test": {
+      "corrosion_splitting": 348,
+      "web_shear": 284,
+      "shrinkage_map": 215,
+      "flexure_shear": 74,
+      "torsion": 165,
+      "flexural": 102,
+      "non_cracked": 365
+    }
+  },
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "input_sha256": {
+    "datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v1\\provenance.csv": "ca22683565b03b6ecfb80d33960d79841a3752e5d5266048a793486affc763ba"
+  },
+  "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+  "linked_acquisitions": 424,
+  "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+  "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+  "caveats": [
+    "Structure/site independence not established",
+    "Near-duplicate and full original-content hashing for remaining Exp1/3-only originals outstanding",
+    "Existing trained checkpoints are exposed; these are prospective splits only"
+  ]
+}

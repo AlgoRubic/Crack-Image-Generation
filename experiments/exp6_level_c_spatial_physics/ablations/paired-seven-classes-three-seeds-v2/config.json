@@ -1,0 +1,27 @@
+{
+  "run_id": "paired-seven-classes-three-seeds-v2",
+  "classes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "count": 2,
+  "steps": 50,
+  "cfg_scale": 2.5,
+  "checkpoint_sha256": "a70f8eea4385c8ecdaf028ed748cb5b5ac8db3747ee8da85e10f218bfd48f7c6",
+  "protocol": "Same initial noise, class and checkpoint; only conditioning fields vary. All scores use original correct command.",
+  "shuffle": "Cyclic permutation across same-class field batch; requested class is retained for zero-field variant",
+  "zero_field_caveat": "Zero spatial field with a present requested class can be out-of-distribution because historical Dual-CFG jointly dropped class and fields.",
+  "status": "completed",
+  "scope": "Pilot historical-checkpoint sensitivity analysis; not matched clean-lineage class-only training comparison",
+  "detector": "Fixed historical 23px / 24.5 / 2x2 heuristic; calibration uncertainty applies"
+}

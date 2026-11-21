@@ -194,7 +194,7 @@ def main():
             "resolution": "256x256 Native AttentionUNet",
             "mean_linear_continuity_ratio": round(float(np.mean([results[c]["mean_continuity_ratio"] for c in ["longitudinal", "transverse", "diagonal"]])), 3),
             "mean_linear_components": round(float(np.mean([results[c]["mean_significant_components"] for c in ["longitudinal", "transverse", "diagonal"]])), 2),
-            "crack_fragmentation": "Resolved (continuous structural cracks)",
+            "crack_fragmentation": "Not established by this detector; independent validation required",
         },
     }
 

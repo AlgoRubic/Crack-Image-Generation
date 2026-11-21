@@ -1,0 +1,16 @@
+{
+  "verification_date": "2026-11-21",
+  "references": [
+    {"key": "ho2020ddpm", "url": "https://arxiv.org/abs/2006.11239", "role": "Diffusion training and noise-prediction foundation", "project_modules": ["src/diffusion.py", "pipeline/train_research.py"]},
+    {"key": "song2020ddim", "url": "https://arxiv.org/abs/2010.02502", "role": "DDIM sampling foundation", "project_modules": ["src/sample_exp6_spatial_physics_256.py"]},
+    {"key": "ho2022cfg", "url": "https://arxiv.org/abs/2207.12598", "role": "Classifier-free guidance foundation; project-specific joint field/class dropout is an implementation choice", "project_modules": ["pipeline/train_research.py", "src/sample_exp6_spatial_physics_256.py"]},
+    {"key": "heusel2017fid", "url": "https://arxiv.org/abs/1706.08500", "role": "FID definition and original proposal; does not validate structural mechanisms", "project_modules": ["src/evaluate_exp6_spatial_physics_256.py"]}
+  ],
+  "additional_verified_sources": [
+    {"key": "binkowski2018kid", "url": "https://arxiv.org/abs/1801.01401", "role": "Original KID proposal"},
+    {"key": "maguire2018sdnet", "url": "https://digitalcommons.usu.edu/all_datasets/48/", "role": "SDNET dataset and 230-source-photo acquisition counts"},
+    {"key": "liu2019deepcrack", "url": "https://github.com/yhlleo/DeepCrack", "role": "Dataset source, masks, split definitions and citation"},
+    {"key": "shi2016crackforest", "url": "https://github.com/cuilimeng/CrackForest-dataset", "role": "Dataset source and citation"}
+  ],
+  "scope": "Method and dataset bibliography. RC_10519 provenance and engineering references remain outstanding. These sources do not establish physical causation in generated images."
+}

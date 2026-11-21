@@ -1,0 +1,211 @@
+{
+  "reports": [
+    {
+      "dataset": "exp1_exp2_sdnet_64",
+      "rows": 56092,
+      "unique_groups": 230,
+      "acquisition_overlap": 0,
+      "split_counts": {
+        "test": 5640,
+        "train": 43846,
+        "validation": 6606
+      },
+      "class_counts": {
+        "train": {
+          "non_cracked": 37301,
+          "cracked": 6545
+        },
+        "validation": {
+          "cracked": 988,
+          "non_cracked": 5618
+        },
+        "test": {
+          "non_cracked": 4689,
+          "cracked": 951
+        }
+      },
+      "missing_classes": {
+        "train": [],
+        "validation": [],
+        "test": []
+      },
+      "input_sha256": {
+        "datasets\\exp1_exp2_sdnet_64\\train.csv": "53c785cc45ffca24687edc9390eb6d476c37a0bec7db7a299c35c5421e4706fc",
+        "datasets\\exp1_exp2_sdnet_64\\validation.csv": "5581fed0e50572a3ae1b734201b8cd814c30dad8d8c4554398886701f70af1f5"
+      },
+      "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+      "linked_acquisitions": 1385,
+      "source_content_audit_complete": true,
+      "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+      "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+      "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+      "caveats": [
+        "Structure/site independence not established",
+        "Near-duplicate audit outstanding",
+        "Existing trained checkpoints are exposed; these are prospective splits only"
+      ]
+    },
+    {
+      "dataset": "exp3_augmented_128",
+      "rows": 61001,
+      "unique_groups": 9364,
+      "acquisition_overlap": 0,
+      "split_counts": {
+        "test": 6015,
+        "train": 48072,
+        "validation": 6914
+      },
+      "class_counts": {
+        "train": {
+          "non_cracked": 33644,
+          "cracked": 14428
+        },
+        "validation": {
+          "cracked": 1900,
+          "non_cracked": 5014
+        },
+        "test": {
+          "non_cracked": 4188,
+          "cracked": 1827
+        }
+      },
+      "missing_classes": {
+        "train": [],
+        "validation": [],
+        "test": []
+      },
+      "input_sha256": {
+        "datasets\\exp3_augmented_128\\train.csv": "e669bd848a80a96966c55843def34c4bbd70215010b8cc4059534c76c3ba4290"
+      },
+      "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+      "linked_acquisitions": 1385,
+      "source_content_audit_complete": true,
+      "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+      "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+      "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+      "caveats": [
+        "Structure/site independence not established",
+        "Near-duplicate audit outstanding",
+        "Existing trained checkpoints are exposed; these are prospective splits only"
+      ]
+    },
+    {
+      "dataset": "exp4_level_a_morphology_256",
+      "rows": 13139,
+      "unique_groups": 529,
+      "acquisition_overlap": 0,
+      "split_counts": {
+        "train": 10325,
+        "test": 1277,
+        "validation": 1537
+      },
+      "class_counts": {
+        "train": {
+          "longitudinal": 796,
+          "diagonal": 515,
+          "alligator_map": 4024,
+          "transverse": 268,
+          "non_cracked": 4722
+        },
+        "validation": {
+          "diagonal": 107,
+          "alligator_map": 633,
+          "longitudinal": 81,
+          "transverse": 24,
+          "non_cracked": 692
+        },
+        "test": {
+          "longitudinal": 101,
+          "diagonal": 64,
+          "transverse": 43,
+          "alligator_map": 483,
+          "non_cracked": 586
+        }
+      },
+      "missing_classes": {
+        "train": [],
+        "validation": [],
+        "test": []
+      },
+      "input_sha256": {
+        "datasets\\exp4_level_a_morphology_256\\research_v1\\provenance.csv": "cc07dfe3d6f6c3f0109167c4ef7bd2e79727eaa40ba90e18fd82a613e40a669a"
+      },
+      "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+      "linked_acquisitions": 1385,
+      "source_content_audit_complete": true,
+      "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+      "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+      "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+      "caveats": [
+        "Structure/site independence not established",
+        "Near-duplicate audit outstanding",
+        "Existing trained checkpoints are exposed; these are prospective splits only"
+      ]
+    },
+    {
+      "dataset": "exp5_exp6_level_bc_mechanisms_256",
+      "rows": 15440,
+      "unique_groups": 5245,
+      "acquisition_overlap": 0,
+      "split_counts": {
+        "train": 12368,
+        "test": 1508,
+        "validation": 1564
+      },
+      "class_counts": {
+        "train": {
+          "corrosion_splitting": 2888,
+          "web_shear": 2157,
+          "flexure_shear": 651,
+          "torsion": 1285,
+          "flexural": 744,
+          "shrinkage_map": 1896,
+          "non_cracked": 2747
+        },
+        "validation": {
+          "web_shear": 306,
+          "shrinkage_map": 205,
+          "torsion": 183,
+          "corrosion_splitting": 269,
+          "flexure_shear": 91,
+          "flexural": 98,
+          "non_cracked": 412
+        },
+        "test": {
+          "corrosion_splitting": 349,
+          "web_shear": 279,
+          "shrinkage_map": 197,
+          "flexure_shear": 74,
+          "torsion": 166,
+          "flexural": 102,
+          "non_cracked": 341
+        }
+      },
+      "missing_classes": {
+        "train": [],
+        "validation": [],
+        "test": []
+      },
+      "input_sha256": {
+        "datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v1\\provenance.csv": "ca22683565b03b6ecfb80d33960d79841a3752e5d5266048a793486affc763ba"
+      },
+      "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+      "linked_acquisitions": 1385,
+      "source_content_audit_complete": true,
+      "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+      "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+      "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+      "caveats": [
+        "Structure/site independence not established",
+        "Near-duplicate audit outstanding",
+        "Existing trained checkpoints are exposed; these are prospective splits only"
+      ]
+    }
+  ],
+  "sdnet_acquisition_groups": {
+    "W": 72,
+    "P": 104,
+    "D": 54
+  },
+  "cross_experiment_assignment_consistent": true
+}

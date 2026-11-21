@@ -1,0 +1,30 @@
+{
+  "validation_originals": 46,
+  "test_originals": 51,
+  "selected_config": {
+    "window": 31,
+    "threshold": 30.0,
+    "opening": 2
+  },
+  "selection_sha256": "c64693e38e09f61f691d8639a9b28e87ad306862d7210cc1a7eabcbd37a1d65f",
+  "validation_iou": 0.37381468821331637,
+  "test_baseline": {
+    "precision": 0.33688357436663613,
+    "recall": 0.5880766646760227,
+    "iou": 0.27256548374610495,
+    "dice": 0.4283716433102403
+  },
+  "test_selected": {
+    "precision": 0.4236236378362854,
+    "recall": 0.612486936398925,
+    "iou": 0.33408236650371165,
+    "dice": 0.500842189195943
+  },
+  "paired_iou_gain": 0.061516882757606695,
+  "paired_original_bootstrap_95_ci": [
+    0.050418265569893775,
+    0.0731236156307053
+  ],
+  "interpretation": "Exploratory detector improvement only; not validated generated-image mechanism accuracy",
+  "historical_evaluator_changed": false
+}

@@ -1,0 +1,395 @@
+{
+  "created_utc": "2026-11-21T06:21:35.976761+00:00",
+  "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "commit": "bebb232ba3f74cbcb0051fb054754b40abe54a5d",
+  "worktree_may_have_uncommitted_changes": true,
+  "packages": {
+    "absl-py": "2.5.0",
+    "accelerate": "1.15.0",
+    "anyio": "4.15.1",
+    "certifi": "2026.7.22",
+    "charset-normalizer": "3.5.1",
+    "click": "8.5.0",
+    "cloudpickle": "3.1.2",
+    "colorama": "0.4.6",
+    "contourpy": "1.3.2",
+    "cycler": "0.12.1",
+    "diffusers": "0.40.0",
+    "exceptiongroup": "1.3.1",
+    "filelock": "3.32.3",
+    "fonttools": "4.65.0",
+    "fsspec": "2026.7.0",
+    "grpcio": "1.84.0",
+    "h11": "0.16.0",
+    "hf-xet": "1.6.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "huggingface_hub": "1.32.0",
+    "idna": "3.20",
+    "importlib_metadata": "9.0.1",
+    "Jinja2": "3.1.6",
+    "joblib": "1.6.0",
+    "kiwisolver": "1.5.1",
+    "lightning-utilities": "0.15.3",
+    "Markdown": "3.10.3",
+    "MarkupSafe": "3.0.3",
+    "matplotlib": "3.10.9",
+    "mpmath": "1.3.0",
+    "networkx": "3.4.2",
+    "numpy": "2.2.6",
+    "packaging": "26.3",
+    "pandas": "2.3.3",
+    "pillow": "12.3.0",
+    "pip": "26.2.1",
+    "protobuf": "7.36.2",
+    "psutil": "7.2.2",
+    "pyparsing": "3.3.3",
+    "python-dateutil": "2.9.0.post0",
+    "pytz": "2026.3.post1",
+    "PyYAML": "6.0.3",
+    "regex": "2026.9.10",
+    "reportlab": "5.0.1",
+    "requests": "2.34.2",
+    "safetensors": "0.8.0",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3",
+    "setuptools": "78.1.0",
+    "six": "1.17.0",
+    "sympy": "1.14.0",
+    "tensorboard": "2.21.0",
+    "tensorboard-data-server": "0.7.2",
+    "threadpoolctl": "3.7.0",
+    "tomli": "2.4.1",
+    "torch": "2.14.0+cu126",
+    "torchaudio": "2.11.0+cu126",
+    "torchmetrics": "1.9.0",
+    "torchvision": "0.29.0+cu126",
+    "torch_fidelity": "0.4.0",
+    "tqdm": "4.70.1",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.4",
+    "urllib3": "2.8.0",
+    "Werkzeug": "3.1.8",
+    "zipp": "4.1.0"
+  },
+  "script_hashes": {
+    "pipeline\\research.py": "e80929cd7083e5984eb9b6fce89ab285abfd04971a92970070550250f5f1dcc6",
+    "src\\evaluate_exp6_spatial_physics_256.py": "769b55247778edadab2d819317ce95854a0315e034c0d41c5254c861e0d1ed5c",
+    "src\\plot_all_experiments.py": "12d62505f51e659dd611bf8fa40f5543d2d7580381d00db703ce817b45cdb538"
+  },
+  "experiments": [
+    {
+      "experiment": 1,
+      "directory": "unconditional_ddpm",
+      "metrics_path": "experiments/unconditional_ddpm/EVALUATION_METRICS.json",
+      "metrics_sha256": "34f2ef3d604e503e7ee5fd38ddb2dbb02a4ecb7b1266626b19c51f07ee68c7cc",
+      "score_kind": "heuristic agreement; requires detector validation",
+      "corrected_evaluation": false,
+      "confusion": {},
+      "fidelity": {
+        "frechet_inception_distance": 128.886,
+        "kernel_inception_distance_mean": 0.12193,
+        "kernel_inception_distance_std": 0.00596,
+        "evaluated_fake_samples": 160,
+        "evaluated_real_samples": 160
+      },
+      "plot": "experiments/unconditional_ddpm/plots/exp1_overview.png"
+    },
+    {
+      "experiment": 2,
+      "directory": "conditional_ddpm",
+      "metrics_path": "experiments/conditional_ddpm/EVALUATION_METRICS.json",
+      "metrics_sha256": "c36b713bcd976f58a2ea5f5596e1a8e33789a757e1116d8a9d272e2f2027e8d9",
+      "score_kind": "heuristic agreement; requires detector validation",
+      "corrected_evaluation": false,
+      "confusion": {
+        "matrix_counts": [
+          [
+            844,
+            156
+          ],
+          [
+            675,
+            325
+          ]
+        ],
+        "class_order": [
+          "non_cracked",
+          "cracked"
+        ],
+        "overall_accuracy": 0.5845,
+        "overall_error_rate": 0.4155,
+        "per_class_classification_metrics": {
+          "non_cracked": {
+            "true_positives": 844,
+            "false_positives": 675,
+            "false_negatives": 156,
+            "precision": 0.5556,
+            "recall": 0.844,
+            "f1_score": 0.6701,
+            "error_rate": 0.156
+          },
+          "cracked": {
+            "true_positives": 325,
+            "false_positives": 156,
+            "false_negatives": 675,
+            "precision": 0.6757,
+            "recall": 0.325,
+            "f1_score": 0.4389,
+            "error_rate": 0.675
+          }
+        }
+      },
+      "fidelity": {
+        "frechet_inception_distance": 61.206,
+        "kernel_inception_distance_mean": 0.01921,
+        "kernel_inception_distance_std": 0.00214,
+        "evaluated_fake_samples": 160,
+        "evaluated_real_samples": 160
+      },
+      "plot": "experiments/conditional_ddpm/plots/exp2_overview.png"
+    },
+    {
+      "experiment": 3,
+      "directory": "conditional_ddpm_128_augmented",
+      "metrics_path": "experiments/conditional_ddpm_128_augmented/EVALUATION_METRICS.json",
+      "metrics_sha256": "5b4c71769ff155ceba357120af3c23d69b1522acc6b5592d72de1314a2d4d9f5",
+      "score_kind": "heuristic agreement; requires detector validation",
+      "corrected_evaluation": false,
+      "confusion": {
+        "matrix_counts": [
+          [
+            155,
+            45
+          ],
+          [
+            98,
+            102
+          ]
+        ],
+        "class_order": [
+          "non_cracked",
+          "cracked"
+        ],
+        "overall_accuracy": 0.6425,
+        "overall_error_rate": 0.3575,
+        "per_class_classification_metrics": {
+          "non_cracked": {
+            "true_positives": 155,
+            "false_positives": 98,
+            "false_negatives": 45,
+            "precision": 0.6126,
+            "recall": 0.775,
+            "f1_score": 0.6843,
+            "error_rate": 0.225
+          },
+          "cracked": {
+            "true_positives": 102,
+            "false_positives": 45,
+            "false_negatives": 98,
+            "precision": 0.6939,
+            "recall": 0.51,
+            "f1_score": 0.5879,
+            "error_rate": 0.49
+          }
+        }
+      },
+      "fidelity": {
+        "frechet_inception_distance": 94.114,
+        "kernel_inception_distance_mean": 0.03294,
+        "kernel_inception_distance_std": 0.00188,
+        "evaluated_fake_samples": 160,
+        "evaluated_real_samples": 160
+      },
+      "plot": "experiments/conditional_ddpm_128_augmented/plots/exp3_overview.png"
+    },
+    {
+      "experiment": 4,
+      "directory": "crack_type_conditional",
+      "metrics_path": "experiments/crack_type_conditional/EVALUATION_METRICS.json",
+      "metrics_sha256": "6680199079a89a2c236f67634dc678e579bc02437dd98eb3fbbaab4fa410ca19",
+      "score_kind": "heuristic agreement; requires detector validation",
+      "corrected_evaluation": false,
+      "confusion": {},
+      "fidelity": null,
+      "plot": "experiments/crack_type_conditional/plots/exp4_overview.png"
+    },
+    {
+      "experiment": 5,
+      "directory": "structural_mechanism_ddpm",
+      "metrics_path": "experiments/structural_mechanism_ddpm/EVALUATION_METRICS.json",
+      "metrics_sha256": "83875cf5e77eb851ecee00f05f8d0e26f9d524e505d22b014b104281caeec463",
+      "score_kind": "heuristic agreement; requires detector validation",
+      "corrected_evaluation": false,
+      "confusion": {},
+      "fidelity": {
+        "frechet_inception_distance": 170.582,
+        "kernel_inception_distance_mean": 0.03931,
+        "kernel_inception_distance_std": 0.01168
+      },
+      "plot": "experiments/structural_mechanism_ddpm/plots/exp5_overview.png"
+    },
+    {
+      "experiment": 6,
+      "directory": "exp6_level_c_spatial_physics",
+      "metrics_path": "experiments/exp6_level_c_spatial_physics/evaluation_corrected/EVALUATION_METRICS.json",
+      "metrics_sha256": "59cc5070ed381b0857ef740e35ac7956f6675c2e175eef392f22c130bb7cb33f",
+      "score_kind": "heuristic agreement; requires detector validation",
+      "corrected_evaluation": true,
+      "confusion": {
+        "matrix_counts": [
+          [
+            195,
+            0,
+            0,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            1,
+            196,
+            0,
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            3,
+            185,
+            9,
+            0,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            0,
+            180,
+            14,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            78,
+            0,
+            122
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            197,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            199
+          ]
+        ],
+        "class_order": [
+          "non_cracked",
+          "flexural",
+          "flexure_shear",
+          "web_shear",
+          "torsion",
+          "corrosion_splitting",
+          "shrinkage_map"
+        ],
+        "per_class_classification_metrics": {
+          "non_cracked": {
+            "true_positives": 195,
+            "false_positives": 3,
+            "false_negatives": 5,
+            "precision": 0.9848,
+            "recall": 0.975,
+            "f1_score": 0.9799,
+            "classification_error_rate": 0.025
+          },
+          "flexural": {
+            "true_positives": 196,
+            "false_positives": 3,
+            "false_negatives": 4,
+            "precision": 0.9849,
+            "recall": 0.98,
+            "f1_score": 0.9825,
+            "classification_error_rate": 0.02
+          },
+          "flexure_shear": {
+            "true_positives": 185,
+            "false_positives": 0,
+            "false_negatives": 15,
+            "precision": 1.0,
+            "recall": 0.925,
+            "f1_score": 0.961,
+            "classification_error_rate": 0.075
+          },
+          "web_shear": {
+            "true_positives": 180,
+            "false_positives": 10,
+            "false_negatives": 20,
+            "precision": 0.9474,
+            "recall": 0.9,
+            "f1_score": 0.9231,
+            "classification_error_rate": 0.1
+          },
+          "torsion": {
+            "true_positives": 78,
+            "false_positives": 14,
+            "false_negatives": 122,
+            "precision": 0.8478,
+            "recall": 0.39,
+            "f1_score": 0.5342,
+            "classification_error_rate": 0.61
+          },
+          "corrosion_splitting": {
+            "true_positives": 197,
+            "false_positives": 0,
+            "false_negatives": 3,
+            "precision": 1.0,
+            "recall": 0.985,
+            "f1_score": 0.9924,
+            "classification_error_rate": 0.015
+          },
+          "shrinkage_map": {
+            "true_positives": 199,
+            "false_positives": 140,
+            "false_negatives": 1,
+            "precision": 0.587,
+            "recall": 0.995,
+            "f1_score": 0.7384,
+            "classification_error_rate": 0.005
+          }
+        },
+        "overall_accuracy": 0.8786,
+        "overall_error_rate": 0.1214
+      },
+      "fidelity": null,
+      "plot": "experiments/exp6_level_c_spatial_physics/plots/exp6_overview.png"
+    }
+  ],
+  "publication_readiness": "incomplete",
+  "remaining_gates": [
+    "Expert-validated mechanism labels and detector calibration",
+    "New clean training lineage with original-photo grouped splits",
+    "Matched-sample fidelity with identical preprocessing and independent references",
+    "Multiple-seed runs and uncertainty analysis",
+    "Spatial-conditioning ablations and held-out external-dataset evaluation"
+  ]
+}

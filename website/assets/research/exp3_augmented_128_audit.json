@@ -1,0 +1,44 @@
+{
+  "dataset": "exp3_augmented_128",
+  "rows": 61001,
+  "unique_groups": 9364,
+  "acquisition_overlap": 0,
+  "split_counts": {
+    "test": 6015,
+    "train": 48072,
+    "validation": 6914
+  },
+  "class_counts": {
+    "train": {
+      "non_cracked": 33644,
+      "cracked": 14428
+    },
+    "validation": {
+      "cracked": 1900,
+      "non_cracked": 5014
+    },
+    "test": {
+      "non_cracked": 4188,
+      "cracked": 1827
+    }
+  },
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "input_sha256": {
+    "datasets\\exp3_augmented_128\\train.csv": "e669bd848a80a96966c55843def34c4bbd70215010b8cc4059534c76c3ba4290"
+  },
+  "grouping": "Connected components of SDNET acquisition IDs, other source-image paths, and known original-content SHA256 aliases",
+  "linked_acquisitions": 1385,
+  "source_content_audit_complete": true,
+  "source_content_index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+  "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+  "caveats": [
+    "Structure/site independence not established",
+    "Near-duplicate audit outstanding",
+    "Existing trained checkpoints are exposed; these are prospective splits only"
+  ]
+}

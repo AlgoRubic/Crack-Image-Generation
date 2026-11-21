@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "original_files": 67264,
+  "decoded_unique_images": 65866,
+  "decoded_duplicate_groups": 1397,
+  "duplicate_files_beyond_first": 1398,
+  "index_sha256": "cdf8579945c956253d6bcd34910758c9b7e84c153b504e6451dec7ada11785a1",
+  "limitation": "Exact byte and decoded RGB identity only; near-duplicates and structure/site identity remain unverified"
+}

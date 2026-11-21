@@ -1,7 +1,9 @@
 """
 Sample Experiment 6 (Level C): 50-Step DDIM + Dual Classifier-Free Guidance (Spatial Physics + Class)
 across all 7 Structural Failure Mechanisms at Native 256x256.
-Saves at least 16 individual 256x256 PNG images per class, their paired analytical physics maps,
+Supports large-scale generation (e.g., --count 200 per class = 1,400 images total) with incremental
+mini-batch disk saving and resume-skipping of existing valid samples.
+Saves individual 256x256 PNG images per class, their paired analytical physics maps,
 and 4x4 contact sheets into `experiments/exp6_level_c_spatial_physics/results/` (and `generated_samples/`).
 """
 from __future__ import annotations
@@ -9,10 +11,13 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
 import torch
+from PIL import Image
+from torchvision.transforms.functional import to_tensor
 from torchvision.utils import make_grid, save_image
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -73,8 +78,6 @@ def ddim_sample_dual_cfg(
             img = pred_x0
 
     out_01 = (img.clamp(-1.0, 1.0) + 1.0) * 0.5
-    # Post-CFG Chromatic Stabilization: prevent CFG (w=2.5) from amplifying global RGB DC channel offsets
-    # while keeping 100% of pixel luminance and natural concrete stone/sand warmth.
     lum = 0.299 * out_01[:, 0:1] + 0.587 * out_01[:, 1:2] + 0.114 * out_01[:, 2:3]
     out_01 = lum + 0.15 * (out_01 - lum)
     return out_01.clamp(0.0, 1.0)
@@ -87,12 +90,14 @@ def main() -> None:
         type=str,
         default="experiments/exp6_level_c_spatial_physics/checkpoints/exp6_spatial_physics_256_epoch_015.pt",
     )
-    parser.add_argument("--count", type=int, default=16)
+    parser.add_argument("--count", type=int, default=200)
     parser.add_argument("--steps", type=int, default=50)
     parser.add_argument("--cfg-scale", type=float, default=2.5)
+    parser.add_argument("--overwrite", action="store_true", help="Regenerate even if sample_XXX.png already exists")
     args = parser.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Device: {device} ({torch.cuda.get_device_name(0) if device.type == 'cuda' else 'CPU'})")
     ckpt_path = ROOT / args.checkpoint
     ckpt = torch.load(ckpt_path, map_location=device)
 
@@ -114,23 +119,56 @@ def main() -> None:
         d.mkdir(parents=True, exist_ok=True)
 
     all_meta = {}
+    t_start_all = time.time()
+    chunk_size = 8
+
     for cid, cname in CLASS_NAMES.items():
-        print(f"Sampling {args.count} physics-controlled images for Class {cid} ({cname}) with Dual-CFG scale {args.cfg_scale}...")
-        phys_list = []
+        t_c0 = time.time()
+        print(f"\n[{cid+1}/7] Sampling {args.count} physics-controlled images for Class {cid} ({cname}) [CFG={args.cfg_scale}]...")
         class_meta = []
+
+        # Ensure output directories exist
+        for base_d in out_dirs:
+            (base_d / cname).mkdir(parents=True, exist_ok=True)
+            (base_d / f"{cname}_physics_masks").mkdir(parents=True, exist_ok=True)
+
+        # Precompute all analytical physics trajectories & metadata deterministically
+        phys_list = []
         for idx in range(args.count):
-            phys_np, m = solve_physical_trajectory(cid, seed=4000 + cid * 100 + idx)
-            phys_list.append(torch.from_numpy(phys_np))
+            phys_np, m = solve_physical_trajectory(cid, seed=4000 + cid * 1000 + idx if idx >= 16 else 4000 + cid * 100 + idx)
+            m["sample_index"] = idx
+            m["sample_file"] = f"sample_{idx:03d}.png"
+            m["physics_file"] = f"phys_{idx:03d}.npy"
+            phys_list.append(phys_np)
             class_meta.append(m)
 
-        phys_batch = torch.stack(phys_list, dim=0)  # (N, 2, 256, 256) in [0, 1]
-
-        # Sample in mini-batches of 8 to keep VRAM well under 4.0 GB
-        chunks = []
-        chunk_size = 8
+        # Stream mini-batches of 8 to GPU and immediately save to disk
         for s in range(0, args.count, chunk_size):
-            sub_phys = phys_batch[s : s + chunk_size]
-            torch.manual_seed(2026 + cid * 10 + s)
+            end_idx = min(s + chunk_size, args.count)
+            batch_indices = list(range(s, end_idx))
+
+            # Check if all files in this mini-batch already exist in both directories
+            if not args.overwrite:
+                all_exist = True
+                for idx in batch_indices:
+                    for base_d in out_dirs:
+                        im_p = base_d / cname / f"sample_{idx:03d}.png"
+                        ph_p = base_d / f"{cname}_physics_masks" / f"phys_{idx:03d}.npy"
+                        if not (im_p.exists() and ph_p.exists()):
+                            all_exist = False
+                            break
+                    if not all_exist:
+                        break
+                if all_exist:
+                    print(f"  [{cname}] Batch {s:03d}..{end_idx-1:03d} already exists on disk, skipping...")
+                    continue
+
+            sub_phys_np = np.stack([phys_list[i] for i in batch_indices], axis=0)
+            sub_phys = torch.from_numpy(sub_phys_np)
+            torch.manual_seed(2026 + cid * 1000 + s if s >= 16 else 2026 + cid * 10 + s)
+            if device.type == "cuda":
+                torch.cuda.manual_seed_all(2026 + cid * 1000 + s if s >= 16 else 2026 + cid * 10 + s)
+
             sub_samples = ddim_sample_dual_cfg(
                 model,
                 diffusion,
@@ -139,31 +177,38 @@ def main() -> None:
                 steps=args.steps,
                 cfg_scale=args.cfg_scale,
                 device=device,
-            )
-            chunks.append(sub_samples.cpu())
+            ).cpu()
 
-        samples = torch.cat(chunks, dim=0)
-        grid = make_grid(samples, nrow=4, padding=4)
+            for local_i, idx in enumerate(batch_indices):
+                for base_d in out_dirs:
+                    im_p = base_d / cname / f"sample_{idx:03d}.png"
+                    ph_p = base_d / f"{cname}_physics_masks" / f"phys_{idx:03d}.npy"
+                    save_image(sub_samples[local_i], im_p)
+                    np.save(ph_p, phys_list[idx])
 
-        for base_d in out_dirs:
-            class_dir = base_d / cname
-            phys_dir = base_d / f"{cname}_physics_masks"
-            class_dir.mkdir(parents=True, exist_ok=True)
-            phys_dir.mkdir(parents=True, exist_ok=True)
+            elapsed = time.time() - t_c0
+            print(f"  [{cname}] Generated {end_idx:3d}/{args.count} images ({elapsed:.1f}s elapsed)")
 
-            for idx in range(args.count):
-                save_image(samples[idx], class_dir / f"sample_{idx:03d}.png")
-                # Save the commanded aperture mask for exact pixel-overlap evaluation
-                np.save(phys_dir / f"phys_{idx:03d}.npy", phys_batch[idx].numpy())
-
-            grid_path = base_d / f"{cname}_256_grid.png"
-            save_image(grid, grid_path)
-            print(f"  Saved grid: {grid_path}")
+        # Build 4x4 contact sheet from first 16 images
+        first_16 = []
+        for idx in range(min(16, args.count)):
+            im_p = out_dirs[0] / cname / f"sample_{idx:03d}.png"
+            with Image.open(im_p) as pil_im:
+                first_16.append(to_tensor(pil_im.convert("RGB")))
+        if first_16:
+            grid = make_grid(torch.stack(first_16, dim=0), nrow=4, padding=4)
+            for base_d in out_dirs:
+                grid_path = base_d / f"{cname}_256_grid.png"
+                save_image(grid, grid_path)
 
         all_meta[cname] = class_meta
+        print(f"  [DONE] Completed {args.count} images for Class {cid} ({cname}) in {time.time() - t_c0:.1f}s")
 
     for base_d in out_dirs:
         (base_d / "commanded_physics_metadata.json").write_text(json.dumps(all_meta, indent=2), encoding="utf-8")
+
+    total_dt = time.time() - t_start_all
+    print(f"\n[SUCCESS] Completed all {args.count * 7} images (7 classes x {args.count}) in {total_dt/60.0:.2f} minutes!")
 
 
 if __name__ == "__main__":

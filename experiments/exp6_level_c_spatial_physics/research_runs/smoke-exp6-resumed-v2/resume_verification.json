@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "same_epoch": true,
+    "same_validation_loss": true,
+    "same_model_tensors": true,
+    "same_ema_tensors": true,
+    "same_loader_rng": true
+  },
+  "passed": true,
+  "resumed": "experiments\\exp6_level_c_spatial_physics\\research_runs\\smoke-exp6-resumed-v2",
+  "continuous": "experiments\\exp6_level_c_spatial_physics\\research_runs\\smoke-exp6-continuous-v2"
+}

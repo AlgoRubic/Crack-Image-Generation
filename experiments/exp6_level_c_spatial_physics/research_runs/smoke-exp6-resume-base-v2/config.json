@@ -1,0 +1,35 @@
+{
+  "experiment": 6,
+  "run_id": "smoke-exp6-resume-base-v2",
+  "epochs": 50,
+  "batch_size": 1,
+  "seed": 2026,
+  "lr": 0.0001,
+  "ema_decay": 0.999,
+  "smoke": true,
+  "smoke_epochs": 1,
+  "resume": null,
+  "initialization": "scratch",
+  "transfer_ancestors": [],
+  "manifests": {
+    "train": {
+      "path": "D:\\Downloads\\concrete_ddpm\\datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v1\\train.csv",
+      "sha256": "a3b5fdb39125c5fd2d3a61f3e52a01c5a1ec8ae67ada4e1560765e17009ec4aa"
+    },
+    "validation": {
+      "path": "D:\\Downloads\\concrete_ddpm\\datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v1\\validation.csv",
+      "sha256": "ec2c84386b52a06b191f9b46bcf8ed07ededd1c65d8a03aa53c33e4ea65209db"
+    },
+    "test": {
+      "path": "D:\\Downloads\\concrete_ddpm\\datasets\\exp5_exp6_level_bc_mechanisms_256\\research_v1\\test.csv",
+      "sha256": "11a9f8cb5b1ddb4f803f7acf7d1d3a42dfc9bfe639c518de4c74dbaa7fee1786"
+    }
+  },
+  "script_sha256": "7dd0515cfc46f5a09f5483db631ad6cda07981478383b8df91c5f376aba7d4e4",
+  "validation_protocol": "Fixed noise/timestep seed, no augmentation, full validation each epoch",
+  "test_policy": "Manifest isolation checked; test images never loaded by trainer",
+  "label_limitation": "Geometry-derived proxy labels; no independent expert validation",
+  "smoke_only": true,
+  "validation_weights": "ema",
+  "best_checkpoint_inference_key": "ema"
+}

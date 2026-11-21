@@ -1,0 +1,8 @@
+# Install the matching torch/torchvision pair separately for CPU or CUDA.
+# See README for the official PyTorch wheel-index commands.
+numpy==2.2.6
+scipy==1.15.3
+matplotlib==3.10.9
+pillow==12.3.0
+torch-fidelity==0.4.0
+tqdm==4.70.1

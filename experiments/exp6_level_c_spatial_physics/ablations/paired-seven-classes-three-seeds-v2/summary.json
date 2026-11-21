@@ -1,0 +1,273 @@
+{
+  "correct": {
+    "n": 36,
+    "mean_trajectory_recall": 0.9861129871205938,
+    "mean_trajectory_mae_px": 0.47385375256313556
+  },
+  "zero": {
+    "n": 36,
+    "mean_trajectory_recall": 0.0,
+    "mean_trajectory_mae_px": 50.0
+  },
+  "shuffled": {
+    "n": 36,
+    "mean_trajectory_recall": 0.11254660346642471,
+    "mean_trajectory_mae_px": 27.95476963459335
+  },
+  "paired_differences": [
+    {
+      "class_id": 1,
+      "seed": 2026,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 1,
+      "seed": 2026,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 1,
+      "seed": 2027,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 1,
+      "seed": 2027,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 1,
+      "seed": 2028,
+      "index": 0,
+      "correct_minus_zero_recall": 0.9796511627906976,
+      "correct_minus_shuffled_recall": 0.9796511627906976
+    },
+    {
+      "class_id": 1,
+      "seed": 2028,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 2,
+      "seed": 2026,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.9757975797579758
+    },
+    {
+      "class_id": 2,
+      "seed": 2026,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.950561797752809
+    },
+    {
+      "class_id": 2,
+      "seed": 2027,
+      "index": 0,
+      "correct_minus_zero_recall": 0.9955056179775281,
+      "correct_minus_shuffled_recall": 0.698876404494382
+    },
+    {
+      "class_id": 2,
+      "seed": 2027,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.6947835738068813
+    },
+    {
+      "class_id": 2,
+      "seed": 2028,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.9589345172031076
+    },
+    {
+      "class_id": 2,
+      "seed": 2028,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.952433628318584
+    },
+    {
+      "class_id": 3,
+      "seed": 2026,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.9380022962112514
+    },
+    {
+      "class_id": 3,
+      "seed": 2026,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.9275568181818181
+    },
+    {
+      "class_id": 3,
+      "seed": 2027,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.6576704545454546
+    },
+    {
+      "class_id": 3,
+      "seed": 2027,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.6653992395437263
+    },
+    {
+      "class_id": 3,
+      "seed": 2028,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 3,
+      "seed": 2028,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 4,
+      "seed": 2026,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.7933526011560694
+    },
+    {
+      "class_id": 4,
+      "seed": 2026,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.8542354235423543
+    },
+    {
+      "class_id": 4,
+      "seed": 2027,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.7882288228822882
+    },
+    {
+      "class_id": 4,
+      "seed": 2027,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.8088445078459343
+    },
+    {
+      "class_id": 4,
+      "seed": 2028,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.8739895387541607
+    },
+    {
+      "class_id": 4,
+      "seed": 2028,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 0.7914110429447853
+    },
+    {
+      "class_id": 5,
+      "seed": 2026,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 5,
+      "seed": 2026,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 5,
+      "seed": 2027,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 5,
+      "seed": 2027,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 5,
+      "seed": 2028,
+      "index": 0,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 5,
+      "seed": 2028,
+      "index": 1,
+      "correct_minus_zero_recall": 1.0,
+      "correct_minus_shuffled_recall": 1.0
+    },
+    {
+      "class_id": 6,
+      "seed": 2026,
+      "index": 0,
+      "correct_minus_zero_recall": 0.9981064590784767,
+      "correct_minus_shuffled_recall": 0.7548916473806017
+    },
+    {
+      "class_id": 6,
+      "seed": 2026,
+      "index": 1,
+      "correct_minus_zero_recall": 0.9985994397759104,
+      "correct_minus_shuffled_recall": 0.7725090036014406
+    },
+    {
+      "class_id": 6,
+      "seed": 2027,
+      "index": 0,
+      "correct_minus_zero_recall": 0.9663865546218487,
+      "correct_minus_shuffled_recall": 0.8093237294917968
+    },
+    {
+      "class_id": 6,
+      "seed": 2027,
+      "index": 1,
+      "correct_minus_zero_recall": 0.9976704786107582,
+      "correct_minus_shuffled_recall": 0.8470986869970352
+    },
+    {
+      "class_id": 6,
+      "seed": 2028,
+      "index": 0,
+      "correct_minus_zero_recall": 0.9826344769165608,
+      "correct_minus_shuffled_recall": 0.6863617111393477
+    },
+    {
+      "class_id": 6,
+      "seed": 2028,
+      "index": 1,
+      "correct_minus_zero_recall": 0.5815133465696007,
+      "correct_minus_shuffled_recall": 0.26847562320758883
+    }
+  ],
+  "peak_gpu_gib": 0.3718867301940918,
+  "publication_ready": false
+}

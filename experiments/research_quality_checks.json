@@ -1,0 +1,63 @@
+{
+  "created_utc": "2026-11-21T07:12:48.580769+00:00",
+  "checks": [
+    {
+      "script": "pipeline/test_research.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 4.985s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_acquisition_splits.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 1.371s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_source_hashes.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_detector.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.009s\n\nOK\n"
+    },
+    {
+      "script": "pipeline/test_ablation.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n"
+    },
+    {
+      "script": "src/test_evaluation_independence.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nOK\n"
+    },
+    {
+      "script": "website/verify_site.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "{\n  \"pages_checked\": 8,\n  \"errors\": [],\n  \"passed\": true,\n  \"browser_visual_review\": \"not_performed; browser tooling unavailable\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "infrastructure_checks_passed": true,
+  "publication_ready": false,
+  "outstanding": [
+    "Clean full training and multi-seed evaluation",
+    "Independent expert review of mechanism labels",
+    "Generated-domain detector validation",
+    "Controlled spatial ablations and external validation"
+  ],
+  "limitation": "Passing these infrastructure checks does not establish scientific validity."
+}

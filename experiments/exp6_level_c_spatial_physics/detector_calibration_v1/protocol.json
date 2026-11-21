@@ -1,0 +1,129 @@
+{
+  "candidates": [
+    {
+      "window": 15,
+      "threshold": 12.0,
+      "opening": 1
+    },
+    {
+      "window": 15,
+      "threshold": 12.0,
+      "opening": 2
+    },
+    {
+      "window": 15,
+      "threshold": 18.0,
+      "opening": 1
+    },
+    {
+      "window": 15,
+      "threshold": 18.0,
+      "opening": 2
+    },
+    {
+      "window": 15,
+      "threshold": 24.5,
+      "opening": 1
+    },
+    {
+      "window": 15,
+      "threshold": 24.5,
+      "opening": 2
+    },
+    {
+      "window": 15,
+      "threshold": 30.0,
+      "opening": 1
+    },
+    {
+      "window": 15,
+      "threshold": 30.0,
+      "opening": 2
+    },
+    {
+      "window": 23,
+      "threshold": 12.0,
+      "opening": 1
+    },
+    {
+      "window": 23,
+      "threshold": 12.0,
+      "opening": 2
+    },
+    {
+      "window": 23,
+      "threshold": 18.0,
+      "opening": 1
+    },
+    {
+      "window": 23,
+      "threshold": 18.0,
+      "opening": 2
+    },
+    {
+      "window": 23,
+      "threshold": 24.5,
+      "opening": 1
+    },
+    {
+      "window": 23,
+      "threshold": 24.5,
+      "opening": 2
+    },
+    {
+      "window": 23,
+      "threshold": 30.0,
+      "opening": 1
+    },
+    {
+      "window": 23,
+      "threshold": 30.0,
+      "opening": 2
+    },
+    {
+      "window": 31,
+      "threshold": 12.0,
+      "opening": 1
+    },
+    {
+      "window": 31,
+      "threshold": 12.0,
+      "opening": 2
+    },
+    {
+      "window": 31,
+      "threshold": 18.0,
+      "opening": 1
+    },
+    {
+      "window": 31,
+      "threshold": 18.0,
+      "opening": 2
+    },
+    {
+      "window": 31,
+      "threshold": 24.5,
+      "opening": 1
+    },
+    {
+      "window": 31,
+      "threshold": 24.5,
+      "opening": 2
+    },
+    {
+      "window": 31,
+      "threshold": 30.0,
+      "opening": 1
+    },
+    {
+      "window": 31,
+      "threshold": 30.0,
+      "opening": 2
+    }
+  ],
+  "objective": "validation pixel-micro IoU",
+  "tile_policy": "native nonoverlapping 256px; incomplete edge strips excluded",
+  "validation_originals": 46,
+  "test_originals": 51,
+  "caveat": "Exploratory: baseline test results were previously inspected. No test thresholds enter selection."
+}

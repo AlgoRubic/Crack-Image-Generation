@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "checkpoints": [
+    {
+      "experiment": 1,
+      "path": "models/weights/exp1_unconditional_64/exp1_unconditional_64_epoch050.pt",
+      "size_bytes": 39180921,
+      "sha256": "55fac363939c270cfb4d6e9c4e9dc645a1407b3749f9acb5611477d5f9dd2e9a",
+      "lineage": "historical_training_exposure; not research_v4-clean"
+    },
+    {
+      "experiment": 2,
+      "path": "models/weights/exp2_conditional_64/exp2_conditional_64_epoch050.pt",
+      "size_bytes": 13059310,
+      "sha256": "6ff346e549a0186b50a509d61e5d311b4ceb63cab77870c9f3b149f5935cc3bb",
+      "lineage": "historical_training_exposure; not research_v4-clean"
+    },
+    {
+      "experiment": 3,
+      "path": "models/weights/exp3_conditional_128/exp3_conditional_128_epoch050.pt",
+      "size_bytes": 13060424,
+      "sha256": "f6c3e5ffd855e53cb5a9e2b6f77db5630d96db27dd6b0a37e26555f127f41252",
+      "lineage": "historical_training_exposure; not research_v4-clean"
+    },
+    {
+      "experiment": 4,
+      "path": "models/weights/exp4_level_a_morphology_256/exp4_level_a_morphology_256_epoch050.pt",
+      "size_bytes": 166045969,
+      "sha256": "a5983d5eac819b3dcfdb3537f7fcf5bb5b16716eaf5f72ee3ebb8bd31d4b52e6",
+      "lineage": "historical_training_exposure; not research_v4-clean"
+    },
+    {
+      "experiment": 5,
+      "path": "models/weights/exp5_level_b_mechanisms_256/exp5_level_b_mechanisms_256_epoch025.pt",
+      "size_bytes": 166050681,
+      "sha256": "ab353ef287065595d52eb4884b818c5c2deb52c6256568030db9f5706ab40e8f",
+      "lineage": "historical_training_exposure; not research_v4-clean"
+    },
+    {
+      "experiment": 6,
+      "path": "models/weights/exp6_level_c_spatial_physics_256/exp6_level_c_spatial_physics_256_epoch015.pt",
+      "size_bytes": 166063381,
+      "sha256": "a70f8eea4385c8ecdaf028ed748cb5b5ac8db3747ee8da85e10f218bfd48f7c6",
+      "lineage": "historical_training_exposure; not research_v4-clean"
+    }
+  ],
+  "distribution": "Separate model bundle; weights are not in ordinary Git history"
+}

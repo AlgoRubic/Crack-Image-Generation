@@ -1,0 +1,50 @@
+{
+  "dataset": "exp4_level_a_morphology_256",
+  "rows": 13139,
+  "unique_groups": 529,
+  "acquisition_overlap": 0,
+  "split_counts": {
+    "train": 10480,
+    "test": 1192,
+    "validation": 1467
+  },
+  "class_counts": {
+    "train": {
+      "longitudinal": 800,
+      "diagonal": 514,
+      "alligator_map": 4052,
+      "transverse": 276,
+      "non_cracked": 4838
+    },
+    "validation": {
+      "diagonal": 109,
+      "alligator_map": 628,
+      "longitudinal": 80,
+      "transverse": 25,
+      "non_cracked": 625
+    },
+    "test": {
+      "longitudinal": 98,
+      "diagonal": 63,
+      "transverse": 34,
+      "alligator_map": 460,
+      "non_cracked": 537
+    }
+  },
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "input_sha256": {
+    "datasets\\exp4_level_a_morphology_256\\research_v1\\provenance.csv": "cc07dfe3d6f6c3f0109167c4ef7bd2e79727eaa40ba90e18fd82a613e40a669a"
+  },
+  "grouping": "SDNET2018 surface + acquisition filename prefix; other sources original-image path",
+  "sdnet_source": "https://digitalcommons.usu.edu/all_datasets/48/",
+  "inference": "SDNET group identities inferred from filenames; counts match 54 deck/72 wall/104 pavement source photographs",
+  "caveats": [
+    "Structure/site independence not established",
+    "Near-duplicate and cross-file identical-content audit outstanding",
+    "Existing trained checkpoints are exposed; these are prospective splits only"
+  ]
+}

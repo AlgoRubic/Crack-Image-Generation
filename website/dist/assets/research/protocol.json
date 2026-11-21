@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "status": "prospective_protocol_not_completed_experiments",
+  "seeds": [2026, 2027, 2028],
+  "split_seed": 2026,
+  "split_unit": "research_v4 connected components of SDNET acquisition IDs, other original-image paths, and all audited original byte/decoded-RGB SHA256 aliases",
+  "train_fraction": 0.8,
+  "validation_fraction": 0.1,
+  "test_fraction": 0.1,
+  "holdout_policy": "Freeze test references before tuning. Do not load any checkpoint or transfer ancestor trained on validation/test originals.",
+  "label_policy": "Morphological geometry is a proxy. Structural failure mechanisms require independent expert adjudication and source context.",
+  "evaluation": {
+    "generated_per_class_per_seed": 200,
+    "inference_batch_size_256": 8,
+    "fidelity_backend": "torch_fidelity",
+    "preprocessing": "Identical real/generated feature preprocessing; document any image-space transforms separately.",
+    "classifier": "Blind to requested labels and commanded masks; calibrate on independent labeled images before interpreting scores as accuracy.",
+    "uncertainty": "Report seed-level spread and per-class Wilson intervals; group bootstrap original images for reference-derived estimates.",
+    "spatial_metrics": ["trajectory recall", "trajectory MAE", "trajectory RMSE", "Hausdorff95", "angle MAE", "curvature MAE", "taper MAE"],
+    "distribution_metrics": ["FID", "KID", "within-class diversity", "nearest-training-neighbor audit"],
+    "failure_reporting": "Persist per-sample structural measurements before optional fidelity; retain failures and missing-pair errors."
+  },
+  "ablations": [
+    "Class-only conditioning versus class plus spatial fields on the same held-out references",
+    "Zero versus correct versus shuffled spatial fields, with identical initial noise",
+    "Guidance-scale sweep selected on validation only",
+    "Sampling-step sweep with matched seeds and wall-time measurements",
+    "EMA versus raw weights under the same protocol"
+  ],
+  "publication_gates": [
+    "Complete unambiguous provenance and group-isolated manifests",
+    "Clean training and transfer-learning lineage",
+    "Expert validation of mechanism labels",
+    "Independent detector validation",
+    "Three-seed evaluations with consistent sample budgets",
+    "Ablations and external-dataset checks",
+    "Corrected reports, plots and website matching verified artifacts"
+  ]
+}

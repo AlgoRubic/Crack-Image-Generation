@@ -1,0 +1,19 @@
+{
+  "run_id": "pilot-spatial-20261121-v1",
+  "classes": [
+    1,
+    2
+  ],
+  "seeds": [
+    2026
+  ],
+  "count": 2,
+  "steps": 50,
+  "cfg_scale": 2.5,
+  "checkpoint_sha256": "a70f8eea4385c8ecdaf028ed748cb5b5ac8db3747ee8da85e10f218bfd48f7c6",
+  "protocol": "Same initial noise, class and checkpoint; only conditioning fields vary. All scores use original correct command.",
+  "shuffle": "Cyclic permutation across same-class field batch; null class is retained for zero-field variant",
+  "status": "completed",
+  "scope": "Pilot historical-checkpoint sensitivity analysis; not matched clean-lineage class-only training comparison",
+  "detector": "Fixed historical 23px / 24.5 / 2x2 heuristic; calibration uncertainty applies"
+}

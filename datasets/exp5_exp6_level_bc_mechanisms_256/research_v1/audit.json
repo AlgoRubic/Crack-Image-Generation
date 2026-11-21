@@ -1,0 +1,53 @@
+{
+  "dataset": "exp5_exp6_level_bc_mechanisms_256",
+  "input_sha256": "e00b573d52d86da2059cdad56a191c7e837b77e5d2d4bc334ab01a33df373054",
+  "total_rows": 15440,
+  "recovered": 15440,
+  "unresolved": 0,
+  "original_content_overlap": 0,
+  "split_counts": {
+    "train": 12379,
+    "test": 1547,
+    "validation": 1514
+  },
+  "class_counts": {
+    "train": {
+      "corrosion_splitting": 2847,
+      "web_shear": 2145,
+      "flexure_shear": 677,
+      "torsion": 1317,
+      "flexural": 791,
+      "shrinkage_map": 1827,
+      "non_cracked": 2775
+    },
+    "validation": {
+      "web_shear": 288,
+      "torsion": 174,
+      "flexure_shear": 83,
+      "corrosion_splitting": 307,
+      "flexural": 69,
+      "shrinkage_map": 230,
+      "non_cracked": 363
+    },
+    "test": {
+      "corrosion_splitting": 352,
+      "web_shear": 309,
+      "flexure_shear": 56,
+      "torsion": 143,
+      "shrinkage_map": 241,
+      "flexural": 84,
+      "non_cracked": 362
+    }
+  },
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "seed": 2026,
+  "split_unit": "SHA256 of original image bytes; 80/10/10 hash assignment",
+  "usable_for_existing_checkpoint_validation": false,
+  "prospective_split_ready": true,
+  "limitation": "Original-photo grouping does not guarantee structure/site independence. Mechanism labels are morphological proxies, requiring expert annotation.",
+  "next_training_requirement": "Train new checkpoint lineage using only research_v1/train.csv, including transfer-learning ancestors; old weights have held-out exposure."
+}

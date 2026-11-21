@@ -1,0 +1,72 @@
+[
+  {
+    "dataset": "exp1_exp2_sdnet_64",
+    "manifests": {
+      "train.csv": {
+        "rows": 50482,
+        "unique_paths": 50482,
+        "missing_images": 0,
+        "rows_with_original_path": 50482,
+        "parent_group_split_possible": true
+      },
+      "validation.csv": {
+        "rows": 5610,
+        "unique_paths": 5610,
+        "missing_images": 0,
+        "rows_with_original_path": 5610,
+        "parent_group_split_possible": true
+      }
+    },
+    "overlap_checks": [
+      {
+        "a": "train.csv",
+        "b": "validation.csv",
+        "path_overlap": 0,
+        "original_path_overlap": 0
+      }
+    ],
+    "caveat": "Disjoint paths alone do not establish independence. Existing trained checkpoints retain all original training exposure."
+  },
+  {
+    "dataset": "exp3_augmented_128",
+    "manifests": {
+      "train.csv": {
+        "rows": 61001,
+        "unique_paths": 61001,
+        "missing_images": 0,
+        "rows_with_original_path": 61001,
+        "parent_group_split_possible": true
+      }
+    },
+    "overlap_checks": [],
+    "caveat": "Disjoint paths alone do not establish independence. Existing trained checkpoints retain all original training exposure."
+  },
+  {
+    "dataset": "exp4_level_a_morphology_256",
+    "manifests": {
+      "train.csv": {
+        "rows": 13139,
+        "unique_paths": 13139,
+        "missing_images": 0,
+        "rows_with_original_path": 0,
+        "parent_group_split_possible": false
+      }
+    },
+    "overlap_checks": [],
+    "caveat": "Disjoint paths alone do not establish independence. Existing trained checkpoints retain all original training exposure."
+  },
+  {
+    "dataset": "exp5_exp6_level_bc_mechanisms_256",
+    "manifests": {
+      "train.csv": {
+        "rows": 15440,
+        "unique_paths": 15440,
+        "missing_images": 0,
+        "rows_with_original_path": 0,
+        "parent_group_split_possible": false
+      }
+    },
+    "overlap_checks": [],
+    "caveat": "Disjoint paths alone do not establish independence. Existing trained checkpoints retain all original training exposure."
+  }
+]
