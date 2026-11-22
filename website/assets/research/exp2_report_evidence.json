@@ -1,0 +1,100 @@
+{
+  "experiment": 2,
+  "revision": "2026-11-22",
+  "report": "EXPERIMENT_2_FULL_REPORT.md",
+  "checkpoint": {
+    "path": "models\\weights\\exp2_conditional_64\\exp2_conditional_64_epoch050.pt",
+    "sha256": "6ff346e549a0186b50a509d61e5d311b4ceb63cab77870c9f3b149f5935cc3bb",
+    "parameters": 3258627,
+    "epoch_field": 49,
+    "loss": 0.015247160005937973,
+    "optimizer_groups": []
+  },
+  "input_sha256": {
+    "experiments\\conditional_ddpm\\EVALUATION_METRICS.json": "c36b713bcd976f58a2ea5f5596e1a8e33789a757e1116d8a9d272e2f2027e8d9",
+    "experiments\\conditional_ddpm\\logs\\conditional_training_loss.csv": "31a68e8f832834224eea6757b450e2a551fca6a2d22c8e679cf9699bfc6376de",
+    "datasets\\exp1_exp2_sdnet_64\\train.csv": "53c785cc45ffca24687edc9390eb6d476c37a0bec7db7a299c35c5421e4706fc",
+    "experiments\\conditional_ddpm\\plots\\exp2_overview.png": "0d1e403e9bf5bf2b11b97860885960e35be0ca28e4880104dfeed089027a6e98",
+    "src\\train_conditional.py": "f70e5fe856516c93dddf6ddb64603060bc13a96af18ad313ed049973cb5e566e",
+    "src\\evaluate_exp1_2_3_errors.py": "1deed4927ba968c853ff79de475160b2dcd4cfe40ffeac23e1608b10acf83f42",
+    "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+    "models\\checkpoint_manifest.json": "09d7942d894622a362e7a65653f9c8feec7b15dc8fc894e2245eb648cd552ef9",
+    "datasets\\current_research_split.json": "8972d236dc2ecbb8c28894e5efe181c6068cfb636d6cdeaece45f1d90625eca3",
+    "datasets\\source_content_v1\\summary.json": "4123b1b2226b6758dfe876b678704ceebdeb003843926f3d61b5c30f327b2ab0",
+    "datasets\\near_duplicate_screen_v1\\research_v5_summary.json": "70dabf2c06565d70351ba40b90a0ac5e7fb6c000a3613c81e70bfb5d6c59c2b8",
+    "experiments\\fresh_install_cpu_verification.json": "d5b91bc1c3f0b6701ece95bf9ec024800622794b7a4cfefe3cb4876b74c23d0a",
+    "experiments\\conditional_ddpm\\PER_SAMPLE_ERROR_LOG.csv": "bb8fd7b07bc9c7b0a21449784a3604c66591d36fb26e365c63936af50fcfb64e",
+    "website\\assets\\images\\exp2_cracked.png": "cd415b1de88c62327ef7f483fb1e9ebf327dc3afa9f3e8d6cf5b677a4e5211b3",
+    "website\\assets\\images\\exp2_noncracked.png": "e9c7bc295d087938b7d84d4ce99526ad3ac9545e1739c739cfbcf5611d188274"
+  },
+  "archived_sources": [
+    {
+      "source": "experiments\\conditional_ddpm\\STATUS.md",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\STATUS.md",
+      "sha256": "91b79c3d443d6f4321e539c90b50bfa02e7e790f51e39a2e1a5052f3bef9049f"
+    },
+    {
+      "source": "website\\experiment-2.html",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\previous_webpage.html",
+      "sha256": "2b2ecc8ab77769f9e8d5fb2466c4bf29f217d9c7035104b2eb69afc832068bc0"
+    },
+    {
+      "source": "website\\assets\\reports\\experiment_2_formula_report.pdf",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\experiment_2_formula_report.pdf",
+      "sha256": "f7a55fbbbe78c2f10b06f99807e9eab585b713ceedccedefdaece01bdb9c8805"
+    },
+    {
+      "source": "experiments\\conditional_ddpm\\plots\\exp2_overview.png",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\exp2_overview.png",
+      "sha256": "5a5ebf1eba72e3114bea8c9519f4fd8fcf2f2ba27bbd4968cc680565767a1695"
+    },
+    {
+      "source": "experiments\\conditional_ddpm\\plots\\exp2_overview.svg",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\exp2_overview.svg",
+      "sha256": "5fdccdb8ee5deba9d1bddc3811c1923a32e1e47dbfd711201012c59a8ae0e059"
+    },
+    {
+      "source": "experiments\\conditional_ddpm\\plots\\plot_provenance.json",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "sha256": "16dc814bea95498b8e1427231da1c1a1640bc3644aeb4b59301c4010e8740163"
+    },
+    {
+      "source": "experiments\\conditional_ddpm\\plots\\training_loss_comparison.png",
+      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\training_loss_comparison.png",
+      "sha256": "e9474b7177c21ddbe473e4ab84d29e8b8e47a9568b1aa4397da8bc717496eafe"
+    }
+  ],
+  "input_lf_sha256": {
+    "experiments\\conditional_ddpm\\EVALUATION_METRICS.json": "549d22eadd5f732ee1cdae927a1fefd1930e79a3d26d0df7d5d8d027a845664f",
+    "experiments\\conditional_ddpm\\logs\\conditional_training_loss.csv": "0959bd4860da18b37bc7a8d9ac15065fb38e0ceaa1aeb2a13dde553e1695c155",
+    "datasets\\exp1_exp2_sdnet_64\\train.csv": "11ed41bf0db99849192b3f7f761e4e3aaafb5b4f99f7ccba939bde9298a3484e",
+    "src\\train_conditional.py": "f70e5fe856516c93dddf6ddb64603060bc13a96af18ad313ed049973cb5e566e",
+    "src\\evaluate_exp1_2_3_errors.py": "1deed4927ba968c853ff79de475160b2dcd4cfe40ffeac23e1608b10acf83f42",
+    "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+    "models\\checkpoint_manifest.json": "a99a5c1f378100bb2a89448a19c6e3eb3e03f3b6d095379c0da0c3a6446af786",
+    "datasets\\current_research_split.json": "c2a30268d6884d3b07e42b9d32e92c5ed15d226a6526dbb01bb9a85da00cef90",
+    "datasets\\source_content_v1\\summary.json": "d2723afa310bb3924939127ce1c2405f44a6e49351c9da357842e439bd477420",
+    "datasets\\near_duplicate_screen_v1\\research_v5_summary.json": "97fc0db0cfa04fe62cdd6987d4f5aa71be3dfa0b41f4242be3095b502e37df67",
+    "experiments\\fresh_install_cpu_verification.json": "159e71d0e1a007cd2b709279dcf9ff475097045d758321316868c4e992856913",
+    "experiments\\conditional_ddpm\\PER_SAMPLE_ERROR_LOG.csv": "931aae5537c84582b03e117ee42548e588029636fa318f712930e3e5a741459f"
+  },
+  "hash_policy": "Raw hashes attest observed bytes; LF-normalized hashes additionally identify text content across Git line-ending conversions. Archived originals retain exact bytes.",
+  "training": {
+    "unique_epochs": 50,
+    "raw_numeric_rows": 50,
+    "repeated_epochs": 0,
+    "ignored_rows": 0,
+    "final": {
+      "epoch": 50,
+      "loss": 0.015247160005937973
+    },
+    "minimum": {
+      "epoch": 44,
+      "loss": 0.01513778835018484
+    }
+  },
+  "limitations": [
+    "Retrospective artifact analysis, not new clean training",
+    "Requested labels and morphology predicates are not independent engineering ground truth"
+  ]
+}

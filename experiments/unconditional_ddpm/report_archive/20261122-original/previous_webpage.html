@@ -1,0 +1,389 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Experiment 01 · Unconditional DDPM</title><link rel="stylesheet" href="experiment.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="research.css"></head><body><header class="detail-header"><a href="index.html" class="brand">▧ CRACK / SYNTHESIS</a><a href="index.html#experiments" class="back">All experiments ↗</a></header><main><section class="detail-hero"><div><p class="eyebrow">EXPERIMENT 01 · BASELINE</p><span class="detail-status complete">HISTORICAL RUN · EVALUATION AUDITED</span><h1>Unconditional DDPM</h1><p class="lede">Learning the visual grammar of concrete without a crack condition.</p></div></section><div class="research-notice">Historical training record with a current evaluation addendum. Proxy scores are not validated structural-mechanism accuracy. <a href="research.html">View research status</a></div><section class="facts"><div><span>Canvas</span><b>64 × 64</b></div><div><span>Evaluated images</span><b>1000</b></div><div><span>Heuristic agreement</span><b>Not reported</b></div><div><span>Independent validation</span><b>Pending</b></div></section><section class="report-grid"><article class="report-main"><section><p class="eyebrow">AIM</p><h2>What this experiment was trying to learn</h2><p>Establish an unconditional baseline that can synthesize concrete-surface patches from random noise.</p></section><section><p class="eyebrow">TECH STACK</p><h2>Implementation choices</h2><p>PyTorch · DDPM · compact U-Net · AdamW · CUDA · RTX 4050</p></section><section><p class="eyebrow">PROCEDURE</p><h2>How it was run</h2><p>Index SDNET2018, preserve surface-category metadata, preprocess 64×64 RGB patches, train for 50 epochs with a 1,000-step diffusion schedule, sample at multiple seeds, and compare generated images with real validation images.</p></section><section class="result-box"><p class="eyebrow">RESULT</p><h2>What the evidence says</h2><p>1,000 images evaluated. The morphology detector flags 77.1% as cracked. This is detector prevalence, not a ground-truth accuracy score.</p></section><section><p class="eyebrow">OBSERVATIONS</p><h2>What appeared in the outputs</h2><p>See the current evaluation addendum for per-class measurements and plots. Generated examples illustrate model output; they are not independently annotated validation data.</p></section><section><p class="eyebrow">ASSUMPTIONS</p><h2>Decisions behind the result</h2><p>The SDNET2018 validation split is representative of the concrete-surface distribution; patch-level appearance is a useful baseline for later crack conditioning; labels can remain metadata because the model is intentionally unconditional.</p></section><section><p class="eyebrow">ERRORS & SOURCES OF ERROR</p><h2>What could mislead us</h2><p>Geometry-based labels and detectors are proxies. Historical checkpoint exposure, small or unequal sample sizes, differing fidelity implementations and domain shifts limit interpretation. See the research audit for the corrected protocol.</p></section><section><p class="eyebrow">CONCLUSION</p><h2>Research takeaway</h2><p>This experiment provides evidence about image synthesis and heuristic control. Claims about physical mechanism, generalization and downstream usefulness require independent labels and controlled held-out evaluation.</p></section><section class="result-gallery"><p class="eyebrow">RESULT IMAGES</p><h2>Generated outputs</h2><div class="gallery-grid"><figure><img src="assets/images/exp1_seed42.png" alt="Generated concrete surface result image"><figcaption>Generated concrete surface</figcaption></figure></div></section><section class="research-section"><p class="eyebrow">CURRENT EVALUATION ADDENDUM</p><h2>Measured results and their limits</h2><p>1,000 images evaluated. The morphology detector flags 77.1% as cracked. This is detector prevalence, not a ground-truth accuracy score.</p><p><a href="assets/research/exp1_metrics.json">Inspect the metric record</a> · <a href="research.html">Research protocol and readiness</a></p><img class="research-plot" src="assets/research/exp1_overview.png" alt="Experiment 1 training and evaluation overview"><p>Fidelity scores in historical reports used differing reference samples or implementations. They are not a controlled cross-experiment leaderboard. New clean training and independent validation remain outstanding.</p></section><section class="full-report"><p class="eyebrow">FULL REPORT CONTENT</p><h2>Technical record</h2><p>Archival report: it may contain superseded measurements or interpretations. The current addendum above takes precedence.</p><details><summary>Read the historical technical record</summary><div class="report-content"><h2>Experiment 1 Full Report: Unconditional DDPM for Concrete Surface Image Generation</h2>
+<h3>1. Experiment Identity</h3>
+<p>Experiment name: Unconditional DDPM for Concrete Surface Image Generation</p>
+<p>Experiment number: Experiment 1</p>
+<p>Experiment type: Baseline generative image modeling</p>
+<p>Dataset: SDNET2018</p>
+<p>Resolution: 64 x 64 RGB</p>
+<p>Model: SmallUNet unconditional DDPM</p>
+<p>Training duration: 50 epochs</p>
+<p>Project root:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm
+</code></pre>
+<p>Experiment directory:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm
+</code></pre>
+<p>Final checkpoint:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\checkpoints\ddpm_epoch_050.pt
+</code></pre>
+<p>Generated evaluation images:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\evaluation\unconditional_epoch_050
+</code></pre>
+<h3>2. Aim of the Experiment</h3>
+<p>The aim of Experiment 1 was to train a diffusion model that can generate new concrete surface image patches from random noise. The model was trained without any explicit crack-status condition. This means the model was not told whether an image was cracked or non-cracked during generation. Instead, it learned the overall visual distribution of concrete surface patches from the full SDNET2018 training dataset.</p>
+<p>The main goals were:</p>
+<ol>
+<li>To establish a baseline generative model for concrete surface images.</li>
+<li>To test whether a compact DDPM can learn realistic concrete texture at 64 x 64 resolution.</li>
+<li>To measure the general similarity between generated images and real validation images.</li>
+<li>To identify the limitations of unconditional generation for concrete crack synthesis.</li>
+<li>To create a reference point for later conditional experiments.</li>
+</ol>
+<p>This experiment is important because every later improvement needs a baseline. Without an unconditional baseline, it would be difficult to know whether a conditional model, a higher-resolution model, or an augmented-data model is genuinely better.</p>
+<h3>3. Background and Theory</h3>
+<h4>3.1 Generative Modeling</h4>
+<p>Generative modeling is a machine-learning approach where the model learns the probability distribution of a dataset and then produces new samples that resemble the original data. In this project, the samples are concrete surface image patches.</p>
+<p>For a concrete crack project, generative modeling is useful because it may help produce additional image examples for inspection, data augmentation, model testing, and research into crack-image synthesis. However, simply generating concrete-like texture is not the same as generating meaningful crack images. This distinction is central to Experiment 1.</p>
+<h4>3.2 Diffusion Models</h4>
+<p>A diffusion model learns to generate images by reversing a gradual noising process.</p>
+<p>The forward process starts with a real image and adds Gaussian noise over many steps until the image becomes nearly pure noise. The reverse process trains a neural network to remove noise step by step. During generation, the model starts from random noise and repeatedly denoises it until an image appears.</p>
+<p>The main idea is:</p>
+<pre><code>
+real image -&gt; progressively noisier image -&gt; pure noise
+pure noise -&gt; learned denoising steps -&gt; generated image
+</code></pre>
+<p>The model does not generate the full image in one step. It learns a sequence of small denoising operations.</p>
+<h4>3.3 DDPM</h4>
+<p>DDPM stands for Denoising Diffusion Probabilistic Model. It is one of the classical diffusion-model formulations.</p>
+<p>In this experiment, the DDPM used 1,000 diffusion steps. During training, a random timestep was selected, noise was added to an image according to that timestep, and the neural network was trained to predict the noise that had been added.</p>
+<p>The training target was therefore not the clean image directly. The model learned to predict Gaussian noise. Once the model can predict noise well, it can be used in reverse to gradually remove noise from a random starting image.</p>
+<h4>3.4 Why Use a U-Net?</h4>
+<p>A U-Net is commonly used in image-to-image and diffusion tasks because it combines local detail with broader spatial context.</p>
+<p>The encoder part reduces image resolution and learns higher-level structure. The decoder part reconstructs spatial detail. Skip connections help preserve low-level texture information. This is especially useful for concrete images because the model needs to learn fine surface roughness, aggregate patterns, stains, edges, and possible crack-like structures.</p>
+<p>The SmallUNet used here is compact, with 3,258,115 parameters. This size was appropriate for the available GPU and for 64 x 64 image generation.</p>
+<h4>3.5 Unconditional Generation</h4>
+<p>An unconditional model generates images without receiving a class label, text prompt, mask, or other control signal. It learns the entire training distribution as one mixed distribution.</p>
+<p>In this experiment, cracked and non-cracked images were both included in the training data, but their labels were not supplied to the model as generation conditions.</p>
+<p>This matters because the model cannot be instructed to generate:</p>
+<pre><code>
+cracked concrete
+</code></pre>
+<p>or:</p>
+<pre><code>
+non-cracked concrete
+</code></pre>
+<p>It only learns:</p>
+<pre><code>
+concrete surface image
+</code></pre>
+<p>As a result, the generated output may sometimes contain crack-like features, but there is no mechanism to control crack presence.</p>
+<h3>4. Necessity of Each Major Step</h3>
+<h4>4.1 Dataset Indexing</h4>
+<p>The SDNET2018 dataset contains concrete images from multiple surface categories. Indexing was necessary to create a structured list of image paths and metadata.</p>
+<p>Without indexing, the training code would not have a reliable way to know which files belong to the dataset, how many images are available, or how to separate training and validation data.</p>
+<h4>4.2 Train/Validation Splitting</h4>
+<p>The dataset was split into training and validation sets:</p>
+<pre><code>
+Training images:   50,482
+Validation images:  5,610
+Total indexed:     56,092
+</code></pre>
+<p>The training set was used to optimize the DDPM. The validation set was held back for comparison during evaluation.</p>
+<p>This step was necessary because evaluating generated images against the same images used for training would make the results less trustworthy. A separate validation set gives a better estimate of how well the generated image distribution matches unseen real data.</p>
+<h4>4.3 Image Preprocessing</h4>
+<p>Images were processed into a consistent format:</p>
+<pre><code>
+64 x 64 RGB
+</code></pre>
+<p>This was necessary because neural networks require uniform tensor dimensions within a batch. The 64 x 64 resolution was chosen as a practical first baseline because it reduces GPU memory demand and training time.</p>
+<p>The tradeoff is that thin cracks may become less visible after resizing. This limitation is important for crack-generation work.</p>
+<h4>4.4 Preserving Labels as Metadata</h4>
+<p>Labels such as cracked and non-cracked were preserved in the dataset metadata but were not supplied to the unconditional DDPM.</p>
+<p>This was necessary because Experiment 1 was designed specifically as an unconditional baseline. The purpose was to test whether the model could learn the overall concrete image distribution without class control.</p>
+<p>The consequence is that the model cannot be directly evaluated as a controlled crack generator.</p>
+<h4>4.5 Model Training</h4>
+<p>Training was necessary so the SmallUNet could learn to predict noise at different diffusion timesteps. The model was trained for 50 epochs using mean squared error between the actual Gaussian noise and the predicted noise.</p>
+<p>The final logged training loss was:</p>
+<pre><code>
+0.01599615436508108
+</code></pre>
+<p>This indicates that the model learned the denoising objective. However, training loss alone is not enough to judge generated image quality. A model can have a low denoising loss and still produce images with visual artifacts or weak crack detail.</p>
+<h4>4.6 Checkpointing</h4>
+<p>Checkpoints were saved during training, with the final checkpoint stored at:</p>
+<pre><code>
+checkpoints\ddpm_epoch_050.pt
+</code></pre>
+<p>Checkpointing was necessary because training is computationally expensive. It allows the experiment to be resumed, sampled, evaluated, and compared without retraining from the beginning.</p>
+<h4>4.7 Sample Generation</h4>
+<p>Sample grids were generated after training:</p>
+<pre><code>
+outputs\samples\samples_epoch_050_seed_42.png
+outputs\samples\samples_epoch_050_seed_123.png
+outputs\samples\samples_epoch_050_seed_999.png
+</code></pre>
+<p>This step was necessary for initial qualitative inspection. Different seeds produce different generated samples from the same trained model. Multiple seeds help reveal whether the model is diverse or whether it repeatedly produces similar images.</p>
+<h4>4.8 Formal Evaluation Set Generation</h4>
+<p>A larger generated evaluation set of 1,000 images was created:</p>
+<pre><code>
+outputs\evaluation\unconditional_epoch_050
+</code></pre>
+<p>This step was necessary because formal metrics such as FID, KID, and LPIPS are not meaningful from a tiny sample grid. A larger sample set gives a more stable comparison with real validation images.</p>
+<h4>4.9 Quantitative Metric Evaluation</h4>
+<p>The generated set was compared with 1,000 real validation images using FID, KID, and paired LPIPS.</p>
+<p>This was necessary to measure general image-distribution similarity. These metrics help answer whether generated images resemble real concrete images in a broad statistical sense.</p>
+<p>However, these metrics do not directly answer whether cracks are present, realistic, or structurally meaningful.</p>
+<h4>4.10 Manual Audit Preparation</h4>
+<p>A manual audit grid and CSV template were created:</p>
+<pre><code>
+outputs\audit\unconditional_epoch_050_audit_grid_first_64.png
+outputs\audit\unconditional_epoch_050_manual_audit_first_64.csv
+</code></pre>
+<p>This step was necessary because no automatic metric in the current Experiment 1 pipeline reliably measures visible crack presence. Human visual review is currently the most trustworthy way to assess whether generated samples contain plausible cracks.</p>
+<h3>5. Dataset Description</h3>
+<p>The experiment used SDNET2018, a concrete crack image dataset containing images from three surface categories:</p>
+<pre><code>
+bridge_deck
+pavement
+wall
+</code></pre>
+<p>The processed dataset paths were:</p>
+<pre><code>
+data\processed\train\
+data\processed\validation\
+data\processed\train.csv
+data\processed\validation.csv
+</code></pre>
+<p>The total indexed dataset contained 56,092 images:</p>
+<pre><code>
+Training images:   50,482
+Validation images:  5,610
+</code></pre>
+<p>The dataset contains both cracked and non-cracked concrete patches. For Experiment 1, these labels were not used as conditioning inputs.</p>
+<h3>6. Model Configuration</h3>
+<p>The model was a compact U-Net used inside a DDPM framework.</p>
+<p>Configuration:</p>
+<pre><code>
+Architecture: compact U-Net DDPM
+Parameters: 3,258,115
+Image size: 64 x 64 RGB
+Diffusion steps: 1,000
+Loss: mean squared error between true noise and predicted noise
+Optimizer: AdamW
+Training epochs: 50
+GPU: NVIDIA GeForce RTX 4050 Laptop GPU
+</code></pre>
+<p>The model learned to predict noise at different diffusion timesteps. During generation, the trained model was used to gradually denoise random Gaussian noise into concrete-like image patches.</p>
+<h3>7. Training Procedure</h3>
+<p>The training process followed the standard DDPM objective:</p>
+<ol>
+<li>Load a real training image.</li>
+<li>Randomly choose a diffusion timestep.</li>
+<li>Add Gaussian noise to the image according to that timestep.</li>
+<li>Ask the U-Net to predict the noise.</li>
+<li>Compare predicted noise with actual noise using mean squared error.</li>
+<li>Backpropagate the loss.</li>
+<li>Update the model parameters using AdamW.</li>
+<li>Repeat for 50 epochs.</li>
+</ol>
+<p>The final logged loss was:</p>
+<pre><code>
+0.01599615436508108
+</code></pre>
+<p>This shows that the model successfully optimized the denoising objective. The low loss supports the conclusion that the network learned meaningful denoising behavior, but it does not by itself prove that crack structures are realistic.</p>
+<h3>8. Generated Outputs</h3>
+<p>The model produced sample grids and a full evaluation set.</p>
+<p>Sample grids:</p>
+<pre><code>
+outputs\samples\samples_epoch_050_seed_42.png
+outputs\samples\samples_epoch_050_seed_123.png
+outputs\samples\samples_epoch_050_seed_999.png
+</code></pre>
+<p>Evaluation images:</p>
+<pre><code>
+outputs\evaluation\unconditional_epoch_050
+</code></pre>
+<p>The evaluation folder contains 1,000 generated PNG images.</p>
+<p>These outputs represent the learned unconditional distribution of concrete-like surface patches.</p>
+<h3>9. Evaluation Metrics</h3>
+<h4>9.1 FID</h4>
+<p>FID means Fréchet Inception Distance. It compares the distribution of generated images with the distribution of real images using deep image features.</p>
+<p>Experiment 1 result:</p>
+<pre><code>
+FID: 5.604571
+</code></pre>
+<p>Lower FID is better. This result indicates that the generated images are close to the real validation images in general feature distribution.</p>
+<p>However, FID does not measure crack correctness. A model can achieve a good FID by generating realistic concrete texture even if it rarely generates clear cracks.</p>
+<h4>9.2 KID</h4>
+<p>KID means Kernel Inception Distance. It is another distribution-comparison metric based on deep features.</p>
+<p>Experiment 1 result:</p>
+<pre><code>
+KID mean: 3.419779
+KID std: 1.028021
+</code></pre>
+<p>The mean gives the average distance estimate. The standard deviation shows how much the estimate varies across repeated subsets.</p>
+<p>Lower KID is better. As with FID, KID measures general similarity, not crack-specific correctness.</p>
+<h4>9.3 Paired LPIPS</h4>
+<p>LPIPS means Learned Perceptual Image Patch Similarity. It estimates perceptual difference using neural-network features.</p>
+<p>Experiment 1 result:</p>
+<pre><code>
+Paired LPIPS mean: 0.548679
+</code></pre>
+<p>Lower LPIPS means paired images are more perceptually similar. In this unconditional experiment, the pairing does not mean that each generated image is supposed to reconstruct a specific real image. Therefore, LPIPS should be interpreted as a perceptual-distance diagnostic rather than a reconstruction score.</p>
+<h4>9.4 Lightweight Diagnostic Proxies</h4>
+<p>Additional lightweight diagnostics were calculated on 2026-09-24 using 1,000 generated images and the first 1,000 validation images:</p>
+<pre><code>
+Generated images: 1000
+Real comparison images: 1000
+Generated mean pixel value: 0.5682
+Real mean pixel value: 0.6330
+Generated pixel std: 0.1513
+Real pixel std: 0.1117
+Mean pairwise generated distance: 20.5188
+Mean nearest-real pixel distance: 11.1758
+</code></pre>
+<p>These are not formal generative-model metrics. They are sanity checks.</p>
+<p>The generated mean pixel value was lower than the real mean pixel value. This suggests that the generated images were darker on average than the real validation sample.</p>
+<p>The generated pixel standard deviation was higher than the real pixel standard deviation. This suggests that the generated images had more contrast or variation than the real comparison set.</p>
+<p>The mean pairwise generated distance gives a rough diversity signal among generated samples. The mean nearest-real pixel distance gives a crude indication of how close generated images are to real images in raw pixel space.</p>
+<p>These diagnostics should not replace FID, KID, LPIPS, or human evaluation.</p>
+<h3>10. Observations</h3>
+<p>The generated images show that the model learned several important visual properties of concrete surfaces:</p>
+<ol>
+<li>Concrete-like color distribution.</li>
+<li>Aggregate texture.</li>
+<li>Surface roughness.</li>
+<li>Patch-level variation.</li>
+<li>Some darker streaks or local structures that may appear crack-like.</li>
+</ol>
+<p>The strongest observation is that the model successfully learned the general appearance of concrete patches.</p>
+<p>The main weakness is crack control. Because the model is unconditional, it cannot be asked to generate cracked images specifically. Crack visibility is therefore inconsistent.</p>
+<p>Another important observation is the limitation caused by 64 x 64 resolution. Thin cracks may be lost, blurred, or merged into general surface texture. This limits the usefulness of Experiment 1 for crack-specific generation.</p>
+<h3>11. Results Summary</h3>
+<p>Training result:</p>
+<pre><code>
+Final logged training loss: 0.01599615436508108
+</code></pre>
+<p>Formal evaluation:</p>
+<pre><code>
+FID: 5.604571
+KID mean: 3.419779
+KID std: 1.028021
+Paired LPIPS mean: 0.548679
+</code></pre>
+<p>Lightweight diagnostics:</p>
+<pre><code>
+Generated mean pixel value: 0.5682
+Real mean pixel value: 0.6330
+Generated pixel std: 0.1513
+Real pixel std: 0.1117
+Mean pairwise generated distance: 20.5188
+Mean nearest-real pixel distance: 11.1758
+</code></pre>
+<p>Qualitative result:</p>
+<pre><code>
+The model learned realistic concrete-like texture, but crack visibility was inconsistent.
+</code></pre>
+<h3>12. Discussion</h3>
+<p>Experiment 1 achieved its primary purpose as a baseline. It demonstrated that a compact DDPM can learn the general distribution of SDNET2018 concrete image patches at 64 x 64 resolution.</p>
+<p>The quantitative metrics indicate that the generated images are broadly similar to real validation images. The FID value is reasonably low, suggesting that the generated set is close to the real set in deep feature space. KID and LPIPS provide additional evidence of distributional and perceptual similarity.</p>
+<p>However, the experiment also shows why unconditional generation is insufficient for controlled crack synthesis. Since the model receives no crack-status input, it has no way to separate cracked and non-cracked modes of the dataset. It may generate crack-like images occasionally, but it cannot be directed to do so.</p>
+<p>This matters for practical use. In concrete inspection or crack-detection data augmentation, the important question is not only whether an image looks like concrete. The important question is whether the generated image contains a visible, plausible, useful crack. Experiment 1 does not yet answer that question.</p>
+<p>The experiment also highlights the weakness of relying only on FID, KID, and LPIPS. These metrics are useful for general image quality but not enough for engineering validity. A realistic concrete texture without a crack could score well even if the goal is crack generation.</p>
+<p>Therefore, the correct interpretation is:</p>
+<pre><code>
+Experiment 1 is a successful unconditional concrete-texture baseline, not a controlled crack-generation model.
+</code></pre>
+<h3>13. Limitations</h3>
+<p>The main limitations are:</p>
+<ol>
+<li>No crack-status conditioning was used.</li>
+<li>The model cannot be instructed to generate cracked or non-cracked concrete.</li>
+<li>Crack-presence rate has not yet been measured reliably.</li>
+<li>FID, KID, and LPIPS do not evaluate crack correctness.</li>
+<li>64 x 64 resolution may remove or blur thin crack details.</li>
+<li>The model was trained on patch-level images, not full structural scenes.</li>
+<li>Generated images may look realistic statistically while still being weak for engineering interpretation.</li>
+<li>The manual audit CSV is currently only a blank template until reviewed by a human.</li>
+</ol>
+<h3>14. Necessity of Visual Evaluation</h3>
+<p>Visual evaluation is necessary because crack generation is a semantic and structural problem, not only a texture-similarity problem.</p>
+<p>For this project, human review should measure:</p>
+<pre><code>
+visible_crack: yes / no / uncertain
+texture_quality: good / acceptable / poor
+artifact_level: none / minor / severe
+engineering_plausibility: plausible / questionable / implausible
+</code></pre>
+<p>The current audit files are:</p>
+<pre><code>
+outputs\audit\unconditional_epoch_050_audit_grid_first_64.png
+outputs\audit\unconditional_epoch_050_manual_audit_first_64.csv
+</code></pre>
+<p>The first visual audit should answer:</p>
+<ol>
+<li>How many generated images contain visible crack-like structures?</li>
+<li>How many generated images have acceptable concrete texture?</li>
+<li>How many generated images contain obvious artifacts?</li>
+<li>Are crack-like patterns clear cracks or just surface noise?</li>
+</ol>
+<p>This visual audit would convert the current qualitative observation into a measurable result.</p>
+<h3>15. Conclusion</h3>
+<p>Experiment 1 successfully trained an unconditional DDPM baseline for concrete surface image generation using SDNET2018 at 64 x 64 resolution.</p>
+<p>The model learned the general visual distribution of concrete patches, including surface color, roughness, and aggregate-like texture. The final training loss was low, and the generated images achieved a formal FID score of 5.604571 against real validation images.</p>
+<p>The experiment confirms that diffusion modeling is suitable for concrete texture generation. However, it also confirms that unconditional generation is not enough for controlled crack synthesis. Since the model was not conditioned on crack status, crack visibility is inconsistent and cannot be controlled.</p>
+<p>The most important conclusion is:</p>
+<pre><code>
+Experiment 1 should be treated as a concrete-image baseline, not as the final crack-generation solution.
+</code></pre>
+<p>The next necessary step for Experiment 1 is a manual visual audit of generated samples. For controlled crack generation, conditional or mask-conditioned diffusion models are more appropriate.</p>
+<h3>16. Recommended Next Steps</h3>
+<p>Recommended Experiment 1 continuation:</p>
+<ol>
+<li>Manually annotate the first 64 generated images using the existing audit CSV.</li>
+<li>Expand the manual audit to 100 or 200 generated images if a more stable crack-rate estimate is needed.</li>
+<li>Summarize visible crack rate, usable texture rate, and artifact rate.</li>
+<li>Add the completed visual-audit result to <code>STATUS.md</code>.</li>
+<li>Use the result as the unconditional baseline when comparing against conditional experiments.</li>
+</ol>
+<p>Recommended project continuation:</p>
+<ol>
+<li>Compare Experiment 1 against Experiment 2 for crack-control improvement.</li>
+<li>Complete large-scale evaluation for Experiment 3.</li>
+<li>Develop a stronger crack-presence evaluator before relying on automatic crack-rate metrics.</li>
+<li>Consider mask-conditioned diffusion if the goal is location-controlled crack synthesis.</li>
+</ol>
+<h3>17. Important Files</h3>
+<p>Status file:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\STATUS.md
+</code></pre>
+<p>Final checkpoint:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\checkpoints\ddpm_epoch_050.pt
+</code></pre>
+<p>Training log:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\logs\training_loss.csv
+</code></pre>
+<p>Sample grids:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\samples\samples_epoch_050_seed_42.png
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\samples\samples_epoch_050_seed_123.png
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\samples\samples_epoch_050_seed_999.png
+</code></pre>
+<p>Evaluation images:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\evaluation\unconditional_epoch_050
+</code></pre>
+<p>Lightweight diagnostics:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\evaluation\unconditional_epoch_050_lightweight_diagnostics.txt
+</code></pre>
+<p>Manual audit files:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\audit\unconditional_epoch_050_audit_grid_first_64.png
+D:\Downloads\concrete_ddpm\experiments\unconditional_ddpm\outputs\audit\unconditional_epoch_050_manual_audit_first_64.csv
+</code></pre>
+<p>Shared source files:</p>
+<pre><code>
+D:\Downloads\concrete_ddpm\src\model.py
+D:\Downloads\concrete_ddpm\src\diffusion.py
+D:\Downloads\concrete_ddpm\src\train.py
+D:\Downloads\concrete_ddpm\src\sample.py
+D:\Downloads\concrete_ddpm\src\generate_eval_set.py
+D:\Downloads\concrete_ddpm\src\evaluate_metrics.py
+</code></pre></div></details></section></article><aside class="detail-aside"><div class="aside-card"><p class="eyebrow">EVIDENCE STATUS</p><strong>HISTORICAL RUN · EVALUATION AUDITED</strong><p>This page distinguishes measured outputs from interpretation and planned work.</p></div><div class="aside-card"><p class="eyebrow">NAVIGATE</p><div class="pager"><a href="index.html">← Archive home</a><a href="experiment-2.html">Experiment 02 →</a></div></div></aside></section></main><footer class="detail-footer"><span>CRACK / SYNTHESIS · Experiment 01</span><a href="index.html">Return to research archive</a></footer></body></html>

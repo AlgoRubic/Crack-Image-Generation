@@ -40,6 +40,7 @@ def main():
         ax = axes.ravel()
         log = next(iter(sorted((folder / 'logs').glob('*loss*.csv'))), None)
         points = []
+        duplicate_epochs=0
         if log:
             for row in csv.DictReader(log.open(encoding='utf-8-sig')):
                 try:
@@ -47,6 +48,9 @@ def main():
                 except (ValueError, KeyError):
                     pass
         if points:
+            unique=dict(points)
+            duplicate_epochs=len(points)-len(unique)
+            points=sorted(unique.items())
             ax[0].plot(*zip(*points), color='#237a89', marker='.', markersize=3)
             ax[0].set(xlabel='Logged epoch (local to this training phase)', ylabel='Mean noise MSE', title='Training loss (no held-out loss logged)')
             ax[0].grid(alpha=.2)
@@ -59,7 +63,8 @@ def main():
             keys = list(classes)
             rates = [next((classes[k][r] for r in ('target_adherence_rate', 'mechanism_adherence_rate',
                      'clean_surface_rate', 'orientation_alignment_accuracy', 'mesh_detection_rate') if r in classes[k]), 0) for k in keys]
-            bars(ax[1], keys, rates, 'Heuristic target / mechanism adherence', 'Percent', True)
+            rate_title='Requested-class predicate acceptance' if num in (4,5,6) else 'Requested-label agreement (image heuristic)'
+            bars(ax[1], keys, rates, rate_title, 'Percent', True)
             counts = [classes[k].get('samples', classes[k].get('sample_count', 0)) for k in keys]
             bars(ax[2], keys, counts, 'Evaluated images per requested class', 'Images')
         else:
@@ -111,6 +116,8 @@ def main():
             plt.close(fig)
         manifest = {'metrics_source': str(source), 'training_log': str(log),
                     'metrics_modified': source.stat().st_mtime, 'training_rows_plotted': len(points),
+                    'duplicate_epoch_records_excluded': duplicate_epochs,
+                    'log_policy': 'Last numeric record per epoch; raw CSV preserved',
                     'caveat': 'Saved heuristic evaluation, not independently validated accuracy.',
                     'corrected_target_independent_confusion': corrected}
         (out / 'plot_provenance.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')

@@ -1,0 +1,262 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Experiment 03 · 128×128 Conditional DDPM with Cracked-Image Augmentation</title><link rel="stylesheet" href="experiment.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="research.css"></head><body><header class="detail-header"><a href="index.html" class="brand">▧ CRACK / SYNTHESIS</a><a href="index.html#experiments" class="back">All experiments ↗</a></header><main><section class="detail-hero"><div><p class="eyebrow">EXPERIMENT 03 · RESOLUTION + NEW DATA</p><span class="detail-status closed">HISTORICAL RUN · EVALUATION AUDITED</span><h1>128×128 Conditional DDPM with Cracked-Image Augmentation</h1><p class="lede">Testing whether higher resolution and additional cracked data preserve finer fracture detail.</p></div></section><div class="research-notice">Historical training record with a current evaluation addendum. Proxy scores are not validated structural-mechanism accuracy. <a href="research.html">View research status</a></div><section class="facts"><div><span>Canvas</span><b>128 × 128</b></div><div><span>Evaluated images</span><b>400</b></div><div><span>Heuristic agreement</span><b>64.25%</b></div><div><span>Independent validation</span><b>Pending</b></div></section><section class="report-grid"><article class="report-main"><section><p class="eyebrow">AIM</p><h2>What this experiment was trying to learn</h2><p>Train a higher-resolution conditional DDPM using SDNET2018 plus an external cracked subset, while keeping class control between cracked and non-cracked outputs.</p></section><section><p class="eyebrow">TECH STACK</p><h2>Implementation choices</h2><p>PyTorch · conditional SmallUNet · 1,000 diffusion steps · AdamW · FP32/CUDA · RTX 4050</p></section><section><p class="eyebrow">PROCEDURE</p><h2>How it was run</h2><p>Prepare SDNET2018 and RC_10519, exclude the SDNET-derived Kaggle set to reduce leakage risk, resize to 128×128, train the conditional model for 50 epochs, generate reference grids, and reserve a real-only validation protocol for formal evaluation.</p></section><section class="result-box"><p class="eyebrow">RESULT</p><h2>What the evidence says</h2><p>400 generated images evaluated. Requested-class agreement with the morphology heuristic: 64.25%. The detector has not been independently calibrated for this generated-image domain.</p></section><section><p class="eyebrow">OBSERVATIONS</p><h2>What appeared in the outputs</h2><p>See the current evaluation addendum for per-class measurements and plots. Generated examples illustrate model output; they are not independently annotated validation data.</p></section><section><p class="eyebrow">ASSUMPTIONS</p><h2>Decisions behind the result</h2><p>RC_10519 provides genuinely additional cracked examples; cracked-only external augmentation improves crack detail without invalidating the real-only validation set; 128×128 is a useful compromise for the available 6 GB GPU.</p></section><section><p class="eyebrow">ERRORS & SOURCES OF ERROR</p><h2>What could mislead us</h2><p>Geometry-based labels and detectors are proxies. Historical checkpoint exposure, small or unequal sample sizes, differing fidelity implementations and domain shifts limit interpretation. See the research audit for the corrected protocol.</p></section><section><p class="eyebrow">CONCLUSION</p><h2>Research takeaway</h2><p>This experiment provides evidence about image synthesis and heuristic control. Claims about physical mechanism, generalization and downstream usefulness require independent labels and controlled held-out evaluation.</p></section><section class="result-gallery"><p class="eyebrow">RESULT IMAGES</p><h2>Generated outputs</h2><div class="gallery-grid"><figure><img src="assets/images/exp3_cracked.png" alt="Cracked samples result image"><figcaption>Cracked samples</figcaption></figure><figure><img src="assets/images/exp3_noncracked.png" alt="Non-cracked samples result image"><figcaption>Non-cracked samples</figcaption></figure></div></section><section class="research-section"><p class="eyebrow">CURRENT EVALUATION ADDENDUM</p><h2>Measured results and their limits</h2><p>400 generated images evaluated. Requested-class agreement with the morphology heuristic: 64.25%. The detector has not been independently calibrated for this generated-image domain.</p><table class="research-table"><thead><tr><th>Requested class</th><th>Images</th><th>Heuristic adherence / alignment</th></tr></thead><tbody><tr><td>non cracked</td><td>200</td><td>77.50%</td></tr><tr><td>cracked</td><td>200</td><td>51.00%</td></tr></tbody></table><p><a href="assets/research/exp3_metrics.json">Inspect the metric record</a> · <a href="research.html">Research protocol and readiness</a></p><img class="research-plot" src="assets/research/exp3_overview.png" alt="Experiment 3 training and evaluation overview"><p>Fidelity scores in historical reports used differing reference samples or implementations. They are not a controlled cross-experiment leaderboard. New clean training and independent validation remain outstanding.</p></section><section class="research-section"><h2>Dataset source and annotation audit</h2><p>The RC source audit found annotation geometry issues. The prospective Experiment 5/6 pipeline uses a conservative qualified subset; historical results are preserved. See the source audit for counts, attribution and limitations.</p><a href="research.html#source-quality">Inspect source quality and qualification</a></section><section class="full-report"><p class="eyebrow">FULL REPORT CONTENT</p><h2>Technical record</h2><p>Archival report: it may contain superseded measurements or interpretations. The current addendum above takes precedence.</p><details><summary>Read the historical technical record</summary><div class="report-content"><p>Experiment 3 - 128x128 Conditional Augmented DDPM Report
+Page 1
+ Experiment 3 Report
+128x128 Conditional DDPM with Additional Cracked
+ Data
+This report documents Experiment 3. It increases image resolution from 64 x 64 to 128 x 128 and augments
+SDNET2018 with an external cracked reinforced-concrete image dataset. Formal FID/KID/LPIPS evaluation is pending
+and is intentionally not reported here.
+Item
+Value
+Dataset
+SDNET2018 + external RC_10519 cracked images
+Task
+128x128 binary conditional concrete image generation
+Conditions
+class 0 = non_cracked, class 1 = cracked
+Resolution
+128 x 128 RGB
+Model
+Conditional SmallUNet/DDPM
+Epochs
+50
+Diffusion steps
+1000
+Final checkpoint
+experiments\conditional_ddpm_128_augmented\checkpoints\conditional_128_a
+ugmented_epoch_050.pt
+Final training loss
+0.014057591692068844</p><p>
+Experiment 3 - 128x128 Conditional Augmented DDPM Report
+Page 2
+1. Aim and Motivation
+Experiment 2 introduced crack-status conditioning, but it still generated 64 x 64 images from SDNET2018 only.
+Experiment 3 was designed to preserve more crack detail by moving to 128 x 128 resolution and adding an
+independent cracked-concrete dataset.
+
+Increase output resolution from 64 x 64 to 128 x 128.
+
+Keep binary class conditioning for cracked and non-cracked generation.
+
+Add 10,519 external cracked reinforced-concrete images.
+
+Improve visible crack detail compared with lower-resolution experiments.
+
+Avoid using the Kaggle 800-image SDNET-derived crack dataset to reduce leakage risk.
+2. Dataset Structure
+2.1 Dataset Sources
+Source
+Images used
+Label policy
+Role
+SDNET2018
+50,482 training
+images
+cracked and non_cracked
+labels from SDNET2018 folder
+structure
+Base concrete dataset
+RC_10519
+10,519 images
+all used as cracked
+Additional independent
+cracked-concrete data
+2.2 Combined Training Composition
+Component
+Count
+SDNET2018 non-cracked
+42,846
+SDNET2018 cracked
+7,636
+External cracked RC_10519
+10,519
+Total
+61,001
+2.3 External Dataset Record
+Item
+Value
+Downloaded archive
+D:\Downloads\Reinforced concrete structure crack detection data.zip
+Preserved raw path
+data\raw\external_cracks\Reinforced concrete structure crack detection data
+Image folder
+images, 10,519 JPG files
+Annotation folder
+label_json, 5,512 LabelMe JSON files
+Annotation note
+Some images do not have JSON annotations, so annotation_available was
+preserved as metadata.
+2.4 Dataset Decision
+The Kaggle 800-image crack segmentation dataset was not used because its data card states that it was selected from
+SDNET2018. Adding it to SDNET2018 could introduce duplication or train/test leakage. The external RC_10519
+dataset was used instead as the additional cracked source.</p><p>
+Experiment 3 - 128x128 Conditional Augmented DDPM Report
+Page 3
+3. Preprocessing Procedure
+The preprocessing script src/prepare_experiment3_128.py created a new 128 x 128 processed training set under
+data/processed_128. It reused the SDNET2018 training split and appended external cracked images.
+ Step
+What was done
+Why it was necessary
+Source integration
+SDNET2018 train.csv records and
+external JPG files were combined.
+Creates one training CSV for the
+augmented experiment.
+Metadata
+preservation
+source, original_path, surface, label,
+annotation_available, width, and height
+were written.
+Keeps provenance and annotation
+availability traceable.
+RGB conversion
+Every image was converted to RGB.
+Ensures consistent 3-channel model input.
+Resize
+Every image was resized to 128 x 128
+using LANCZOS.
+Allows 128 x 128 training while preserving
+more detail than 64 x 64.
+Stable naming
+Processed filenames used SHA1
+hashes based on source and original
+path.
+Avoids collisions between SDNET2018 and
+external filenames.
+Normalization
+during loading
+ToTensor maps [0,255] to [0,1], then
+Normalize(0.5,0.5) maps to [-1,1].
+Matches diffusion training scale.
+raw image -&gt; RGB -&gt; resize_128x128_LANCZOS -&gt; PNG
+uint8 pixel p in [0,255]
+ToTensor: p -&gt; p / 255 in [0,1]
+Normalize(mean=0.5, std=0.5): x_0 = 2 * (p / 255) - 1 in [-1,1]
+4. Conditional DDPM Theory
+The model keeps the binary conditioning mechanism from Experiment 2. A class embedding is added to the timestep
+embedding so the denoising network receives both diffusion time and desired crack status.</p><p>
+Experiment 3 - 128x128 Conditional Augmented DDPM Report
+Page 4
+5. Experimental Procedure
+Orde
+r
+Step
+Output
+1
+Prepare 128 x 128 augmented training data
+data\processed_128\train.csv
+2
+Preserve SDNET2018 and RC_10519 source
+metadata
+source and original_path fields
+3
+Assign labels
+SDNET2018 labels plus RC_10519 as cracked
+4
+Use weighted random sampler
+balanced cracked/non-cracked training batches
+5
+Train conditional SmallUNet/DDPM for 50
+epochs
+checkpoints\conditional_128_augmented_epoch_
+050.pt
+6
+Generate 16-image reference grids
+outputs\reference_128
+7
+Stop incomplete large cracked generation at
+32 images
+outputs\evaluation\conditional_128_augmented_c
+racked
+8
+Defer full FID/KID/LPIPS evaluation
+pending complete generated sets
+5.1 Training Configuration
+Item
+Value
+Training script
+src\train_conditional_128_augmented.py
+Batch size
+16 recorded in STATUS.md
+Optimizer
+AdamW, learning rate 2e-4
+Epochs
+50
+Diffusion steps
+1000
+Mixed precision
+CUDA AMP enabled when CUDA is available
+Gradient clipping
+clip_grad_norm = 1.0
+GPU
+NVIDIA GeForce RTX 4050 Laptop GPU
+Final training loss
+0.014057591692068844
+6. Training Result
+Training completed successfully for 50 epochs. The final checkpoint exists and should be treated as the completed
+Experiment 3 model. Formal image-distribution metrics have not yet been computed because the large generation run
+was intentionally stopped early.
+ Artifact
+Path / value
+Final checkpoint
+checkpoints\conditional_128_augmented\conditional_128_augmented
+_epoch_050.pt
+Training log
+outputs\logs\conditional_128_augmented_training_loss.csv
+Final loss
+0.014057591692068844
+Partial generated cracked images
+32 images only, not sufficient for final evaluation</p><p>
+Experiment 3 - 128x128 Conditional Augmented DDPM Report
+Page 5
+7. Reference Generated Images
+The following reference grids contain 16 generated images per class from epoch 50. These are visual references only.
+They are not a substitute for large-scale FID/KID/LPIPS evaluation.
+ Cracked-condition 128 x 128 reference grid, 16 generated images.
+ Non-cracked-condition 128 x 128 reference grid, 16 generated images.</p><p>
+Experiment 3 - 128x128 Conditional Augmented DDPM Report
+Page 6
+8. Evaluation Status
+Formal evaluation metrics are intentionally omitted from this report because the full generated evaluation sets do not
+exist yet. The large cracked generation run was stopped after 32 images, and those partial images must not be used
+for final FID/KID/LPIPS reporting.
+
+No final FID is reported.
+
+No final KID is reported.
+
+No final LPIPS is reported.
+
+No final crack-presence rate is reported.
+
+A full evaluation requires complete generated sets, ideally 1,000 images per class, followed by the same metric
+procedure used in Experiments 1 and 2.
+9. Observations and Limitations
+
+The cracked reference grid shows visible crack-like patterns in several samples.
+
+The non-cracked reference grid mostly shows texture-only concrete surfaces.
+
+The 128 x 128 resolution preserves more visual detail than 64 x 64 outputs.
+
+External cracked-only augmentation may bias the cracked condition and must be evaluated carefully.
+
+External dataset overlap and annotation inconsistency remain risks.
+
+The model should not be claimed superior until complete evaluation is performed.
+10. Conclusion
+Experiment 3 successfully completed dataset preparation and training for a 128 x 128 conditional DDPM using
+SDNET2018 plus 10,519 external cracked reinforced-concrete images. It is the strongest visual-resolution experiment
+so far, but its formal quality metrics remain pending. The correct current conclusion is that the model is trained and
+visually inspectable, not fully evaluated.
+11. Recommended Next Steps
+
+Generate complete 1,000-image cracked and non-cracked evaluation sets.
+
+Run FID, KID, and LPIPS against the same real validation comparison protocol.
+
+Create manual visual audit sheets for 128 x 128 cracked and non-cracked outputs.
+
+Compare visual crack clarity against Experiment 2 after full evaluation is complete.
+</p></div></details></section></article><aside class="detail-aside"><div class="aside-card"><p class="eyebrow">EVIDENCE STATUS</p><strong>HISTORICAL RUN · EVALUATION AUDITED</strong><p>This page distinguishes measured outputs from interpretation and planned work.</p></div><div class="aside-card"><p class="eyebrow">NAVIGATE</p><div class="pager"><a href="experiment-2.html">← Experiment 02</a><a href="experiment-4.html">Experiment 04 →</a></div></div></aside></section></main><footer class="detail-footer"><span>CRACK / SYNTHESIS · Experiment 03</span><a href="index.html">Return to research archive</a></footer></body></html>

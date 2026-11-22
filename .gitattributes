@@ -1,3 +1,10 @@
 # Audited dataset manifests and metadata retain exact bytes for SHA256 checks.
 datasets/**/*.csv -text
 datasets/**/*.json -text
+requirements-cpu-win-py310.lock.txt -text
+experiments/**/report_archive/** -text
+experiments/**/*.md -text
+experiments/**/report_evidence.json -text
+experiments/report_revision_audit.json -text
+website/assets/research/*_report_evidence.json -text
+website/assets/reports/*.md -text

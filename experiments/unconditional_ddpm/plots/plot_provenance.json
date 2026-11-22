@@ -2,7 +2,9 @@
   "metrics_source": "D:\\Downloads\\concrete_ddpm\\experiments\\unconditional_ddpm\\EVALUATION_METRICS.json",
   "training_log": "D:\\Downloads\\concrete_ddpm\\experiments\\unconditional_ddpm\\logs\\training_loss.csv",
   "metrics_modified": 1795239103.9054735,
-  "training_rows_plotted": 51,
+  "training_rows_plotted": 50,
+  "duplicate_epoch_records_excluded": 1,
+  "log_policy": "Last numeric record per epoch; raw CSV preserved",
   "caveat": "Saved heuristic evaluation, not independently validated accuracy.",
   "corrected_target_independent_confusion": false
 }

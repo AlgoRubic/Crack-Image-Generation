@@ -1,0 +1,8 @@
+{
+  "metrics_source": "D:\\Downloads\\concrete_ddpm\\experiments\\crack_type_conditional\\EVALUATION_METRICS.json",
+  "training_log": "D:\\Downloads\\concrete_ddpm\\experiments\\crack_type_conditional\\logs\\training_loss.csv",
+  "metrics_modified": 1795239416.9226525,
+  "training_rows_plotted": 50,
+  "caveat": "Saved heuristic evaluation, not independently validated accuracy.",
+  "corrected_target_independent_confusion": false
+}

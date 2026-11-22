@@ -1,0 +1,279 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Experiment 02 · Crack-Status Conditional DDPM</title><link rel="stylesheet" href="experiment.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="research.css"></head><body><header class="detail-header"><a href="index.html" class="brand">▧ CRACK / SYNTHESIS</a><a href="index.html#experiments" class="back">All experiments ↗</a></header><main><section class="detail-hero"><div><p class="eyebrow">EXPERIMENT 02 · BINARY CONDITIONING</p><span class="detail-status complete">HISTORICAL RUN · EVALUATION AUDITED</span><h1>Crack-Status Conditional DDPM</h1><p class="lede">Turning cracked versus non-cracked into an explicit generation control.</p></div></section><div class="research-notice">Historical training record with a current evaluation addendum. Proxy scores are not validated structural-mechanism accuracy. <a href="research.html">View research status</a></div><section class="facts"><div><span>Canvas</span><b>64 × 64</b></div><div><span>Evaluated images</span><b>2000</b></div><div><span>Heuristic agreement</span><b>58.45%</b></div><div><span>Independent validation</span><b>Pending</b></div></section><section class="report-grid"><article class="report-main"><section><p class="eyebrow">AIM</p><h2>What this experiment was trying to learn</h2><p>Train a DDPM that receives a binary crack-status label and generates separate cracked and non-cracked image sets.</p></section><section><p class="eyebrow">TECH STACK</p><h2>Implementation choices</h2><p>PyTorch · conditional U-Net · class embedding · balanced sampler · AdamW · CUDA</p></section><section><p class="eyebrow">PROCEDURE</p><h2>How it was run</h2><p>Reuse the processed SDNET2018 split, add a learned two-class embedding to the time embedding, use a balanced sampler, train for 50 epochs, generate 1,000 images for each condition, and evaluate each condition against the real validation protocol.</p></section><section class="result-box"><p class="eyebrow">RESULT</p><h2>What the evidence says</h2><p>2,000 generated images evaluated. Requested-class agreement with the morphology heuristic: 58.45%. The detector has not been independently calibrated for this generated-image domain.</p></section><section><p class="eyebrow">OBSERVATIONS</p><h2>What appeared in the outputs</h2><p>See the current evaluation addendum for per-class measurements and plots. Generated examples illustrate model output; they are not independently annotated validation data.</p></section><section><p class="eyebrow">ASSUMPTIONS</p><h2>Decisions behind the result</h2><p>The binary label is reliable enough to teach a first control signal; a balanced sampler prevents non-cracked samples from dominating; equal-size generated sets make the class comparison fair.</p></section><section><p class="eyebrow">ERRORS & SOURCES OF ERROR</p><h2>What could mislead us</h2><p>Geometry-based labels and detectors are proxies. Historical checkpoint exposure, small or unequal sample sizes, differing fidelity implementations and domain shifts limit interpretation. See the research audit for the corrected protocol.</p></section><section><p class="eyebrow">CONCLUSION</p><h2>Research takeaway</h2><p>This experiment provides evidence about image synthesis and heuristic control. Claims about physical mechanism, generalization and downstream usefulness require independent labels and controlled held-out evaluation.</p></section><section class="result-gallery"><p class="eyebrow">RESULT IMAGES</p><h2>Generated outputs</h2><div class="gallery-grid"><figure><img src="assets/images/exp2_cracked.png" alt="Cracked condition result image"><figcaption>Cracked condition</figcaption></figure><figure><img src="assets/images/exp2_noncracked.png" alt="Non-cracked condition result image"><figcaption>Non-cracked condition</figcaption></figure></div></section><section class="research-section"><p class="eyebrow">CURRENT EVALUATION ADDENDUM</p><h2>Measured results and their limits</h2><p>2,000 generated images evaluated. Requested-class agreement with the morphology heuristic: 58.45%. The detector has not been independently calibrated for this generated-image domain.</p><table class="research-table"><thead><tr><th>Requested class</th><th>Images</th><th>Heuristic adherence / alignment</th></tr></thead><tbody><tr><td>non cracked</td><td>1000</td><td>84.40%</td></tr><tr><td>cracked</td><td>1000</td><td>32.50%</td></tr></tbody></table><p><a href="assets/research/exp2_metrics.json">Inspect the metric record</a> · <a href="research.html">Research protocol and readiness</a></p><img class="research-plot" src="assets/research/exp2_overview.png" alt="Experiment 2 training and evaluation overview"><p>Fidelity scores in historical reports used differing reference samples or implementations. They are not a controlled cross-experiment leaderboard. New clean training and independent validation remain outstanding.</p></section><section class="full-report"><p class="eyebrow">FULL REPORT CONTENT</p><h2>Technical record</h2><p>Archival report: it may contain superseded measurements or interpretations. The current addendum above takes precedence.</p><details><summary>Read the historical technical record</summary><div class="report-content"><p>Experiment 2 - Conditional DDPM Formula Report
+Page 1
+ Experiment 2 Formula Report
+ Crack-Status Conditional DDPM for Concrete
+ Images
+This report documents the second concrete crack image generation experiment. Experiment 2 extends the
+unconditional DDPM baseline by adding a binary crack-status condition so the same model can be sampled as either
+cracked or non-cracked.
+Item
+Value
+Dataset
+SDNET2018 processed dataset from Experiment 1
+Task
+Class-conditional concrete image generation
+Conditions
+class 0 = non_cracked, class 1 = cracked
+Resolution
+64 x 64 RGB
+Model
+SmallUNet DDPM with learned two-class embedding
+Epochs
+50
+Diffusion steps
+1000
+Final checkpoint
+experiments\conditional_ddpm\checkpoints\conditional_epoch_050.pt
+Final loss
+approximately 0.015247</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 2
+1. Aim and Motivation
+Experiment 1 could generate concrete-like images, but it could not be instructed to generate cracked or non-cracked
+samples. Experiment 2 addresses that limitation by adding a crack-status condition to the DDPM.
+
+Train a DDPM that receives an explicit binary crack-status condition.
+
+Generate separate cracked-condition and non-cracked-condition image sets.
+
+Compare conditional generation against the unconditional baseline.
+
+Measure general distribution similarity while clearly noting that crack correctness still needs visual or
+classifier-based evaluation.
+2. Dataset Structure and Preprocessing
+2.1 Dataset Used
+Experiment 2 reused the same processed SDNET2018 dataset as Experiment 1. Images were already indexed, split,
+converted to RGB, resized to 64 x 64, saved as PNG files, and normalized to [-1,1] during loading.
+ Quantity
+Value
+Total indexed images
+56,092
+Training images
+50,482
+Validation images
+5,610
+Training cracked
+7,636
+Training non-cracked
+42,846
+Validation cracked
+848
+Validation non-cracked
+4,762
+2.2 Raw Dataset Meaning
+Raw
+folder
+Surface
+Class
+folder
+Condition label
+Class id
+D/CD
+bridge_deck
+CD
+cracked
+1
+D/UD
+bridge_deck
+UD
+non_cracked
+0
+P/CP
+pavement
+CP
+cracked
+1
+P/UP
+pavement
+UP
+non_cracked
+0
+W/CW
+wall
+CW
+cracked
+1
+W/UW
+wall
+UW
+non_cracked
+0
+Cracked images contain visible crack lines, fissures, or crack-like separations. Non-cracked images contain concrete
+texture without a visible crack, though they can still include roughness, aggregate, stains, pores, and illumination
+variation. The semantic difference between these classes is the reason conditional generation is needed.
+2.3 Preprocessing Pipeline
+ raw image -&gt; RGB conversion -&gt; 64 x 64 LANCZOS resize -&gt; PNG
+uint8 pixel p in [0,255]
+ToTensor: p -&gt; p / 255 in [0,1]
+Normalize(mean=0.5, std=0.5): x_0 = 2 * (p / 255) - 1 in [-1,1]</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 3
+3. Conditional DDPM Theory
+3.1 Unconditional vs Conditional Modeling
+The unconditional model estimates the image distribution without a control label. The conditional model estimates
+image generation under a class condition y.
+For this experiment, y is binary: y=0 means non-cracked and y=1 means cracked. The model learns a class embedding
+and adds it to the timestep embedding before the U-Net residual blocks.
+3.2 Forward Diffusion
+The forward noising process is the same as Experiment 1. The condition is not used to add noise; it is used by the
+denoising model when predicting the noise.
+3.3 Conditional Noise Prediction Objective
+The training target remains Gaussian noise prediction. The difference is that the U-Net now receives both the timestep
+and the class condition.
+3.4 Conditional Sampling
+During sampling, the desired class label is fixed for the whole reverse process. Setting y=1 asks the model for
+cracked-condition samples; setting y=0 asks for non-cracked-condition samples.</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 4</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 5
+4. Experimental Procedure
+Ord
+er
+Step
+Output
+1
+Reuse Experiment 1 processed SDNET2018
+data
+data\processed\train.csv and validation.csv
+2
+Load labels and assign class ids
+non_cracked=0, cracked=1
+3
+Create weighted random sampler
+balanced cracked/non-cracked training batches
+4
+Train SmallUNet with num_classes=2 for 50
+epochs
+checkpoints\conditional_epoch_050.pt
+5
+Generate cracked sample grids
+outputs\samples\cracked_epoch_050_seed_*.png
+6
+Generate non-cracked sample grids
+outputs\samples\non_cracked_epoch_050_seed_
+*.png
+7
+Generate 1,000 cracked-condition eval images
+outputs\evaluation\conditional_cracked
+8
+Generate 1,000 non-cracked-condition eval
+images
+outputs\evaluation\conditional_non_cracked
+9
+Evaluate both generated sets
+FID, KID, paired LPIPS
+4.1 Balanced Sampler
+The raw SDNET2018 training split is heavily imbalanced: non-cracked images are much more common than cracked
+images. The conditional training script uses a WeightedRandomSampler so cracked images are not overwhelmed.
+This does not change the stored dataset; it changes the probability that each training example is sampled during an
+epoch. The goal is to give the model enough cracked examples while still learning non-cracked texture.
+4.2 Training Configuration
+Item
+Value
+Training script
+src\train_conditional.py
+Batch size
+32
+Learning rate
+2e-4
+Epochs
+50
+Optimizer
+AdamW
+Mixed precision
+CUDA AMP enabled when CUDA is available</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 6
+Gradient clipping
+clip_grad_norm = 1.0
+Model parameters
+3,258,627
+Additional parameters vs
+Experiment 1
+512</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 7
+5. Evaluation Metrics
+Experiment 2 uses the same general metrics as Experiment 1. These metrics evaluate distributional or perceptual
+similarity, not guaranteed crack correctness.
+5.1 FID
+5.2 KID
+5.3 LPIPS
+6. Results
+Condition
+FID
+KID mean
+KID std
+Paired LPIPS
+cracked
+0.701002
+0.556873
+0.202802
+0.425783
+non_cracked
+0.724640
+0.756606
+0.389974
+0.416435
+Both conditional sets scored much lower FID and KID than the unconditional baseline under the same evaluation
+procedure. This indicates stronger general distribution matching. It does not by itself prove reliable crack generation,
+because crack presence still requires visual annotation or a validated crack classifier.
+ Experiment
+FID
+KID mean
+Paired LPIPS
+Experiment 1 unconditional
+5.604571
+3.419779
+0.548679
+Experiment 2 cracked condition
+0.701002
+0.556873
+0.425783
+Experiment 2 non-cracked condition
+0.724640
+0.756606
+0.416435</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 8
+7. Reference Generated Images
+7.1 Cracked Condition Reference Grids
+ cracked_epoch_050_seed_42.png
+ cracked_epoch_050_seed_123.png
+7.2 Non-Cracked Condition Reference Grids</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 9
+ non_cracked_epoch_050_seed_42.png
+ non_cracked_epoch_050_seed_123.png</p><p>
+Experiment 2 - Conditional DDPM Formula Report
+Page 10
+8. Observations and Limitations
+
+The conditional model achieved substantially better general metrics than the unconditional baseline.
+
+The learned two-class embedding allows separate cracked and non-cracked sampling commands.
+
+A preliminary visual check found about 5 visibly cracked samples out of 16 in one cracked-condition grid, but this is
+not a final crack-presence metric.
+
+The first auxiliary crack classifier reached only 65.79 percent validation accuracy, so automatic crack-presence
+evaluation is not yet reliable.
+
+FID, KID, and LPIPS must not be interpreted as proof that the cracked condition reliably generates real cracks.
+9. Conclusion
+Experiment 2 successfully extends the DDPM baseline from unconditional concrete texture generation to binary
+crack-status conditional generation. It preserves the same 64 x 64 SDNET2018 setup but adds a learned class
+embedding, balanced class sampling, and separate cracked/non-cracked generation paths. The formal metrics
+improve strongly relative to Experiment 1, but a reliable crack-presence result remains pending.
+10. Recommended Next Steps
+
+Create a manual visual audit CSV for representative cracked-condition and non-cracked-condition samples.
+
+Report visible crack rate, texture quality, and artifact rate separately for each condition.
+
+Train or validate a stronger crack classifier before using automatic crack-presence rates.
+
+Compare Experiment 2 against the 128 x 128 augmented Experiment 3 only after Experiment 3 evaluation is
+complete.
+</p></div></details></section></article><aside class="detail-aside"><div class="aside-card"><p class="eyebrow">EVIDENCE STATUS</p><strong>HISTORICAL RUN · EVALUATION AUDITED</strong><p>This page distinguishes measured outputs from interpretation and planned work.</p></div><div class="aside-card"><p class="eyebrow">NAVIGATE</p><div class="pager"><a href="experiment-1.html">← Experiment 01</a><a href="experiment-3.html">Experiment 03 →</a></div></div></aside></section></main><footer class="detail-footer"><span>CRACK / SYNTHESIS · Experiment 02</span><a href="index.html">Return to research archive</a></footer></body></html>

@@ -69,7 +69,12 @@ def markdown_to_html(text: str) -> str:
 def inline(s: str) -> str:
     s = html.escape(s)
     s = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", lambda m: f'<img src="{image_src(m.group(2))}" alt="{m.group(1)}">', s)
-    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lambda m: f'<span class="artifact-link">{m.group(1)}</span>', s)
+    def render_link(match):
+        url=html.unescape(match.group(2))
+        if url.startswith(('https://','http://')):
+            return f'<a href="{html.escape(url,quote=True)}">{match.group(1)}</a>'
+        return f'<span class="artifact-link">{match.group(1)}</span>'
+    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", render_link, s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
     return s
@@ -89,6 +94,7 @@ def split_table_cells(line: str):
 
 def image_src(url: str) -> str:
     name = Path(url).name
+    if (ROOT/'assets/research'/name).is_file():return 'assets/research/'+name
     aliases = {
         "exp5_non_cracked_256_grid.png": "non_cracked_256_grid.png",
         "exp5_flexural_256_grid.png": "flexural_256_grid.png",

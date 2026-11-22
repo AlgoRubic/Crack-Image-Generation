@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "reports_checked": 6,
+  "reports": [
+    {
+      "experiment": 1,
+      "words": 2540,
+      "archive_files": 6,
+      "input_files": 14,
+      "per_sample_rows": 1000
+    },
+    {
+      "experiment": 2,
+      "words": 2578,
+      "archive_files": 7,
+      "input_files": 15,
+      "per_sample_rows": 2000
+    },
+    {
+      "experiment": 3,
+      "words": 2536,
+      "archive_files": 6,
+      "input_files": 17,
+      "per_sample_rows": 400
+    },
+    {
+      "experiment": 4,
+      "words": 2565,
+      "archive_files": 7,
+      "input_files": 19,
+      "per_sample_rows": null
+    },
+    {
+      "experiment": 5,
+      "words": 2972,
+      "archive_files": 6,
+      "input_files": 22,
+      "per_sample_rows": null
+    },
+    {
+      "experiment": 6,
+      "words": 4111,
+      "archive_files": 9,
+      "input_files": 28,
+      "per_sample_rows": 1400
+    }
+  ],
+  "errors": [],
+  "text_inputs_with_line_ending_conversion": [],
+  "scope": "Evidence consistency, source/archive integrity, structure, links and sample-log aggregation; not independent scientific validation"
+}

@@ -36,6 +36,10 @@ def main():
         metrics = json.loads((ROOT / f'assets/research/exp{n}_metrics.json').read_text())
         if 'CURRENT EVALUATION ADDENDUM' not in page or 'Archival report:' not in page:
             errors.append(f'Experiment {n}: missing current/archival distinction')
+        if 'current-research-report' not in page or f'Experiment {n} Research Report' not in page:
+            errors.append(f'Experiment {n}: revised full report missing')
+        for section in ('Sources of error and errors identified','Assumptions and their consequences','Reproducibility and artifact record'):
+            if section not in page:errors.append(f'Experiment {n}: missing revised report section {section}')
         if n == 6:
             score = metrics['confusion_matrix']['overall_accuracy'] * 100
             if f'{score:.2f}%' not in page or 'superseded' not in page:

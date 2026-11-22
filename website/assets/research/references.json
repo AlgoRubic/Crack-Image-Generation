@@ -12,7 +12,8 @@
     {"key": "liu2019deepcrack", "url": "https://github.com/yhlleo/DeepCrack", "role": "Dataset source, masks, split definitions and citation"},
     {"key": "shi2016crackforest", "url": "https://github.com/cuilimeng/CrackForest-dataset", "role": "Dataset source and citation"},
     {"key": "wang2026rc10519", "url": "https://data.mendeley.com/datasets/3ghxck2wd5/1", "role": "Matching RC_10519 publisher record and declared license; local archive identity against publisher checksum remains unverified"},
-    {"key": "wang2024uavcracks", "url": "https://onlinelibrary.wiley.com/doi/10.1002/suco.202300937", "role": "Paper citation explicitly requested by the RC10519 dataset publisher; no mechanism-label or independence validation implied"}
+    {"key": "wang2024uavcracks", "url": "https://onlinelibrary.wiley.com/doi/10.1002/suco.202300937", "role": "Paper citation explicitly requested by the RC10519 dataset publisher; no mechanism-label or independence validation implied"},
+    {"key": "zhang2018lpips", "url": "https://arxiv.org/abs/1801.03924", "role": "LPIPS foundation; historical index-paired diagnostics do not establish reconstruction or crack correctness"}
   ],
   "scope": "Method and dataset bibliography. RC_10519 matching publisher record identified, but local archive byte identity, upstream acquisition lineage and engineering references remain outstanding. These sources do not establish physical causation in generated images."
 }

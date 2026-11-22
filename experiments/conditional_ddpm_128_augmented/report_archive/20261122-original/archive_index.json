@@ -1,0 +1,36 @@
+{
+  "revision": "2026-11-22",
+  "policy": "Exact pre-revision bytes; historical statements may be superseded by the current report.",
+  "entries": [
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\STATUS.md",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\STATUS.md",
+      "sha256": "aaffce38721ac56d3a0a948ef562ae009df59212d3acaf606e57379fe26f38c7"
+    },
+    {
+      "source": "website\\experiment-3.html",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\previous_webpage.html",
+      "sha256": "1e21cd500ffe410445205f77833bdf375daab14609e0f083a485743df29907bb"
+    },
+    {
+      "source": "website\\assets\\reports\\experiment_3_formula_report.pdf",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\experiment_3_formula_report.pdf",
+      "sha256": "df6cbc70eb87d62ad93dca9a8266e44e3f2e623b345aec7b00ea08c4d4117a4a"
+    },
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\plots\\exp3_overview.png",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\plots\\exp3_overview.png",
+      "sha256": "e12f62c43747b2938b6494fa7667680d49c7963a53300784aaba13dfd27d232b"
+    },
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\plots\\exp3_overview.svg",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\plots\\exp3_overview.svg",
+      "sha256": "704d43c4b537b4d8bd79660af47bdce593ac7962e211f52ac1e55892370f3845"
+    },
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\plots\\plot_provenance.json",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "sha256": "e30f6d8654cea3f0c3b26cba77f8901c8600c725b9989b856929580089c474d2"
+    }
+  ]
+}

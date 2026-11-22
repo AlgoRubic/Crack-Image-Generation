@@ -1,0 +1,8 @@
+{
+  "metrics_source": "D:\\Downloads\\concrete_ddpm\\experiments\\conditional_ddpm\\EVALUATION_METRICS.json",
+  "training_log": "D:\\Downloads\\concrete_ddpm\\experiments\\conditional_ddpm\\logs\\conditional_training_loss.csv",
+  "metrics_modified": 1795239176.0726793,
+  "training_rows_plotted": 50,
+  "caveat": "Saved heuristic evaluation, not independently validated accuracy.",
+  "corrected_target_independent_confusion": false
+}

@@ -1,0 +1,111 @@
+{
+  "experiment": 1,
+  "revision": "2026-11-22",
+  "report": "EXPERIMENT_1_FULL_REPORT.md",
+  "checkpoint": {
+    "path": "models\\weights\\exp1_unconditional_64\\exp1_unconditional_64_epoch050.pt",
+    "sha256": "55fac363939c270cfb4d6e9c4e9dc645a1407b3749f9acb5611477d5f9dd2e9a",
+    "parameters": 3258115,
+    "epoch_field": 49,
+    "loss": 0.01599615436508108,
+    "optimizer_groups": [
+      {
+        "lr": 0.0002,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0.01,
+        "amsgrad": false,
+        "maximize": false,
+        "foreach": null,
+        "capturable": false,
+        "differentiable": false,
+        "fused": null,
+        "decoupled_weight_decay": true
+      }
+    ]
+  },
+  "input_sha256": {
+    "experiments\\unconditional_ddpm\\EVALUATION_METRICS.json": "34f2ef3d604e503e7ee5fd38ddb2dbb02a4ecb7b1266626b19c51f07ee68c7cc",
+    "experiments\\unconditional_ddpm\\logs\\training_loss.csv": "59e7fc575f4606f766803cb42db6b7aa965108795cc72e8723597805f660d29f",
+    "datasets\\exp1_exp2_sdnet_64\\train.csv": "53c785cc45ffca24687edc9390eb6d476c37a0bec7db7a299c35c5421e4706fc",
+    "experiments\\unconditional_ddpm\\plots\\exp1_overview.png": "889e7c2f880cb9dc26639b447346f60750468b4d4807ac8bc4c11a7374a91218",
+    "src\\train.py": "f5c14d0c469ecbc8dfd2b25aba1145193748ed5cea2947641ae533b1f352b785",
+    "src\\evaluate_exp1_2_3_errors.py": "1deed4927ba968c853ff79de475160b2dcd4cfe40ffeac23e1608b10acf83f42",
+    "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+    "models\\checkpoint_manifest.json": "09d7942d894622a362e7a65653f9c8feec7b15dc8fc894e2245eb648cd552ef9",
+    "datasets\\current_research_split.json": "8972d236dc2ecbb8c28894e5efe181c6068cfb636d6cdeaece45f1d90625eca3",
+    "datasets\\source_content_v1\\summary.json": "4123b1b2226b6758dfe876b678704ceebdeb003843926f3d61b5c30f327b2ab0",
+    "datasets\\near_duplicate_screen_v1\\research_v5_summary.json": "70dabf2c06565d70351ba40b90a0ac5e7fb6c000a3613c81e70bfb5d6c59c2b8",
+    "experiments\\fresh_install_cpu_verification.json": "d5b91bc1c3f0b6701ece95bf9ec024800622794b7a4cfefe3cb4876b74c23d0a",
+    "experiments\\unconditional_ddpm\\PER_SAMPLE_ERROR_LOG.csv": "35ad8c7b17ada972e182010412d6759a5444f28cc482842441afee17ad0aa584",
+    "website\\assets\\images\\exp1_seed42.png": "d5ac94be461f4b6f50e016273d0b4de5288bae76aca31ff40245ddcc02321e4e"
+  },
+  "archived_sources": [
+    {
+      "source": "experiments\\unconditional_ddpm\\EXPERIMENT_1_FULL_REPORT.md",
+      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\EXPERIMENT_1_FULL_REPORT.md",
+      "sha256": "63185d033306cd8a6a33e4be001723afef780c9d6246f036acac3dc8eea47a1b"
+    },
+    {
+      "source": "experiments\\unconditional_ddpm\\STATUS.md",
+      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\STATUS.md",
+      "sha256": "67e754ad47736e5611b8ee8e69aaeeef86749c11de280ea5994bd45c779fd12d"
+    },
+    {
+      "source": "website\\experiment-1.html",
+      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\previous_webpage.html",
+      "sha256": "4fe3f34680c4d2c1599c35944c077549a1cedaeec9fd2433623603a37cec5ef0"
+    },
+    {
+      "source": "experiments\\unconditional_ddpm\\plots\\exp1_overview.png",
+      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\plots\\exp1_overview.png",
+      "sha256": "8d8eb777aae0a363994ec6002ceb9cca88b2fd6d6954e88674be3202eee8687f"
+    },
+    {
+      "source": "experiments\\unconditional_ddpm\\plots\\exp1_overview.svg",
+      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\plots\\exp1_overview.svg",
+      "sha256": "b9083d25d91fd5192c83e5bf0fa81f2d7a03f51cbfbcb94986569b722d80eb04"
+    },
+    {
+      "source": "experiments\\unconditional_ddpm\\plots\\plot_provenance.json",
+      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "sha256": "3eb4b831fa3bbd7115e2d8ff7db9069c8b49f3b4bd71e82ec66dba4a16f8d49d"
+    }
+  ],
+  "input_lf_sha256": {
+    "experiments\\unconditional_ddpm\\EVALUATION_METRICS.json": "3ab3ffe55e5cae075d01f81832839a77c888aa16092682e2a6922481eeb84664",
+    "experiments\\unconditional_ddpm\\logs\\training_loss.csv": "70baaa710aa4d2e0ee75f42ba3614aa7585701742ca586d0050f50ab58997cca",
+    "datasets\\exp1_exp2_sdnet_64\\train.csv": "11ed41bf0db99849192b3f7f761e4e3aaafb5b4f99f7ccba939bde9298a3484e",
+    "src\\train.py": "f5c14d0c469ecbc8dfd2b25aba1145193748ed5cea2947641ae533b1f352b785",
+    "src\\evaluate_exp1_2_3_errors.py": "1deed4927ba968c853ff79de475160b2dcd4cfe40ffeac23e1608b10acf83f42",
+    "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+    "models\\checkpoint_manifest.json": "a99a5c1f378100bb2a89448a19c6e3eb3e03f3b6d095379c0da0c3a6446af786",
+    "datasets\\current_research_split.json": "c2a30268d6884d3b07e42b9d32e92c5ed15d226a6526dbb01bb9a85da00cef90",
+    "datasets\\source_content_v1\\summary.json": "d2723afa310bb3924939127ce1c2405f44a6e49351c9da357842e439bd477420",
+    "datasets\\near_duplicate_screen_v1\\research_v5_summary.json": "97fc0db0cfa04fe62cdd6987d4f5aa71be3dfa0b41f4242be3095b502e37df67",
+    "experiments\\fresh_install_cpu_verification.json": "159e71d0e1a007cd2b709279dcf9ff475097045d758321316868c4e992856913",
+    "experiments\\unconditional_ddpm\\PER_SAMPLE_ERROR_LOG.csv": "8b11dd627386b6479919462cccd0bdf951580cae63e1e1a97b36150a8fd5a56b"
+  },
+  "hash_policy": "Raw hashes attest observed bytes; LF-normalized hashes additionally identify text content across Git line-ending conversions. Archived originals retain exact bytes.",
+  "training": {
+    "unique_epochs": 50,
+    "raw_numeric_rows": 51,
+    "repeated_epochs": 1,
+    "ignored_rows": 1,
+    "final": {
+      "epoch": 50,
+      "loss": 0.01599615436508108
+    },
+    "minimum": {
+      "epoch": 46,
+      "loss": 0.01578289384086686
+    }
+  },
+  "limitations": [
+    "Retrospective artifact analysis, not new clean training",
+    "Requested labels and morphology predicates are not independent engineering ground truth"
+  ]
+}

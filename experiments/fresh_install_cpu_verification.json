@@ -1,0 +1,483 @@
+{
+  "status": "completed",
+  "created_utc": "2026-11-21T08:31:56.653703+00:00",
+  "workspace": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2",
+  "platform": "win32",
+  "bootstrap_python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+  "verification": "Fresh CPU dependency installation and pretrained inference only; no model quality or scientific validity claim",
+  "steps": [
+    {
+      "label": "export-source",
+      "status": "passed",
+      "command": [
+        "git",
+        "archive",
+        "--format=zip",
+        "--output",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\committed-source.zip",
+        "e57fd723ac3f786fb480362ec6b8418194cda06e",
+        "pipeline",
+        "src",
+        "models/checkpoint_manifest.json",
+        "models/release_manifest.json",
+        "requirements-core.txt",
+        "README.md"
+      ],
+      "seconds": 0.10957220000091183,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\export-source.log"
+    },
+    {
+      "label": "create-environment",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\concrete_ddpm\\.venv\\Scripts\\python.exe",
+        "-m",
+        "venv",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv"
+      ],
+      "seconds": 17.88573390000056,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\create-environment.log"
+    },
+    {
+      "label": "upgrade-installer",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "--isolated",
+        "--disable-pip-version-check",
+        "--cache-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\cache\\pip",
+        "install",
+        "--upgrade",
+        "--only-binary=:all:",
+        "--index-url",
+        "https://pypi.org/simple",
+        "--report",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\installer-upgrade.json",
+        "pip"
+      ],
+      "seconds": 13.480453099999067,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\upgrade-installer.log"
+    },
+    {
+      "label": "install-cpu-pytorch",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "--isolated",
+        "--disable-pip-version-check",
+        "--cache-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\cache\\pip",
+        "install",
+        "--only-binary=:all:",
+        "--index-url",
+        "https://download.pytorch.org/whl/cpu",
+        "--report",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\torch-install.json",
+        "torch==2.14.0",
+        "torchvision==0.29.0"
+      ],
+      "seconds": 205.9456253999997,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\install-cpu-pytorch.log"
+    },
+    {
+      "label": "install-core",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "--isolated",
+        "--disable-pip-version-check",
+        "--cache-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\cache\\pip",
+        "install",
+        "--only-binary=:all:",
+        "--index-url",
+        "https://pypi.org/simple",
+        "--report",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\core-install.json",
+        "-r",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\requirements-core.txt"
+      ],
+      "seconds": 54.63661420000062,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\install-core.log"
+    },
+    {
+      "label": "dependency-check",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "--isolated",
+        "--disable-pip-version-check",
+        "--cache-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\cache\\pip",
+        "check"
+      ],
+      "seconds": 0.9685907000002771,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\dependency-check.log"
+    },
+    {
+      "label": "installed-packages",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "--isolated",
+        "--disable-pip-version-check",
+        "--cache-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\cache\\pip",
+        "freeze",
+        "--all"
+      ],
+      "seconds": 0.5428771000006236,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\installed-packages.log"
+    },
+    {
+      "label": "runtime-isolation",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "import json,sys,site,torch,torchvision; assert sys.prefix!=sys.base_prefix; assert not site.ENABLE_USER_SITE; assert torch.version.cuda is None; print(json.dumps(dict(python=sys.version,torch=torch.__version__,torchvision=torchvision.__version__,cuda=torch.version.cuda,prefix=sys.prefix)))"
+      ],
+      "seconds": 9.804122899999129,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\runtime-isolation.log"
+    },
+    {
+      "label": "download-models",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\download_models.py"
+      ],
+      "seconds": 126.81804060000104,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\download-models.log"
+    },
+    {
+      "label": "verify-checkpoints",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\checkpoints.py",
+        "verify"
+      ],
+      "seconds": 0.7803418000003148,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-checkpoints.log"
+    },
+    {
+      "label": "inference-exp1",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\generate_cracks.py",
+        "--experiment",
+        "1",
+        "--crack-type",
+        "all",
+        "--count",
+        "1",
+        "--seed",
+        "2026",
+        "--output-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp1"
+      ],
+      "seconds": 106.66455899999892,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\inference-exp1.log"
+    },
+    {
+      "label": "verify-image-exp1",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); assert im.mode==\"RGB\" and im.size==(int(sys.argv[2]),int(sys.argv[2]))",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp1\\unconditional\\unconditional_seed2026_0000.png",
+        "64"
+      ],
+      "seconds": 0.1625278999999864,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-image-exp1.log"
+    },
+    {
+      "label": "inference-exp2",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\generate_cracks.py",
+        "--experiment",
+        "2",
+        "--crack-type",
+        "cracked",
+        "--count",
+        "1",
+        "--seed",
+        "2026",
+        "--output-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp2"
+      ],
+      "seconds": 104.33228450000024,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\inference-exp2.log"
+    },
+    {
+      "label": "verify-image-exp2",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); assert im.mode==\"RGB\" and im.size==(int(sys.argv[2]),int(sys.argv[2]))",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp2\\cracked\\cracked_seed2026_0000.png",
+        "64"
+      ],
+      "seconds": 0.17063409999900614,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-image-exp2.log"
+    },
+    {
+      "label": "inference-exp3",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\generate_cracks.py",
+        "--experiment",
+        "3",
+        "--crack-type",
+        "cracked",
+        "--count",
+        "1",
+        "--seed",
+        "2026",
+        "--output-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp3"
+      ],
+      "seconds": 349.4975237999988,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\inference-exp3.log"
+    },
+    {
+      "label": "verify-image-exp3",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); assert im.mode==\"RGB\" and im.size==(int(sys.argv[2]),int(sys.argv[2]))",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp3\\cracked\\cracked_seed2026_0000.png",
+        "128"
+      ],
+      "seconds": 0.13793489999989106,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-image-exp3.log"
+    },
+    {
+      "label": "inference-exp4",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\generate_cracks.py",
+        "--experiment",
+        "4",
+        "--crack-type",
+        "non_cracked",
+        "--count",
+        "1",
+        "--seed",
+        "2026",
+        "--output-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp4"
+      ],
+      "seconds": 125.68501939999987,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\inference-exp4.log"
+    },
+    {
+      "label": "verify-image-exp4",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); assert im.mode==\"RGB\" and im.size==(int(sys.argv[2]),int(sys.argv[2]))",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp4\\non_cracked\\sample_0000.png",
+        "256"
+      ],
+      "seconds": 0.1616403000007267,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-image-exp4.log"
+    },
+    {
+      "label": "inference-exp5",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\generate_cracks.py",
+        "--experiment",
+        "5",
+        "--crack-type",
+        "flexural",
+        "--count",
+        "1",
+        "--seed",
+        "2026",
+        "--output-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp5"
+      ],
+      "seconds": 121.31657740000082,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\inference-exp5.log"
+    },
+    {
+      "label": "verify-image-exp5",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); assert im.mode==\"RGB\" and im.size==(int(sys.argv[2]),int(sys.argv[2]))",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp5\\flexural\\sample_0000.png",
+        "256"
+      ],
+      "seconds": 0.14498439999988477,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-image-exp5.log"
+    },
+    {
+      "label": "inference-exp6",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\pipeline\\generate_cracks.py",
+        "--experiment",
+        "6",
+        "--crack-type",
+        "flexural",
+        "--count",
+        "1",
+        "--seed",
+        "2026",
+        "--output-dir",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp6"
+      ],
+      "seconds": 113.03562039999997,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\inference-exp6.log"
+    },
+    {
+      "label": "verify-image-exp6",
+      "status": "passed",
+      "command": [
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv\\Scripts\\python.exe",
+        "-c",
+        "from PIL import Image; import sys; im=Image.open(sys.argv[1]); im.load(); assert im.mode==\"RGB\" and im.size==(int(sys.argv[2]),int(sys.argv[2]))",
+        "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp6\\flexural\\sample_0000.png",
+        "256"
+      ],
+      "seconds": 0.30081760000030044,
+      "returncode": 0,
+      "log": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\logs\\verify-image-exp6.log"
+    }
+  ],
+  "inference": [
+    {
+      "experiment": 1,
+      "passed": true,
+      "image": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp1\\unconditional\\unconditional_seed2026_0000.png",
+      "resolution": 64,
+      "image_sha256": "165b7896076bfaa2d1046ca759e7c8b35dfc82380140162b571f2e71c8a6a3ee"
+    },
+    {
+      "experiment": 2,
+      "passed": true,
+      "image": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp2\\cracked\\cracked_seed2026_0000.png",
+      "resolution": 64,
+      "image_sha256": "f84a30731032a9cafce23a5e8250c52016ad114378fcbbc1bd95f693d8f03c0a"
+    },
+    {
+      "experiment": 3,
+      "passed": true,
+      "image": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp3\\cracked\\cracked_seed2026_0000.png",
+      "resolution": 128,
+      "image_sha256": "a303a43d52ab50ab08ca47e9e70f496f85628bf986e629d7c97df442d06a2b95"
+    },
+    {
+      "experiment": 4,
+      "passed": true,
+      "image": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp4\\non_cracked\\sample_0000.png",
+      "resolution": 256,
+      "image_sha256": "cb0e52bf88042b4c5cc4c08540e623fa2b27a7c74318b539a55ba95669457fe0"
+    },
+    {
+      "experiment": 5,
+      "passed": true,
+      "image": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp5\\flexural\\sample_0000.png",
+      "resolution": 256,
+      "image_sha256": "c2d927757776ef14177c0bced2c465c30bfe78c8a010131ab5666af96a4a03ee"
+    },
+    {
+      "experiment": 6,
+      "passed": true,
+      "image": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\project\\outputs\\exp6\\flexural\\sample_0000.png",
+      "resolution": 256,
+      "image_sha256": "2fc76c814147dc403aa7ef09be1403bf47a6a8a4ecbb9c9c50c7aeaf90b9c385"
+    }
+  ],
+  "source_commit": "e57fd723ac3f786fb480362ec6b8418194cda06e",
+  "source_archive_sha256": "c7761155ee929b0f926cf463bd46e59db1ab62b9be106adf712b9d2d8f416906",
+  "requirements_sha256": "9c1642af08c717dd02889431a28a1dfb8e6155ac7b0b65dd678eee654db97d53",
+  "installed_packages": [
+    "colorama==0.4.6",
+    "contourpy==1.3.2",
+    "cycler==0.12.1",
+    "filelock==4.1.0",
+    "fonttools==4.65.0",
+    "fsspec==2026.9.0",
+    "Jinja2==3.1.6",
+    "kiwisolver==1.5.1",
+    "MarkupSafe==3.0.3",
+    "matplotlib==3.10.9",
+    "mpmath==1.3.0",
+    "networkx==3.4.2",
+    "numpy==2.2.6",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "pip==26.3",
+    "pyparsing==3.3.3",
+    "python-dateutil==3.0.0",
+    "scipy==1.15.3",
+    "setuptools==78.1.0",
+    "six==1.17.0",
+    "sympy==1.14.0",
+    "torch==2.14.0+cpu",
+    "torch_fidelity==0.4.0",
+    "torchvision==0.29.0+cpu",
+    "tqdm==4.70.1",
+    "typing_extensions==4.16.0",
+    "tzdata==2026.6"
+  ],
+  "runtime": {
+    "python": "3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]",
+    "torch": "2.14.0+cpu",
+    "torchvision": "0.29.0+cpu",
+    "cuda": null,
+    "prefix": "D:\\Downloads\\Crack-Image-Generation-sharing\\fresh-cpu-replication-20261121-v2\\venv"
+  },
+  "datasets_present": false,
+  "fresh_install_verified": true,
+  "completed_utc": "2026-11-21T08:54:29.456555+00:00"
+}

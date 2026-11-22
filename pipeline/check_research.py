@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-CHECKS=['pipeline/test_research.py','pipeline/test_acquisition_splits.py','pipeline/test_source_hashes.py','pipeline/test_near_duplicate_screen.py','pipeline/test_rc10519_audit.py','pipeline/test_quality_view.py','pipeline/test_detector.py','pipeline/test_ablation.py','pipeline/test_model_install.py','pipeline/test_research_handoff.py','pipeline/test_fidelity_protocol.py','src/test_evaluation_independence.py','website/verify_site.py']
+CHECKS=['pipeline/test_research.py','pipeline/test_acquisition_splits.py','pipeline/test_source_hashes.py','pipeline/test_near_duplicate_screen.py','pipeline/test_rc10519_audit.py','pipeline/test_quality_view.py','pipeline/test_detector.py','pipeline/test_ablation.py','pipeline/test_model_install.py','pipeline/test_research_handoff.py','pipeline/test_fidelity_protocol.py','src/test_evaluation_independence.py','pipeline/verify_research_reports.py','website/verify_site.py']
 
 
 def main():

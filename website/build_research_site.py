@@ -75,8 +75,21 @@ def build(project):
     rows, panels = [], []
     for n, name in enumerate(NAMES, 1):
         folder = project / 'experiments' / name
+        revision=json.loads((project/'experiments/report_revision_audit.json').read_text())
+        # The authored narrative is shared with the evidence-linked report builder.
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('current_research_reports',project/'pipeline/build_research_reports.py')
+        report_module=importlib.util.module_from_spec(spec);spec.loader.exec_module(report_module)
+        narrative=report_module.NARRATIVE[n]
+        original_page=(folder/'report_archive/20261122-original/previous_webpage.html').read_text(encoding='utf-8')
+        original_match=re.search(r'<div class="report-content">(.*?)</div></details>',original_page,re.S)
+        archived_body=original_match.group(1) if original_match else '<p>The original record is preserved in the repository report archive.</p>'
         source = folder / ('evaluation_corrected/EVALUATION_METRICS.json' if n == 6 else 'EVALUATION_METRICS.json')
         data = json.loads(source.read_text(encoding='utf-8'))
+        shutil.copyfile(folder/f'EXPERIMENT_{n}_FULL_REPORT.md',SITE/f'assets/reports/experiment_{n}_full_report.md')
+        shutil.copyfile(folder/'report_evidence.json',assets/f'exp{n}_report_evidence.json')
+        if n in (5,6):shutil.copyfile(folder/f'EXPERIMENT_{n}_DOCUMENTATION_AND_ASSUMPTIONS.md',SITE/f'assets/reports/experiment_{n}_documentation_and_assumptions.md')
+        if n==4:shutil.copyfile(folder/'CRACK_CONTINUITY_ANALYSIS_REPORT.md',SITE/'assets/reports/experiment_4_continuity_report.md')
         shutil.copyfile(source, assets / f'exp{n}_metrics.json')
         shutil.copyfile(folder / 'plots' / f'exp{n}_overview.png', assets / f'exp{n}_overview.png')
         cm = data.get('confusion_matrix', {})
@@ -112,12 +125,10 @@ def build(project):
                  observations='See the current evaluation addendum for per-class measurements and plots. Generated examples illustrate model output; they are not independently annotated validation data.',
                  conclusion='This experiment provides evidence about image synthesis and heuristic control. Claims about physical mechanism, generalization and downstream usefulness require independent labels and controlled held-out evaluation.',
                  errors='Geometry-based labels and detectors are proxies. Historical checkpoint exposure, small or unequal sample sizes, differing fidelity implementations and domain shifts limit interpretation. See the research audit for the corrected protocol.')
-        if n in (2, 3):
-            previous = (SITE / f'experiment-{n}.html').read_text(encoding='utf-8')
-            match = re.search(r'<div class="report-content">(.*?)</div></details>', previous, re.S)
-            if not match:
-                raise ValueError(f'Missing archival technical record for Experiment {n}')
-            d.update(report_kind='archive', archive_body=match.group(1))
+        d.update(title=report_module.TITLES[n-1],aim=narrative['aim'],
+                 procedure=' '.join(narrative['procedure']),observations=narrative['interpretation'],
+                 conclusion=narrative['conclusion'],
+                 assumptions=' '.join(f'{a}: {b} {c}' for a,b,c in narrative['assumptions']))
         d['facts'] = [('Canvas', '64 × 64' if n < 3 else '128 × 128' if n == 3 else '256 × 256'),
                       ('Evaluated images', str(count)), ('Heuristic agreement', agreement), ('Independent validation', 'Pending')]
         if n == 6:
@@ -129,7 +140,9 @@ def build(project):
         page = page.replace('</head>', '<link rel="stylesheet" href="research.css"></head>')
         page = page.replace('<section class="facts">', '<div class="research-notice">Historical training record with a current evaluation addendum. Proxy scores are not validated structural-mechanism accuracy. <a href="research.html">View research status</a></div><section class="facts">', 1)
         page = page.replace('<section class="full-report">', panel + '<section class="full-report">', 1)
-        page = page.replace('<details open><summary>Expand / collapse the original report</summary>', '<p>Archival report: it may contain superseded measurements or interpretations. The current addendum above takes precedence.</p><details><summary>Read the historical technical record</summary>')
+        page=page.replace('<section class="full-report">','<section class="full-report" id="full-research-report">',1)
+        page = page.replace('<details open><summary>Expand / collapse the original report</summary><div class="report-content">', '<p class="report-revision">Current research report · Revised 22 November 2026. Methods, results, assumptions and validation limits are presented in full below.</p><div class="report-content current-research-report">')
+        page = page.replace('</div></details></section></article>', '</div></section><section class="archived-report"><p>Archival report: the earlier interpretation may contain superseded claims. The current research report takes precedence.</p><details><summary>Read the earlier archived technical record</summary><div class="report-content">'+archived_body+'</div></details></section></article>')
         (SITE / f'experiment-{n}.html').write_text(page, encoding='utf-8')
         rows.append([f'Experiment {n}', count, agreement, 'Descriptive heuristic evaluation'])
         panels.append(f'<section class="research-section"><h2>Experiment {n}</h2><p>{esc(text)}</p><a href="experiment-{n}.html">Read complete experiment page</a><img class="research-plot" src="assets/research/exp{n}_overview.png" alt="Experiment {n} results"></section>')
@@ -142,7 +155,8 @@ def build(project):
         audit = json.loads(source.read_text())
         shutil.copyfile(source, assets / (name + '_audit.json'))
         audits.append([name, audit['rows'],audit['split_counts']['train'],audit['split_counts']['validation'],audit['split_counts']['test'],audit['acquisition_overlap']])
-    content = '<p class="eyebrow">RESEARCH AUDIT · 21 NOVEMBER 2026</p><h1>Evidence you can inspect.</h1><p class="lede">Six historical diffusion experiments, corrected evaluation, and a reproducible protocol for the next research lineage.</p><div class="research-notice"><strong>Publication readiness: incomplete.</strong> Exact-duplicate audits, prospective splits, real-mask detector calibration, and a three-seed historical ablation pilot are available. Full clean training, expert labels, generated-image detector validation, controlled clean-lineage comparisons and external evaluation remain outstanding.</div>'
+    content = '<p class="eyebrow">RESEARCH AUDIT · 22 NOVEMBER 2026</p><h1>Evidence you can inspect.</h1><p class="lede">Six historical diffusion experiments, revised full research reports, corrected evaluation, and a reproducible protocol for the next research lineage.</p><div class="research-notice"><strong>Publication readiness: incomplete.</strong> The six reports have been revised against saved evidence, including source errors and assumptions. Full clean training, expert labels, generated-image detector validation, controlled clean-lineage comparisons and external evaluation remain outstanding.</div>'
+    content+='<section class="research-section"><h2>Revised full research reports</h2><p>Every experiment page now contains its complete revised report, with methods, mathematical definitions, dataset composition, result images, uncertainty, assumptions, errors identified, conclusions and citations. Original report bytes and figures are preserved in the repository archives. The report checks verify source signatures and available per-sample confusion counts; they do not establish independent scientific validity.</p>'+table(['Experiment','Revised report'],[[r['experiment'],f"{r['words']:,} words"] for r in revision['reports']])+'</section>'
     content += '<section class="research-section"><h2>What has actually been measured</h2>' + table(['Experiment','Generated images','Heuristic agreement','Evidence type'],rows) + '<p>The experiments differ in resolution, data and evaluation protocol. These numbers are descriptive, not a controlled ranking.</p></section>'
     source_audit=json.loads((project/'datasets/source_content_v1/summary.json').read_text())
     screen=project/'datasets/near_duplicate_screen_v1'
@@ -170,6 +184,7 @@ def build(project):
     document = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Research status | Crack Synthesis</title><link rel="stylesheet" href="experiment.css"><link rel="stylesheet" href="research.css"></head><body><header class="detail-header"><a href="index.html">CRACK / SYNTHESIS</a><nav><a href="index.html#experiments">Experiment archive</a></nav></header><main>'+content+'</main><footer class="detail-footer">Sources: saved project evaluations and dataset audit records.</footer></body></html>'
     (SITE / 'research.html').write_text(document, encoding='utf-8')
     index = (SITE / 'index.html').read_text(encoding='utf-8')
+    index=re.sub(r'<a([^>]*?)href="assets/reports/experiment_(\d+)[^"]*"([^>]*)>.*?</a>',lambda m:f'<a{m[1]}href="experiment-{m[2]}.html"{m[3]}>Read current report</a>',index,flags=re.S)
     if 'id="current-research-status"' not in index:
         index = index.replace('<main id="top">', '<main id="top"><section id="current-research-status" class="section-shell research-notice"><strong>Current evidence and research status</strong><p>Corrected results, all six experiment plots, dataset audits and remaining validation requirements are now available.</p><a href="research.html">Read the current research audit</a></section>')
     index = index.replace('</head>', '<link rel="stylesheet" href="research.css"></head>') if 'href="research.css"' not in index else index

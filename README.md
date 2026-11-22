@@ -2,6 +2,10 @@
 
 Browse the current [research archive and audit](https://concrete-crack-synthesis.beigetoad12.chatgpt.site/research.html) for all experiment plots, corrected evaluations, dataset audits and methodological limitations.
 
+The six full research reports were revised on 22 November 2026 against checkpoint metadata, training logs, saved evaluation counts, source code and data audits. They include methods, mathematical definitions, archived result images, statistical uncertainty, assumptions, errors identified, conclusions and citations. Earlier reports and figures are preserved byte-for-byte in each experiment's `report_archive/20261122-original/` directory.
+
+Read the current reports: [Experiment 1](experiments/unconditional_ddpm/EXPERIMENT_1_FULL_REPORT.md), [Experiment 2](experiments/conditional_ddpm/EXPERIMENT_2_FULL_REPORT.md), [Experiment 3](experiments/conditional_ddpm_128_augmented/EXPERIMENT_3_FULL_REPORT.md), [Experiment 4](experiments/crack_type_conditional/EXPERIMENT_4_FULL_REPORT.md), [Experiment 5](experiments/structural_mechanism_ddpm/EXPERIMENT_5_FULL_REPORT.md), and [Experiment 6](experiments/exp6_level_c_spatial_physics/EXPERIMENT_6_FULL_REPORT.md). The same full text appears on the corresponding website pages. Run `python pipeline/verify_research_reports.py` to check source/archive signatures and available per-sample confusion counts. Reporting quality does not establish publication readiness: clean training and independent scientific validation remain pending.
+
 This repository implements six experiments in synthetic concrete-crack image generation, progressing from an unconditional 64 × 64 DDPM to spatial trajectory and aperture-field conditioning at 256 × 256. The corrected Experiment 6 evaluation gives **87.86% agreement with a morphology-only heuristic classifier on 1,400 generated images**. This is a descriptive proxy score, not independently validated structural-mechanism accuracy. The earlier 99.29% figure used target-dependent assignments and is superseded.
 
 The current prospective manifests are **research_v5**. They group sibling SDNET tiles, exact byte/decoded-RGB aliases, and conservative perceptual-similarity candidates across all experiments. The v4 screen found 386 cross-split candidates among 67,264 originals; v5 keeps all 1,111 declared-threshold candidate links (including within-split links) inside components. Repeating the same search on v5 found zero cross-split candidates. This is limited screening, not proof of complete independence. Crops, rotations and structure/site identity remain unverified. Earlier versions are preserved, and full research training requires v5. Historical pretrained weights are exposed to earlier data and remain a separate lineage.
@@ -12,16 +16,39 @@ The new trainer is `pipeline/train_research.py` for Experiments 4–6. It starts
 
 Experiments 5/6 now use the `strict_rc_geometry_v1` view inside v5 for both training and fidelity references. The local RC audit found 1,145 source annotations with geometry/metadata flags; 481 records occur in the Exp5/6 base dataset and are conservatively excluded from the new view (371 train, 67 validation, 43 test). It retains 11,986 train, 1,498 validation and 1,475 test records with all seven proxy classes present. Base manifests and historical models are preserved. This filter does not prove that excluded labels are wrong or remaining labels are correct; structural mechanism labels still need independent review. Reproduce the local inventory with `pipeline/audit_rc10519.py` and create the view with `pipeline/prepare_quality_view.py` when its versioned output does not already exist. Attribution and archive hashes are in `datasets/source_provenance/`.
 
-To run pretrained inference, create a Python 3.10 environment and install a matching PyTorch pair using the official wheel index, then install the remaining dependencies:
+To run pretrained inference, run these commands from the repository root, create a Python 3.10 environment, and install the matching PyTorch pair and remaining dependencies:
 
 ```powershell
+$projectCache = Join-Path (Get-Location) '.cache'
+New-Item -ItemType Directory -Force -Path "$projectCache\tmp", "$projectCache\pip", "$projectCache\torch", "$projectCache\matplotlib" | Out-Null
+$env:TEMP = "$projectCache\tmp"
+$env:TMP = "$projectCache\tmp"
+$env:PIP_CACHE_DIR = "$projectCache\pip"
+$env:TORCH_HOME = "$projectCache\torch"
+$env:MPLCONFIGDIR = "$projectCache\matplotlib"
 python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install torch==2.14.0 torchvision==0.29.0 --index-url https://download.pytorch.org/whl/cu126
 .\.venv\Scripts\python.exe -m pip install -r requirements-core.txt
 # CPU alternative: use https://download.pytorch.org/whl/cpu for the PyTorch command.
 ```
 
-Run `python pipeline/download_models.py` to download and checksum-verify all six historical models. Alternatively, download `crack-generation-final-models-v1.zip` from the [published model release](https://github.com/AlgoRubic/Crack-Image-Generation/releases/tag/historical-models-v1) and extract it into the repository root, preserving `models/weights/` paths. Verify with `python pipeline/checkpoints.py verify`, then use `pipeline/generate_cracks.py` with a fresh output directory. Raw datasets are not needed for inference. All six experiments passed one-image generation checks in an isolated source/weight copy without datasets, using the installed local environment. A fresh dependency installation has not yet been verified.
+Run `python pipeline/download_models.py` to download and checksum-verify all six historical models. Alternatively, download `crack-generation-final-models-v1.zip` from the [published model release](https://github.com/AlgoRubic/Crack-Image-Generation/releases/tag/historical-models-v1) and extract it into the repository root, preserving `models/weights/` paths. Verify with `python pipeline/checkpoints.py verify`, then use `pipeline/generate_cracks.py` with a fresh output directory. Raw datasets are not needed for inference. All six experiments passed one-image generation in an isolated source/weight copy and subsequently in a fresh Windows/Python 3.10 CPU environment with the models downloaded from the public release. The [fresh-install record](experiments/fresh_install_cpu_verification.json) verifies that environment and those inference commands; it does not reproduce training or validate model quality.
+
+Use `.\.venv\Scripts\python.exe` for the Python commands below, or activate the environment first. Inference loads the published pretrained weights; it does not invoke training.
+
+The clean research workflow is shown below. Full training, independent expert labels and external validation remain pending; bounded smoke checks establish pipeline behavior only.
+
+```mermaid
+flowchart TD
+    A[Local source and annotation audits] --> B[v5 components and fixed splits]
+    B --> C[Exp4 or geometry-qualified Exp5/6 data]
+    C --> D[Scratch training and EMA checkpoint selection]
+    D --> E[Seeded generation and matched ablations]
+    E --> F[Proxy error analysis and held-out fidelity]
+    H[Independent expert and external validation] --> F
+    F --> G[Reports, plots and public audit]
+```
 
 ```powershell
 # One training batch and one validation batch; only a pipeline check.

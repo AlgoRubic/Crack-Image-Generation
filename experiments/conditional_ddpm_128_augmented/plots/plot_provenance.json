@@ -3,6 +3,8 @@
   "training_log": "D:\\Downloads\\concrete_ddpm\\experiments\\conditional_ddpm_128_augmented\\logs\\conditional_128_augmented_training_loss.csv",
   "metrics_modified": 1795239207.4989753,
   "training_rows_plotted": 50,
+  "duplicate_epoch_records_excluded": 0,
+  "log_policy": "Last numeric record per epoch; raw CSV preserved",
   "caveat": "Saved heuristic evaluation, not independently validated accuracy.",
   "corrected_target_independent_confusion": false
 }

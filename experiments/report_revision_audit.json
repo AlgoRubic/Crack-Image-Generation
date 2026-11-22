@@ -1,0 +1,154 @@
+{
+  "revision": "2026-11-22",
+  "reports": [
+    {
+      "experiment": 1,
+      "report": "experiments\\unconditional_ddpm\\EXPERIMENT_1_FULL_REPORT.md",
+      "sha256": "2f389ad5426d5e820b43f15d73ca59e480861e19e3dd3d8d116423628b1ff269",
+      "words": 2540,
+      "input_files": 14,
+      "archive_files": 6,
+      "corrections": [
+        [
+          "Earlier FID 5.604571 presented alongside later FID 128.886",
+          "Different feature dimensions, reference choices and preprocessing are used; keep both protocols separate."
+        ],
+        [
+          "Detector prevalence treated as genuine crack correctness",
+          "There is no requested class and no generated-image ground truth."
+        ],
+        [
+          "Repeated epoch 1 and an embedded CSV header",
+          "Use the last numeric record per epoch for the report; preserve the raw log."
+        ]
+      ]
+    },
+    {
+      "experiment": 2,
+      "report": "experiments\\conditional_ddpm\\EXPERIMENT_2_FULL_REPORT.md",
+      "sha256": "c9af5419d873442419bccccda60c108aecd65cdcfd55db93e8a62d10c63d777f",
+      "words": 2578,
+      "input_files": 15,
+      "archive_files": 7,
+      "corrections": [
+        [
+          "Low historical class-specific FID interpreted as proven crack control",
+          "Feature similarity does not validate the crack attribute; later 32.50% cracked-request agreement exposes this distinction."
+        ],
+        [
+          "Missing standalone technical report",
+          "This report provides full methods, sample denominators, confusion counts and protocol-qualified interpretation."
+        ],
+        [
+          "Accuracy terminology without ground truth",
+          "Use requested-label agreement throughout; retain original JSON field names only as artifact identifiers."
+        ]
+      ]
+    },
+    {
+      "experiment": 3,
+      "report": "experiments\\conditional_ddpm_128_augmented\\EXPERIMENT_3_FULL_REPORT.md",
+      "sha256": "8c06e07f7838057c091d93ab92698b04731ad8fd1ffd560a8307328a2997da76",
+      "words": 2536,
+      "input_files": 17,
+      "archive_files": 6,
+      "corrections": [
+        [
+          "No metrics claimed after a later evaluation existed",
+          "Report the 400-image analysis and its dates/status separately from the earlier closure."
+        ],
+        [
+          "RC described as independently new data without qualification",
+          "Matching publisher attribution is available; payload identity and acquisition independence are not fully verified."
+        ],
+        [
+          "Improvement attributed solely to resolution",
+          "Resolution, composition and detector protocol are confounded."
+        ]
+      ]
+    },
+    {
+      "experiment": 4,
+      "report": "experiments\\crack_type_conditional\\EXPERIMENT_4_FULL_REPORT.md",
+      "sha256": "c73a25859e9dea80bea92c180d3aaf6d9aedc42eb42a8da693288ab707d2ac19",
+      "words": 2565,
+      "input_files": 19,
+      "archive_files": 7,
+      "corrections": [
+        [
+          "Fragmentation labeled resolved despite low continuity fractions",
+          "Replace the claim with the observed measurements and evaluator uncertainty."
+        ],
+        [
+          "CrackForest listed in the Exp4 training set",
+          "The manifest source counts contain SDNET2018 and DeepCrack only."
+        ],
+        [
+          "Class dropout reported as 15%",
+          "The source trainer uses 10%; historical CLI/runtime provenance remains incomplete."
+        ],
+        [
+          "DDIM described as guaranteeing invertibility",
+          "Finite clipped sampling does not establish exact inverse reconstruction or cross-device bit identity."
+        ]
+      ]
+    },
+    {
+      "experiment": 5,
+      "report": "experiments\\structural_mechanism_ddpm\\EXPERIMENT_5_FULL_REPORT.md",
+      "sha256": "73a17fd06b73b72b1edac2c628369103ce6f8b907ab4fa347e853ddfb6d593a4",
+      "words": 2972,
+      "input_files": 22,
+      "archive_files": 6,
+      "corrections": [
+        [
+          "Mechanism acceptance described as validated physical accuracy",
+          "Report requested-class predicate acceptance and identify the absence of expert mechanism labels."
+        ],
+        [
+          "Presence and acceptance percentages combined as one quantity",
+          "Retain separate denominators and predicate definitions, especially for torsion and map classes."
+        ],
+        [
+          "Training references described as independent validation",
+          "The historical fidelity evaluator selects reference patches from the training manifest."
+        ],
+        [
+          "RC box geometry assumed reliable throughout",
+          "The later qualified view removes 481 affected base records; historical models are not retroactively corrected."
+        ]
+      ]
+    },
+    {
+      "experiment": 6,
+      "report": "experiments\\exp6_level_c_spatial_physics\\EXPERIMENT_6_FULL_REPORT.md",
+      "sha256": "bd819524b6ab63eda1fd80f2051842d35b4925660b1610baa19c9f7cc1e49d63",
+      "words": 4111,
+      "input_files": 28,
+      "archive_files": 9,
+      "corrections": [
+        [
+          "99.29% labeled independent seven-class accuracy",
+          "Superseded by the corrected morphology-only matrix: 1,230/1,400 agreements."
+        ],
+        [
+          "Procedural generator described as guaranteed physically valid",
+          "The code does not solve a calibrated fracture boundary-value problem or validate equilibrium/material failure."
+        ],
+        [
+          "High recall treated as sufficient template fidelity",
+          "Report false positives, precision and missing detections alongside recall; distances are conditional when detections are absent."
+        ],
+        [
+          "Zero-field pilot described as a trained class-only baseline",
+          "It is an input ablation on a historical checkpoint; a separately trained matched class-only control remains pending."
+        ],
+        [
+          "New split and quality audits presented as validation of old models",
+          "The historical weights and transfer ancestors remain exposed to earlier data."
+        ]
+      ]
+    }
+  ],
+  "scope": "Retrospective research documentation; scientific validation gaps remain explicit"
+}

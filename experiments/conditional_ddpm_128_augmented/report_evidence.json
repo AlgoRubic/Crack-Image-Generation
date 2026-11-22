@@ -1,0 +1,99 @@
+{
+  "experiment": 3,
+  "revision": "2026-11-22",
+  "report": "EXPERIMENT_3_FULL_REPORT.md",
+  "checkpoint": {
+    "path": "models\\weights\\exp3_conditional_128\\exp3_conditional_128_epoch050.pt",
+    "sha256": "f6c3e5ffd855e53cb5a9e2b6f77db5630d96db27dd6b0a37e26555f127f41252",
+    "parameters": 3258627,
+    "epoch_field": 49,
+    "loss": 0.014057591692068844,
+    "optimizer_groups": []
+  },
+  "input_sha256": {
+    "experiments\\conditional_ddpm_128_augmented\\EVALUATION_METRICS.json": "5b4c71769ff155ceba357120af3c23d69b1522acc6b5592d72de1314a2d4d9f5",
+    "experiments\\conditional_ddpm_128_augmented\\logs\\conditional_128_augmented_training_loss.csv": "a7a29864c5832334459290905e83af56af2ad700345d61155e65fa54d37a79fb",
+    "datasets\\exp3_augmented_128\\train.csv": "e669bd848a80a96966c55843def34c4bbd70215010b8cc4059534c76c3ba4290",
+    "experiments\\conditional_ddpm_128_augmented\\plots\\exp3_overview.png": "238c5642c17b3adb59f1cce56d5ce307c7ed9db2fae865bcfd1d597d1d389f9a",
+    "src\\train_conditional_128_augmented.py": "30d4f5d087954eea5010e3c27944fc2b0c264a69daef174c16818616446c5e93",
+    "src\\evaluate_exp1_2_3_errors.py": "1deed4927ba968c853ff79de475160b2dcd4cfe40ffeac23e1608b10acf83f42",
+    "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+    "models\\checkpoint_manifest.json": "09d7942d894622a362e7a65653f9c8feec7b15dc8fc894e2245eb648cd552ef9",
+    "datasets\\current_research_split.json": "8972d236dc2ecbb8c28894e5efe181c6068cfb636d6cdeaece45f1d90625eca3",
+    "datasets\\source_content_v1\\summary.json": "4123b1b2226b6758dfe876b678704ceebdeb003843926f3d61b5c30f327b2ab0",
+    "datasets\\near_duplicate_screen_v1\\research_v5_summary.json": "70dabf2c06565d70351ba40b90a0ac5e7fb6c000a3613c81e70bfb5d6c59c2b8",
+    "experiments\\fresh_install_cpu_verification.json": "d5b91bc1c3f0b6701ece95bf9ec024800622794b7a4cfefe3cb4876b74c23d0a",
+    "datasets\\source_provenance\\rc10519_local_inventory.json": "cb79780aaa2b3e57d944cc31b76a63a21529d88a5f4968e4712cbf064cdf11d3",
+    "datasets\\source_provenance\\rc10519_publisher_record.json": "9c41ffac950c3dca4cd72809d917e4de3294aba5dc52e17988a3e730a03e89c5",
+    "experiments\\conditional_ddpm_128_augmented\\PER_SAMPLE_ERROR_LOG.csv": "e8b0e3907d014c16b6b80e89302730694c509a6315ad9f2bd1d24e4ad26eea67",
+    "website\\assets\\images\\exp3_cracked.png": "c767ab02797c3f457bd8c78a084187d068a35b9d5a16bfaec98ea555b92f84a8",
+    "website\\assets\\images\\exp3_noncracked.png": "407626f84d646847b497da9b5780107141141f1a3c9dc1172bbab44d78eb83f0"
+  },
+  "archived_sources": [
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\STATUS.md",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\STATUS.md",
+      "sha256": "aaffce38721ac56d3a0a948ef562ae009df59212d3acaf606e57379fe26f38c7"
+    },
+    {
+      "source": "website\\experiment-3.html",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\previous_webpage.html",
+      "sha256": "1e21cd500ffe410445205f77833bdf375daab14609e0f083a485743df29907bb"
+    },
+    {
+      "source": "website\\assets\\reports\\experiment_3_formula_report.pdf",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\experiment_3_formula_report.pdf",
+      "sha256": "df6cbc70eb87d62ad93dca9a8266e44e3f2e623b345aec7b00ea08c4d4117a4a"
+    },
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\plots\\exp3_overview.png",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\plots\\exp3_overview.png",
+      "sha256": "e12f62c43747b2938b6494fa7667680d49c7963a53300784aaba13dfd27d232b"
+    },
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\plots\\exp3_overview.svg",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\plots\\exp3_overview.svg",
+      "sha256": "704d43c4b537b4d8bd79660af47bdce593ac7962e211f52ac1e55892370f3845"
+    },
+    {
+      "source": "experiments\\conditional_ddpm_128_augmented\\plots\\plot_provenance.json",
+      "archive": "experiments\\conditional_ddpm_128_augmented\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "sha256": "e30f6d8654cea3f0c3b26cba77f8901c8600c725b9989b856929580089c474d2"
+    }
+  ],
+  "input_lf_sha256": {
+    "experiments\\conditional_ddpm_128_augmented\\EVALUATION_METRICS.json": "abf354ebf9f6e3c0e5bebd76f3b09d17226657e6bcc0483dc09afe9f46050f58",
+    "experiments\\conditional_ddpm_128_augmented\\logs\\conditional_128_augmented_training_loss.csv": "6ce9de95b8c38a5f4b257006752359f67173065d7393af68730876919cb03670",
+    "datasets\\exp3_augmented_128\\train.csv": "3522720226d656a090e99ebf25b0a80d244d110f0b1f5f6783d7dd2ead018e2f",
+    "src\\train_conditional_128_augmented.py": "30d4f5d087954eea5010e3c27944fc2b0c264a69daef174c16818616446c5e93",
+    "src\\evaluate_exp1_2_3_errors.py": "1deed4927ba968c853ff79de475160b2dcd4cfe40ffeac23e1608b10acf83f42",
+    "src\\diffusion.py": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+    "models\\checkpoint_manifest.json": "a99a5c1f378100bb2a89448a19c6e3eb3e03f3b6d095379c0da0c3a6446af786",
+    "datasets\\current_research_split.json": "c2a30268d6884d3b07e42b9d32e92c5ed15d226a6526dbb01bb9a85da00cef90",
+    "datasets\\source_content_v1\\summary.json": "d2723afa310bb3924939127ce1c2405f44a6e49351c9da357842e439bd477420",
+    "datasets\\near_duplicate_screen_v1\\research_v5_summary.json": "97fc0db0cfa04fe62cdd6987d4f5aa71be3dfa0b41f4242be3095b502e37df67",
+    "experiments\\fresh_install_cpu_verification.json": "159e71d0e1a007cd2b709279dcf9ff475097045d758321316868c4e992856913",
+    "datasets\\source_provenance\\rc10519_local_inventory.json": "d342c6d63dbcb9f3531f433cd989df52dd1c147ecebed8adef6d8c918791e811",
+    "datasets\\source_provenance\\rc10519_publisher_record.json": "9c41ffac950c3dca4cd72809d917e4de3294aba5dc52e17988a3e730a03e89c5",
+    "experiments\\conditional_ddpm_128_augmented\\PER_SAMPLE_ERROR_LOG.csv": "531396100b551e139947f3b15584f42aca48ae42405c5e4588a231177ff8b3a8"
+  },
+  "hash_policy": "Raw hashes attest observed bytes; LF-normalized hashes additionally identify text content across Git line-ending conversions. Archived originals retain exact bytes.",
+  "training": {
+    "unique_epochs": 50,
+    "raw_numeric_rows": 50,
+    "repeated_epochs": 0,
+    "ignored_rows": 0,
+    "final": {
+      "epoch": 50,
+      "loss": 0.014057591692068844
+    },
+    "minimum": {
+      "epoch": 39,
+      "loss": 0.013812781786453296
+    }
+  },
+  "limitations": [
+    "Retrospective artifact analysis, not new clean training",
+    "Requested labels and morphology predicates are not independent engineering ground truth"
+  ]
+}
