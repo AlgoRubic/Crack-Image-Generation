@@ -1,5 +1,7 @@
 # Synthetic Reinforced-Concrete Crack Generation Framework (Experiments 1 to 6)
 
+Incoming agents: read the [shared handoff](AGENT_HANDOFF.md) and [current project state](CURRENT_STATE.md) before editing. Root `AGENTS.md`, `CLAUDE.md` and `GEMINI.md` point to the same context.
+
 Start here: [folder map](docs/PROJECT_STRUCTURE.md) · [reproduction guide](docs/REPRODUCIBILITY.md). To repeat the saved-image analysis without training or changing the originals, run `python pipeline/reproduce_results.py --run-id my-review-001`. New results go into each experiment's `reproductions/` directory.
 
 Browse the current [research archive and audit](https://concrete-crack-synthesis.beigetoad12.chatgpt.site/research.html) for all experiment plots, corrected evaluations, dataset audits and methodological limitations.
