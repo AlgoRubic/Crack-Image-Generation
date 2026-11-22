@@ -3,33 +3,33 @@
   "policy": "Exact pre-revision bytes; historical statements may be superseded by the current report.",
   "entries": [
     {
-      "source": "experiments\\unconditional_ddpm\\EXPERIMENT_1_FULL_REPORT.md",
-      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\EXPERIMENT_1_FULL_REPORT.md",
+      "source": "experiments/unconditional_ddpm/EXPERIMENT_1_FULL_REPORT.md",
+      "archive": "experiments/unconditional_ddpm/report_archive/20261122-original/EXPERIMENT_1_FULL_REPORT.md",
       "sha256": "63185d033306cd8a6a33e4be001723afef780c9d6246f036acac3dc8eea47a1b"
     },
     {
-      "source": "experiments\\unconditional_ddpm\\STATUS.md",
-      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\STATUS.md",
+      "source": "experiments/unconditional_ddpm/STATUS.md",
+      "archive": "experiments/unconditional_ddpm/report_archive/20261122-original/STATUS.md",
       "sha256": "67e754ad47736e5611b8ee8e69aaeeef86749c11de280ea5994bd45c779fd12d"
     },
     {
-      "source": "website\\experiment-1.html",
-      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\previous_webpage.html",
+      "source": "website/experiment-1.html",
+      "archive": "experiments/unconditional_ddpm/report_archive/20261122-original/previous_webpage.html",
       "sha256": "4fe3f34680c4d2c1599c35944c077549a1cedaeec9fd2433623603a37cec5ef0"
     },
     {
-      "source": "experiments\\unconditional_ddpm\\plots\\exp1_overview.png",
-      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\plots\\exp1_overview.png",
+      "source": "experiments/unconditional_ddpm/plots/exp1_overview.png",
+      "archive": "experiments/unconditional_ddpm/report_archive/20261122-original/plots/exp1_overview.png",
       "sha256": "8d8eb777aae0a363994ec6002ceb9cca88b2fd6d6954e88674be3202eee8687f"
     },
     {
-      "source": "experiments\\unconditional_ddpm\\plots\\exp1_overview.svg",
-      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\plots\\exp1_overview.svg",
+      "source": "experiments/unconditional_ddpm/plots/exp1_overview.svg",
+      "archive": "experiments/unconditional_ddpm/report_archive/20261122-original/plots/exp1_overview.svg",
       "sha256": "b9083d25d91fd5192c83e5bf0fa81f2d7a03f51cbfbcb94986569b722d80eb04"
     },
     {
-      "source": "experiments\\unconditional_ddpm\\plots\\plot_provenance.json",
-      "archive": "experiments\\unconditional_ddpm\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "source": "experiments/unconditional_ddpm/plots/plot_provenance.json",
+      "archive": "experiments/unconditional_ddpm/report_archive/20261122-original/plots/plot_provenance.json",
       "sha256": "3eb4b831fa3bbd7115e2d8ff7db9069c8b49f3b4bd71e82ec66dba4a16f8d49d"
     }
   ]

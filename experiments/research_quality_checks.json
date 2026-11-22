@@ -1,26 +1,26 @@
 {
-  "created_utc": "2026-11-22T07:23:39.375317+00:00",
+  "created_utc": "2026-11-22T07:47:50.264252+00:00",
   "checks": [
     {
       "script": "pipeline/test_research.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 3.843s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 3.860s\n\nOK\n"
     },
     {
       "script": "pipeline/test_acquisition_splits.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.431s\n\nOK\n"
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.418s\n\nOK\n"
     },
     {
       "script": "pipeline/test_source_hashes.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nOK\n"
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nOK\n"
     },
     {
       "script": "pipeline/test_near_duplicate_screen.py",
@@ -48,7 +48,7 @@
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.007s\n\nOK\n"
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.006s\n\nOK\n"
     },
     {
       "script": "pipeline/test_ablation.py",
@@ -62,7 +62,7 @@
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.032s\n\nOK\n"
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.035s\n\nOK\n"
     },
     {
       "script": "pipeline/test_research_handoff.py",
@@ -79,17 +79,24 @@
       "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
     },
     {
+      "script": "pipeline/test_reproduction.py",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+    },
+    {
       "script": "src/test_evaluation_independence.py",
       "passed": true,
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      "stderr": ".\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n"
     },
     {
       "script": "pipeline/verify_research_reports.py",
       "passed": true,
       "exit_code": 0,
-      "stdout": "{\n  \"passed\": true,\n  \"reports_checked\": 6,\n  \"reports\": [\n    {\n      \"experiment\": 1,\n      \"words\": 2540,\n      \"archive_files\": 6,\n      \"input_files\": 14,\n      \"per_sample_rows\": 1000\n    },\n    {\n      \"experiment\": 2,\n      \"words\": 2578,\n      \"archive_files\": 7,\n      \"input_files\": 15,\n      \"per_sample_rows\": 2000\n    },\n    {\n      \"experiment\": 3,\n      \"words\": 2536,\n      \"archive_files\": 6,\n      \"input_files\": 17,\n      \"per_sample_rows\": 400\n    },\n    {\n      \"experiment\": 4,\n      \"words\": 2565,\n      \"archive_files\": 7,\n      \"input_files\": 19,\n      \"per_sample_rows\": null\n    },\n    {\n      \"experiment\": 5,\n      \"words\": 2972,\n      \"archive_files\": 6,\n      \"input_files\": 22,\n      \"per_sample_rows\": null\n    },\n    {\n      \"experiment\": 6,\n      \"words\": 4111,\n      \"archive_files\": 9,\n      \"input_files\": 28,\n      \"per_sample_rows\": 1400\n    }\n  ],\n  \"errors\": [],\n  \"text_inputs_with_line_ending_conversion\": [],\n  \"scope\": \"Evidence consistency, source/archive integrity, structure, links and sample-log aggregation; not independent scientific validation\"\n}\n",
+      "stdout": "{\n  \"passed\": true,\n  \"reports_checked\": 6,\n  \"reports\": [\n    {\n      \"experiment\": 1,\n      \"words\": 2727,\n      \"archive_files\": 6,\n      \"input_files\": 19,\n      \"per_sample_rows\": 1000\n    },\n    {\n      \"experiment\": 2,\n      \"words\": 2765,\n      \"archive_files\": 7,\n      \"input_files\": 20,\n      \"per_sample_rows\": 2000\n    },\n    {\n      \"experiment\": 3,\n      \"words\": 2723,\n      \"archive_files\": 6,\n      \"input_files\": 22,\n      \"per_sample_rows\": 400\n    },\n    {\n      \"experiment\": 4,\n      \"words\": 2752,\n      \"archive_files\": 7,\n      \"input_files\": 24,\n      \"per_sample_rows\": null\n    },\n    {\n      \"experiment\": 5,\n      \"words\": 3159,\n      \"archive_files\": 6,\n      \"input_files\": 27,\n      \"per_sample_rows\": null\n    },\n    {\n      \"experiment\": 6,\n      \"words\": 4298,\n      \"archive_files\": 9,\n      \"input_files\": 33,\n      \"per_sample_rows\": 1400\n    }\n  ],\n  \"errors\": [],\n  \"text_inputs_with_line_ending_conversion\": [],\n  \"scope\": \"Evidence consistency, source/archive integrity, structure, links and sample-log aggregation; not independent scientific validation\"\n}\n",
       "stderr": ""
     },
     {

@@ -6,6 +6,9 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .cache/
+# Retained local duplicate sources/weights; inventory is tracked in archive/.
+archive/legacy_replication_suite/
+archive/legacy_tools/
 **/PRIVATE_review_key.csv
 node_modules/
 .deck_build_exp_presentation/

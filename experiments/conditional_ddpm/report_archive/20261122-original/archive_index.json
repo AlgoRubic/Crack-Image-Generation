@@ -3,38 +3,38 @@
   "policy": "Exact pre-revision bytes; historical statements may be superseded by the current report.",
   "entries": [
     {
-      "source": "experiments\\conditional_ddpm\\STATUS.md",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\STATUS.md",
+      "source": "experiments/conditional_ddpm/STATUS.md",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/STATUS.md",
       "sha256": "91b79c3d443d6f4321e539c90b50bfa02e7e790f51e39a2e1a5052f3bef9049f"
     },
     {
-      "source": "website\\experiment-2.html",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\previous_webpage.html",
+      "source": "website/experiment-2.html",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/previous_webpage.html",
       "sha256": "2b2ecc8ab77769f9e8d5fb2466c4bf29f217d9c7035104b2eb69afc832068bc0"
     },
     {
-      "source": "website\\assets\\reports\\experiment_2_formula_report.pdf",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\experiment_2_formula_report.pdf",
+      "source": "website/assets/reports/experiment_2_formula_report.pdf",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/experiment_2_formula_report.pdf",
       "sha256": "f7a55fbbbe78c2f10b06f99807e9eab585b713ceedccedefdaece01bdb9c8805"
     },
     {
-      "source": "experiments\\conditional_ddpm\\plots\\exp2_overview.png",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\exp2_overview.png",
+      "source": "experiments/conditional_ddpm/plots/exp2_overview.png",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/plots/exp2_overview.png",
       "sha256": "5a5ebf1eba72e3114bea8c9519f4fd8fcf2f2ba27bbd4968cc680565767a1695"
     },
     {
-      "source": "experiments\\conditional_ddpm\\plots\\exp2_overview.svg",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\exp2_overview.svg",
+      "source": "experiments/conditional_ddpm/plots/exp2_overview.svg",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/plots/exp2_overview.svg",
       "sha256": "5fdccdb8ee5deba9d1bddc3811c1923a32e1e47dbfd711201012c59a8ae0e059"
     },
     {
-      "source": "experiments\\conditional_ddpm\\plots\\plot_provenance.json",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "source": "experiments/conditional_ddpm/plots/plot_provenance.json",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/plots/plot_provenance.json",
       "sha256": "16dc814bea95498b8e1427231da1c1a1640bc3644aeb4b59301c4010e8740163"
     },
     {
-      "source": "experiments\\conditional_ddpm\\plots\\training_loss_comparison.png",
-      "archive": "experiments\\conditional_ddpm\\report_archive\\20261122-original\\plots\\training_loss_comparison.png",
+      "source": "experiments/conditional_ddpm/plots/training_loss_comparison.png",
+      "archive": "experiments/conditional_ddpm/report_archive/20261122-original/plots/training_loss_comparison.png",
       "sha256": "e9474b7177c21ddbe473e4ab84d29e8b8e47a9568b1aa4397da8bc717496eafe"
     }
   ]

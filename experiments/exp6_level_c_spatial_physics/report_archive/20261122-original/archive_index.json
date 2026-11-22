@@ -3,48 +3,48 @@
   "policy": "Exact pre-revision bytes; historical statements may be superseded by the current report.",
   "entries": [
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\EXPERIMENT_6_DOCUMENTATION_AND_ASSUMPTIONS.md",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\EXPERIMENT_6_DOCUMENTATION_AND_ASSUMPTIONS.md",
+      "source": "experiments/exp6_level_c_spatial_physics/EXPERIMENT_6_DOCUMENTATION_AND_ASSUMPTIONS.md",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/EXPERIMENT_6_DOCUMENTATION_AND_ASSUMPTIONS.md",
       "sha256": "830af7b241e522d5c04e1183513d8caa80c6351ef976249a04de258641fff1a4"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\EXPERIMENT_6_FULL_REPORT.md",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\EXPERIMENT_6_FULL_REPORT.md",
+      "source": "experiments/exp6_level_c_spatial_physics/EXPERIMENT_6_FULL_REPORT.md",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/EXPERIMENT_6_FULL_REPORT.md",
       "sha256": "fa091562c4206bb718fc670d58a9977e794ededeb681029b45007079909cfe65"
     },
     {
-      "source": "website\\experiment-6.html",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\previous_webpage.html",
+      "source": "website/experiment-6.html",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/previous_webpage.html",
       "sha256": "2d97bcc2846dbed241a8c9998ddf659b31b055e824282cc0a5d400f85aa7f30d"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\plots\\exp6_geometry_errors.png",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\plots\\exp6_geometry_errors.png",
+      "source": "experiments/exp6_level_c_spatial_physics/plots/exp6_geometry_errors.png",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/plots/exp6_geometry_errors.png",
       "sha256": "da543a0c9fed88e8e5a5ea96fec5fa87cb00b50f6c64264eabb3f466574e9564"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\plots\\exp6_geometry_errors.svg",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\plots\\exp6_geometry_errors.svg",
+      "source": "experiments/exp6_level_c_spatial_physics/plots/exp6_geometry_errors.svg",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/plots/exp6_geometry_errors.svg",
       "sha256": "445e7c07fe5eed931d5376f6cc3c8c75a5c4837990261e759fc272ccb7cfd3b6"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\plots\\exp6_overview.png",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\plots\\exp6_overview.png",
+      "source": "experiments/exp6_level_c_spatial_physics/plots/exp6_overview.png",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/plots/exp6_overview.png",
       "sha256": "8d6aadf432e5fe1f48bfe37af556bc626c0c36a53a7ef02bc8538c52f3f8cd5b"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\plots\\exp6_overview.svg",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\plots\\exp6_overview.svg",
+      "source": "experiments/exp6_level_c_spatial_physics/plots/exp6_overview.svg",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/plots/exp6_overview.svg",
       "sha256": "1a5413d3c4abf6ca7705d2b7704c014a7d6da78498d3ab413c5b985eeedb664a"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\plots\\plot_provenance.json",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "source": "experiments/exp6_level_c_spatial_physics/plots/plot_provenance.json",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/plots/plot_provenance.json",
       "sha256": "cbebc6b345dbe402a193ee041f86c85a20a3c84be0aff9aa3df51f8d9bd87922"
     },
     {
-      "source": "experiments\\exp6_level_c_spatial_physics\\EVALUATION_METRICS.json",
-      "archive": "experiments\\exp6_level_c_spatial_physics\\report_archive\\20261122-original\\original_stored_metrics.json",
+      "source": "experiments/exp6_level_c_spatial_physics/EVALUATION_METRICS.json",
+      "archive": "experiments/exp6_level_c_spatial_physics/report_archive/20261122-original/original_stored_metrics.json",
       "sha256": "e835d8b258cbe2f4a6fbdac0292d98dcf6e1d06f01afc6866754b62208885c5e"
     }
   ]

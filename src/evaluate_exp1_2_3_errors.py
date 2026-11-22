@@ -228,12 +228,19 @@ def compute_fid_kid(real_paths: list[Path], fake_paths: list[Path], device: torc
     }
 
 
-def evaluate_experiment_1(device: torch.device) -> None:
+def fidelity_label(metrics: dict) -> str:
+    if metrics.get('status')=='not_requested':return 'Fidelity not requested'
+    return f"FID={metrics['frechet_inception_distance']}, KID={metrics['kernel_inception_distance_mean']:.4f}"
+
+
+def evaluate_experiment_1(device: torch.device, output_dir: Path | None = None, with_fidelity: bool = True) -> dict:
     print("\n======================================================================")
     print(" Evaluating Experiment 1 (Unconditional 64x64 DDPM — N = 1,000 Images)")
     print("======================================================================")
-    exp_dir = ROOT / "experiments/unconditional_ddpm"
-    eval_dir = exp_dir / "outputs/evaluation/unconditional_epoch_050"
+    source_exp_dir = ROOT / "experiments/unconditional_ddpm"
+    exp_dir = Path(output_dir) if output_dir is not None else source_exp_dir
+    exp_dir.mkdir(parents=True,exist_ok=True)
+    eval_dir = source_exp_dir / "outputs/evaluation/unconditional_epoch_050"
     fake_files = sorted(eval_dir.glob("*.png"))
     print(f"Found {len(fake_files)} generated images in {eval_dir.relative_to(ROOT)}")
 
@@ -297,7 +304,7 @@ def evaluate_experiment_1(device: torch.device) -> None:
         writer.writeheader()
         writer.writerows(rows)
     print(f"[Exp 1] Wrote 1,000-row CSV: {out_csv}", flush=True)
-    fid_kid = compute_fid_kid(real_paths[:160], fake_files[:160], device)
+    fid_kid = compute_fid_kid(real_paths[:160], fake_files[:160], device) if with_fidelity else {'status':'not_requested'}
 
     summary = {
         "experiment": "Experiment 1: Unconditional 64x64 DDPM",
@@ -398,7 +405,7 @@ def evaluate_experiment_1(device: torch.device) -> None:
     for b, v in zip(bars, m_vals):
         ax.text(b.get_x() + b.get_width() / 2, v + 0.5, f"{v:.2f}", ha="center", fontweight="bold")
     ax.set_ylabel("Error Magnitude")
-    ax.set_title(f"Exp 1 Error Summary (FID={fid_kid['frechet_inception_distance']}, KID={fid_kid['kernel_inception_distance_mean']:.4f})", fontweight="bold")
+    ax.set_title(f"Exp 1 Error Summary ({fidelity_label(fid_kid)})", fontweight="bold")
     ax.grid(axis="y", linestyle="--", alpha=0.4)
 
     fig.suptitle("Experiment 1 (Unconditional 64x64 DDPM): Quantitative Error Analysis (N = 1,000 Images)", fontsize=13, fontweight="bold", y=0.98)
@@ -407,8 +414,9 @@ def evaluate_experiment_1(device: torch.device) -> None:
     plt.close(fig)
 
     print(f"[Exp 1] Prior Cracked Rate: Real={real_cracked_ratio*100:.2f}% vs Gen={gen_cracked_ratio*100:.2f}% (Drift Err={ratio_error*100:.2f}%)")
-    print(f"[Exp 1] FID={fid_kid['frechet_inception_distance']}, KID={fid_kid['kernel_inception_distance_mean']} +/- {fid_kid['kernel_inception_distance_std']}")
+    print(f"[Exp 1] {fidelity_label(fid_kid)}")
     print(f"[Exp 1] Saved: {out_json.resolve()} (exists={out_json.exists()}), {out_csv.resolve()}, {out_plot.resolve()}")
+    return summary
 
 
 def evaluate_binary_conditional_experiment(
@@ -419,7 +427,9 @@ def evaluate_binary_conditional_experiment(
     real_csv_path: Path,
     resolution: int,
     device: torch.device,
+    with_fidelity: bool = True,
 ) -> dict:
+    exp_dir.mkdir(parents=True,exist_ok=True)
     print(f"\n======================================================================")
     print(f" Evaluating Experiment {exp_num} (Binary Conditional {resolution}x{resolution} DDPM)")
     print(f"======================================================================")
@@ -533,7 +543,7 @@ def evaluate_binary_conditional_experiment(
         writer.writerows(rows)
     print(f"[Exp {exp_num}] Wrote {len(rows)}-row CSV: {out_csv}", flush=True)
 
-    fid_kid = compute_fid_kid(real_nc_paths[:80] + real_cr_paths[:80], nc_files[:80] + cr_files[:80], device)
+    fid_kid = compute_fid_kid(real_nc_paths[:80] + real_cr_paths[:80], nc_files[:80] + cr_files[:80], device) if with_fidelity else {'status':'not_requested'}
 
     summary = {
         "experiment": f"Experiment {exp_num}: Binary Conditional {resolution}x{resolution} DDPM",
@@ -624,7 +634,7 @@ def evaluate_binary_conditional_experiment(
         ax.text(b.get_x() + b.get_width() / 2, v + 1.5, f"{v:.1f}%", ha="center", fontweight="bold")
     ax.set_ylim(0, 112)
     ax.set_ylabel("Score (%)")
-    ax.set_title(f"Exp {exp_num} Fidelity (FID={fid_kid['frechet_inception_distance']}, KID={fid_kid['kernel_inception_distance_mean']:.4f})", fontweight="bold")
+    ax.set_title(f"Exp {exp_num} Summary ({fidelity_label(fid_kid)})", fontweight="bold")
     ax.grid(axis="y", linestyle="--", alpha=0.4)
 
     fig.suptitle(
@@ -640,7 +650,7 @@ def evaluate_binary_conditional_experiment(
     print(f"[Exp {exp_num}] Class 0 Clean Adherence = {summary_classes['non_cracked']['target_adherence_rate']*100:.2f}% (Err={summary_classes['non_cracked']['classification_error_rate']*100:.2f}%)")
     print(f"[Exp {exp_num}] Class 1 Crack Adherence = {summary_classes['cracked']['target_adherence_rate']*100:.2f}% (Err={summary_classes['cracked']['classification_error_rate']*100:.2f}%)")
     print(f"[Exp {exp_num}] Overall Accuracy = {overall_acc*100:.2f}% (Overall Error Rate = {overall_err*100:.2f}%)")
-    print(f"[Exp {exp_num}] FID={fid_kid['frechet_inception_distance']}, KID={fid_kid['kernel_inception_distance_mean']} +/- {fid_kid['kernel_inception_distance_std']}")
+    print(f"[Exp {exp_num}] {fidelity_label(fid_kid)}")
     print(f"[Exp {exp_num}] Saved: {out_json.name}, {out_csv.name}, {out_plot.name}")
     return summary
 

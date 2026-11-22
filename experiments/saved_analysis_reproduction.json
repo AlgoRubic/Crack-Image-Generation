@@ -1,0 +1,134 @@
+{
+  "status": "passed",
+  "experiments": 6,
+  "images_per_run": 4992,
+  "run_ids": [
+    "saved-analysis-20261122-v2",
+    "saved-analysis-20261122-v3"
+  ],
+  "repeated_metric_json_identical": true,
+  "scope": "Saved-image morphology/spatial reanalysis; fidelity excluded; same local environment",
+  "limitation": "Not a claim of new generation, exact historical sampling, independent validity or cross-platform identity",
+  "records": [
+    {
+      "experiment": 1,
+      "run_id": "saved-analysis-20261122-v2",
+      "manifest": "experiments/unconditional_ddpm/reproductions/saved-analysis-20261122-v2/run_manifest.json",
+      "manifest_sha256": "05718283fd7e267cb25f1390892d0e8176860eef1335d8ab5528846dad4895c2",
+      "images": 1000,
+      "numeric_fields_compared": 27,
+      "matched": true,
+      "input_files_verified": 1303
+    },
+    {
+      "experiment": 1,
+      "run_id": "saved-analysis-20261122-v3",
+      "manifest": "experiments/unconditional_ddpm/reproductions/saved-analysis-20261122-v3/run_manifest.json",
+      "manifest_sha256": "285851cb64bc41e6f928ecc7cdff1bcdc5584344bb75d0bd0d14ac1e6571ecb4",
+      "images": 1000,
+      "numeric_fields_compared": 27,
+      "matched": true,
+      "input_files_verified": 1303
+    },
+    {
+      "experiment": 2,
+      "run_id": "saved-analysis-20261122-v2",
+      "manifest": "experiments/conditional_ddpm/reproductions/saved-analysis-20261122-v2/run_manifest.json",
+      "manifest_sha256": "4cbebf47c5703ce5e0a1e428dfd452f39104b84a68ea6fd053d9c0b8b2ba539d",
+      "images": 2000,
+      "numeric_fields_compared": 49,
+      "matched": true,
+      "input_files_verified": 2403
+    },
+    {
+      "experiment": 2,
+      "run_id": "saved-analysis-20261122-v3",
+      "manifest": "experiments/conditional_ddpm/reproductions/saved-analysis-20261122-v3/run_manifest.json",
+      "manifest_sha256": "fdb92870fb981cf5740577c45cf631e0156509d8bf8f66cdb1f8c6e2747b2307",
+      "images": 2000,
+      "numeric_fields_compared": 49,
+      "matched": true,
+      "input_files_verified": 2403
+    },
+    {
+      "experiment": 3,
+      "run_id": "saved-analysis-20261122-v2",
+      "manifest": "experiments/conditional_ddpm_128_augmented/reproductions/saved-analysis-20261122-v2/run_manifest.json",
+      "manifest_sha256": "bae9607c7083590c93d6b7ac6edbaf8b77917e75dca14b7ebbb920d29dccab87",
+      "images": 400,
+      "numeric_fields_compared": 49,
+      "matched": true,
+      "input_files_verified": 803
+    },
+    {
+      "experiment": 3,
+      "run_id": "saved-analysis-20261122-v3",
+      "manifest": "experiments/conditional_ddpm_128_augmented/reproductions/saved-analysis-20261122-v3/run_manifest.json",
+      "manifest_sha256": "d3d3288ffed7d4e4cc3eaf5fab468147ae3f414ef47f6d874aa2fb153d803b30",
+      "images": 400,
+      "numeric_fields_compared": 49,
+      "matched": true,
+      "input_files_verified": 803
+    },
+    {
+      "experiment": 4,
+      "run_id": "saved-analysis-20261122-v2",
+      "manifest": "experiments/crack_type_conditional/reproductions/saved-analysis-20261122-v2/run_manifest.json",
+      "manifest_sha256": "6aa311badeb8c9395acf813f750dfefb09d27bc0ea5f517df14a2f8ddb0458c7",
+      "images": 80,
+      "numeric_fields_compared": 27,
+      "matched": true,
+      "input_files_verified": 82
+    },
+    {
+      "experiment": 4,
+      "run_id": "saved-analysis-20261122-v3",
+      "manifest": "experiments/crack_type_conditional/reproductions/saved-analysis-20261122-v3/run_manifest.json",
+      "manifest_sha256": "e8c7a1f77b8135633be06f44d163125ddeafe526e87b527e5b1ff5e91c7bf1f2",
+      "images": 80,
+      "numeric_fields_compared": 27,
+      "matched": true,
+      "input_files_verified": 82
+    },
+    {
+      "experiment": 5,
+      "run_id": "saved-analysis-20261122-v2",
+      "manifest": "experiments/structural_mechanism_ddpm/reproductions/saved-analysis-20261122-v2/run_manifest.json",
+      "manifest_sha256": "843f7045cd6f03a10835325c8a76ca889f71f28cb8ffe4964258fddca4d900cc",
+      "images": 112,
+      "numeric_fields_compared": 51,
+      "matched": true,
+      "input_files_verified": 115
+    },
+    {
+      "experiment": 5,
+      "run_id": "saved-analysis-20261122-v3",
+      "manifest": "experiments/structural_mechanism_ddpm/reproductions/saved-analysis-20261122-v3/run_manifest.json",
+      "manifest_sha256": "24a9199d197dd7063b315f7b0c4abeefbfcb67e18a9536bd90599ce16b300dae",
+      "images": 112,
+      "numeric_fields_compared": 51,
+      "matched": true,
+      "input_files_verified": 115
+    },
+    {
+      "experiment": 6,
+      "run_id": "saved-analysis-20261122-v2",
+      "manifest": "experiments/exp6_level_c_spatial_physics/reproductions/saved-analysis-20261122-v2/run_manifest.json",
+      "manifest_sha256": "d194e98be65d792c66024fe937ada32f5fa0879afe10d9c3b192ab19b408d91c",
+      "images": 1400,
+      "numeric_fields_compared": 308,
+      "matched": true,
+      "input_files_verified": 2803
+    },
+    {
+      "experiment": 6,
+      "run_id": "saved-analysis-20261122-v3",
+      "manifest": "experiments/exp6_level_c_spatial_physics/reproductions/saved-analysis-20261122-v3/run_manifest.json",
+      "manifest_sha256": "9dbd54c6285614f8986efee87d66604e44baf4908f08ff1da0144fa5debab6bc",
+      "images": 1400,
+      "numeric_fields_compared": 308,
+      "matched": true,
+      "input_files_verified": 2803
+    }
+  ]
+}

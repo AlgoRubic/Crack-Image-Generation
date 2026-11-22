@@ -1,5 +1,7 @@
 # Synthetic Reinforced-Concrete Crack Generation Framework (Experiments 1 to 6)
 
+Start here: [folder map](docs/PROJECT_STRUCTURE.md) · [reproduction guide](docs/REPRODUCIBILITY.md). To repeat the saved-image analysis without training or changing the originals, run `python pipeline/reproduce_results.py --run-id my-review-001`. New results go into each experiment's `reproductions/` directory.
+
 Browse the current [research archive and audit](https://concrete-crack-synthesis.beigetoad12.chatgpt.site/research.html) for all experiment plots, corrected evaluations, dataset audits and methodological limitations.
 
 The six full research reports were revised on 22 November 2026 against checkpoint metadata, training logs, saved evaluation counts, source code and data audits. They include methods, mathematical definitions, archived result images, statistical uncertainty, assumptions, errors identified, conclusions and citations. Earlier reports and figures are preserved byte-for-byte in each experiment's `report_archive/20261122-original/` directory.

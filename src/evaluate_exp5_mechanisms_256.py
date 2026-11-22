@@ -180,7 +180,10 @@ def compute_fid_kid() -> dict:
     }
 
 
-def main() -> None:
+def main(output_dir: Path | None = None, with_fidelity: bool = True) -> dict:
+    output_path=Path(output_dir)/'EVALUATION_METRICS.json' if output_dir is not None else OUT_JSON
+    output_path.parent.mkdir(parents=True,exist_ok=True)
+    sample_rows=[]
     report = {"classes": {}, "fidelity": {}}
     print("--- Evaluating Experiment 5 (Level B: 7 Structural Failure Mechanisms) ---\n")
 
@@ -191,6 +194,7 @@ def main() -> None:
             continue
 
         stats = [evaluate_patch_mechanics(segment_generated_crack(p)) for p in imgs]
+        sample_rows.extend(dict(class_id=cid,class_name=cname,sample_file=p.name,**stat) for p,stat in zip(imgs,stats))
         n = len(stats)
 
         if cid == 0:
@@ -235,17 +239,18 @@ def main() -> None:
                 f"Taper={report['classes'][cname]['mean_taper_ratio']:.2f}"
             )
 
-    print("\nComputing Class-Matched FID and KID...")
-    report["fidelity"] = compute_fid_kid()
-    print(f"FID: {report['fidelity']['frechet_inception_distance']}")
-    print(
-        f"KID: {report['fidelity']['kernel_inception_distance_mean']} +/- "
-        f"{report['fidelity']['kernel_inception_distance_std']}"
-    )
+    if with_fidelity:
+        print("\nComputing Class-Matched FID and KID...")
+        report["fidelity"] = compute_fid_kid()
+    else:report['fidelity']={'status':'not_requested'}
 
-    with OUT_JSON.open("w", encoding="utf-8") as f:
+    with output_path.open("w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
-    print(f"\n[SUCCESS] Saved evaluation metrics to: {OUT_JSON}")
+    if output_dir is not None and sample_rows:
+        with (output_path.parent/'PER_SAMPLE_ERROR_LOG.csv').open('w',encoding='utf-8',newline='') as stream:
+            writer=csv.DictWriter(stream,fieldnames=sorted({k for row in sample_rows for k in row}));writer.writeheader();writer.writerows(sample_rows)
+    print(f"\n[SUCCESS] Saved evaluation metrics to: {output_path}")
+    return report
 
 
 if __name__ == "__main__":

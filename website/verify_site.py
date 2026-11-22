@@ -47,6 +47,9 @@ def main():
         if page.find(f'assets/research/exp{n}_overview.png') < page.find('class="result-gallery"'):
             errors.append(f'Experiment {n}: plots must follow result gallery')
     research=(ROOT/'research.html').read_text(encoding='utf-8')
+    repeated=json.loads((ROOT/'assets/research/saved_analysis_reproduction.json').read_text())
+    if repeated['status']!='passed' or f'{repeated["images_per_run"]:,}' not in research:
+        errors.append('Research page does not match saved-analysis reproduction evidence')
     audit=json.loads((ROOT/'assets/research/source_content_summary.json').read_text())
     for count in ('original_files','decoded_unique_images','duplicate_files_beyond_first'):
         if f'{audit[count]:,}' not in research:

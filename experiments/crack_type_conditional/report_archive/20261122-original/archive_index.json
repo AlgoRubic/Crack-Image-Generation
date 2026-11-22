@@ -3,38 +3,38 @@
   "policy": "Exact pre-revision bytes; historical statements may be superseded by the current report.",
   "entries": [
     {
-      "source": "experiments\\crack_type_conditional\\CRACK_CONTINUITY_ANALYSIS_REPORT.md",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\CRACK_CONTINUITY_ANALYSIS_REPORT.md",
+      "source": "experiments/crack_type_conditional/CRACK_CONTINUITY_ANALYSIS_REPORT.md",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/CRACK_CONTINUITY_ANALYSIS_REPORT.md",
       "sha256": "0a363f1589c0e61c72de14b153a67ba60069d1acae597ae5f7e18b2ad9f45161"
     },
     {
-      "source": "experiments\\crack_type_conditional\\EXPERIMENT_4_FULL_REPORT.md",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\EXPERIMENT_4_FULL_REPORT.md",
+      "source": "experiments/crack_type_conditional/EXPERIMENT_4_FULL_REPORT.md",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/EXPERIMENT_4_FULL_REPORT.md",
       "sha256": "fcd29083ce8ad6b9096e73bdf53169211266dd2af44e1096d83e227e49e8aafd"
     },
     {
-      "source": "experiments\\crack_type_conditional\\STATUS.md",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\STATUS.md",
+      "source": "experiments/crack_type_conditional/STATUS.md",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/STATUS.md",
       "sha256": "1c94ecffb35ff131e1bf63d3be426a2ba8b27c51642cba3b3ed80906aba078a0"
     },
     {
-      "source": "website\\experiment-4.html",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\previous_webpage.html",
+      "source": "website/experiment-4.html",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/previous_webpage.html",
       "sha256": "f6f066fdbeb1a76b3dc97e7cb3638fd8151bbbeb0fd91b7ae4c29fe38cb53024"
     },
     {
-      "source": "experiments\\crack_type_conditional\\plots\\exp4_overview.png",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\plots\\exp4_overview.png",
+      "source": "experiments/crack_type_conditional/plots/exp4_overview.png",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/plots/exp4_overview.png",
       "sha256": "2647df8f37352f3c332da2c012ba8bc8302b68d205e302a38df5a42bee19293c"
     },
     {
-      "source": "experiments\\crack_type_conditional\\plots\\exp4_overview.svg",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\plots\\exp4_overview.svg",
+      "source": "experiments/crack_type_conditional/plots/exp4_overview.svg",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/plots/exp4_overview.svg",
       "sha256": "247e1032b990c766a15429e173da922d7c410d7850bb53695a3acc0b767a3f42"
     },
     {
-      "source": "experiments\\crack_type_conditional\\plots\\plot_provenance.json",
-      "archive": "experiments\\crack_type_conditional\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "source": "experiments/crack_type_conditional/plots/plot_provenance.json",
+      "archive": "experiments/crack_type_conditional/report_archive/20261122-original/plots/plot_provenance.json",
       "sha256": "709ab43fde2d73e736539751556c860927b4a057ed7a6e81f1e001566c26f039"
     }
   ]

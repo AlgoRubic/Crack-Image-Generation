@@ -1,0 +1,42 @@
+{
+  "experiment": "Experiment 1: Unconditional 64x64 DDPM",
+  "resolution": "64x64",
+  "total_evaluated_samples": 1000,
+  "dataset_prior_comparison": {
+    "real_sdnet2018_cracked_rate": 0.1513,
+    "real_sdnet2018_non_cracked_rate": 0.8487,
+    "generated_cracked_rate": 0.771,
+    "generated_non_cracked_rate": 0.229,
+    "prior_distribution_drift_error": 0.6197,
+    "cracked_wilson_95_ci": [
+      0.7439,
+      0.796
+    ],
+    "non_cracked_wilson_95_ci": [
+      0.204,
+      0.2561
+    ]
+  },
+  "surface_and_morphology_error_statistics": {
+    "real_reference_luma_mean": 163.67,
+    "generated_luma_mean": 147.8,
+    "generated_luma_std": 26.34,
+    "luma_error_mae": 20.24,
+    "luma_error_rmse": 30.75,
+    "real_reference_contrast_std": 11.07,
+    "generated_contrast_mean": 23.15,
+    "contrast_error_mae": 12.79,
+    "contrast_error_rmse": 14.8,
+    "real_cracked_mean_span_px": 25.07,
+    "generated_cracked_mean_span_px": 24.19,
+    "generated_cracked_std_span_px": 9.91,
+    "crack_span_error_mae_px": 7.65,
+    "crack_span_error_rmse_px": 9.95,
+    "mean_continuity_ratio": 0.116,
+    "mean_chromatic_deviation": 18.99,
+    "std_chromatic_deviation": 10.63
+  },
+  "fidelity": {
+    "status": "not_requested"
+  }
+}

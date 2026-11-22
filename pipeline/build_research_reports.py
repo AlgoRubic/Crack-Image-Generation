@@ -21,6 +21,7 @@ TITLES=['Unconditional concrete surface synthesis at 64 by 64 pixels','Binary cr
 
 def read_json(path):return json.loads(path.read_text(encoding='utf-8'))
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def relative(path):return path.relative_to(ROOT).as_posix()
 def table(headers,rows):
     return '\n'.join(['| '+' | '.join(headers)+' |','| '+' | '.join(['---']*len(headers))+' |']+['| '+' | '.join(str(x).replace('|',' / ').replace('\n',' ') for x in row)+' |' for row in rows])
 def pct(value):return f'{100*value:.2f}%'
@@ -36,18 +37,20 @@ def preserve(folder,n):
     if registry.exists():
         result=read_json(registry)
         for entry in result['entries']:
+            entry['source']=entry['source'].replace('\\','/')
+            entry['archive']=entry['archive'].replace('\\','/')
             if sha(ROOT/entry['archive'])!=entry['sha256']:raise ValueError('Original report archive changed')
         for source in sorted((folder/'plots').glob('*')):
             if not source.is_file():continue
             target=archive/'plots'/source.name
             if target.exists():continue
             target.parent.mkdir(exist_ok=True);shutil.copyfile(source,target)
-            result['entries'].append(dict(source=str(source.relative_to(ROOT)),archive=str(target.relative_to(ROOT)),sha256=sha(source)))
+            result['entries'].append(dict(source=relative(source),archive=relative(target),sha256=sha(source)))
         if n==6:
             source=folder/'EVALUATION_METRICS.json';target=archive/'original_stored_metrics.json'
             if not target.exists():
                 shutil.copyfile(source,target)
-                result['entries'].append(dict(source=str(source.relative_to(ROOT)),archive=str(target.relative_to(ROOT)),sha256=sha(source)))
+                result['entries'].append(dict(source=relative(source),archive=relative(target),sha256=sha(source)))
         registry.write_text(json.dumps(result,indent=2),encoding='utf-8')
         return result
     entries=[]
@@ -55,15 +58,15 @@ def preserve(folder,n):
         if any(k in source.name for k in ('REPORT','DOCUMENTATION','STATUS')):
             target=archive/source.name
             shutil.copyfile(source,target)
-            entries.append(dict(source=str(source.relative_to(ROOT)),archive=str(target.relative_to(ROOT)),sha256=sha(source)))
+            entries.append(dict(source=relative(source),archive=relative(target),sha256=sha(source)))
     # The existing website is the recoverable technical record for Exp2/3.
     source=ROOT/f'website/experiment-{n}.html'
     target=archive/'previous_webpage.html';shutil.copyfile(source,target)
-    entries.append(dict(source=str(source.relative_to(ROOT)),archive=str(target.relative_to(ROOT)),sha256=sha(source)))
+    entries.append(dict(source=relative(source),archive=relative(target),sha256=sha(source)))
     if n in (2,3):
         source=ROOT/f'website/assets/reports/experiment_{n}_formula_report.pdf'
         target=archive/source.name;shutil.copyfile(source,target)
-        entries.append(dict(source=str(source.relative_to(ROOT)),archive=str(target.relative_to(ROOT)),sha256=sha(source)))
+        entries.append(dict(source=relative(source),archive=relative(target),sha256=sha(source)))
     result=dict(revision=REVISION,policy='Exact pre-revision bytes; historical statements may be superseded by the current report.',entries=entries)
     registry.write_text(json.dumps(result,indent=2),encoding='utf-8')
     return result
@@ -312,9 +315,15 @@ def build():
         parameters=sum(t.numel() for t in state['model'].values())
         if parameters!=PARAMETERS[n-1]:raise ValueError('Unexpected checkpoint architecture size')
         optimizer=[{k:v for k,v in g.items() if k!='params'} for g in state.get('optimizer',{}).get('param_groups',[])]
-        checkpoint_meta=dict(path=str(checkpoint.relative_to(ROOT)),sha256=sha(checkpoint),parameters=parameters,epoch_field=state.get('epoch'),loss=state.get('loss',state.get('mean_loss')),optimizer_groups=optimizer)
+        checkpoint_meta=dict(path=relative(checkpoint),sha256=sha(checkpoint),parameters=parameters,epoch_field=state.get('epoch'),loss=state.get('loss',state.get('mean_loss')),optimizer_groups=optimizer)
         del state
         inputs=[source,log['path'],csv_path,folder/f'plots/exp{n}_overview.png',ROOT/'src'/TRAINERS[n-1],ROOT/'src'/EVALUATORS[n-1],ROOT/'src/diffusion.py',ROOT/'models/checkpoint_manifest.json',ROOT/'datasets/current_research_split.json',ROOT/'datasets/source_content_v1/summary.json',ROOT/'datasets/near_duplicate_screen_v1/research_v5_summary.json']
+        reproduction_path=ROOT/'experiments/saved_analysis_reproduction.json'
+        reproduction=read_json(reproduction_path)
+        if reproduction['status']!='passed':raise ValueError('Saved analysis reproduction has not passed')
+        reproduction_records=[r for r in reproduction['records'] if r['experiment']==n]
+        inputs += [reproduction_path,ROOT/'pipeline/reproduce_results.py',ROOT/'pipeline/verify_reproductions.py']
+        inputs += [ROOT/r['manifest'] for r in reproduction_records]
         if (ROOT/'experiments/fresh_install_cpu_verification.json').exists():inputs+=[ROOT/'experiments/fresh_install_cpu_verification.json']
         if n>=3:inputs+=[ROOT/'datasets/source_provenance/rc10519_local_inventory.json',ROOT/'datasets/source_provenance/rc10519_publisher_record.json']
         if n>=5:inputs+=[ROOT/'datasets/exp5_exp6_level_bc_mechanisms_256/research_v5/strict_rc_geometry_v1/audit.json']
@@ -323,8 +332,8 @@ def build():
         if sample_log.exists():inputs+=[sample_log]
         inputs+=[ROOT/'website'/path for _,path in examples.result_images[n]]
         evidence=dict(experiment=n,revision=REVISION,report=f'EXPERIMENT_{n}_FULL_REPORT.md',checkpoint=checkpoint_meta,
-                      input_sha256={str(p.relative_to(ROOT)):sha(p) for p in inputs},archived_sources=archive['entries'],
-                      input_lf_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes().replace(b'\r\n',b'\n')).hexdigest() for p in inputs if p.suffix in ('.json','.csv','.py','.md')},
+                      input_sha256={relative(p):sha(p) for p in inputs},archived_sources=archive['entries'],
+                      input_lf_sha256={relative(p):hashlib.sha256(p.read_bytes().replace(b'\r\n',b'\n')).hexdigest() for p in inputs if p.suffix in ('.json','.csv','.py','.md')},
                       hash_policy='Raw hashes attest observed bytes; LF-normalized hashes additionally identify text content across Git line-ending conversions. Archived originals retain exact bytes.',
                       training=dict(unique_epochs=len(log['rows']),raw_numeric_rows=log['raw_numeric_rows'],repeated_epochs=log['repeated_epochs'],ignored_rows=log['ignored_rows'],final=log['final'],minimum=log['minimum']),
                       limitations=['Retrospective artifact analysis, not new clean training','Requested labels and morphology predicates are not independent engineering ground truth'])
@@ -387,7 +396,12 @@ For saved count matrix $A$, $A_{ij}$ counts request $i$ assigned heuristic class
         text+=f'\n\n## 13. Reproducibility and artifact record\n\nThe released historical weights are used for inference; these commands do not start training. Run from the repository root with the documented dependencies and a fresh output directory.\n\n```powershell\n.\\.venv\\Scripts\\python.exe pipeline/download_models.py\n.\\.venv\\Scripts\\python.exe pipeline/checkpoints.py verify\n.\\.venv\\Scripts\\python.exe pipeline/generate_cracks.py --experiment {n} --crack-type {category} --count 1 --seed 2026 --output-dir experiments/{name}/report_replication_seed2026\n```\n\nA fixed seed requires matching checkpoints, sampling settings, device and software for comparable execution; it does not guarantee cross-device pixel identity or exact replication of a historical example grid. Research training uses a separate scratch lineage and must not overwrite these final weights.\n\n'
         text+=table(['Evidence','Artifact'],[['Primary metric record',link(source)],['Training log',link(log['path'])],['Checkpoint SHA256',checkpoint_meta['sha256']],['Input hashes and revision archive',link(evidence_path)],['Training source',link(ROOT/'src'/TRAINERS[n-1])],['Evaluation source',link(ROOT/'src'/EVALUATORS[n-1])]])
         text+='\n\nCode is available in the [project repository](https://github.com/AlgoRubic/Crack-Image-Generation). The six historical checkpoints are distributed in the [versioned model release](https://github.com/AlgoRubic/Crack-Image-Generation/releases/tag/historical-models-v1), with a checksum manifest. Raw datasets are not included in that inference bundle. Dataset references identify their publishers, while local source inventories record observed archive hashes and outstanding identity/annotation limitations.\n'
-        text+='\n\nThe machine-readable evidence file records input SHA256 values, checkpoint metadata, log handling and exact archived pre-revision sources. The historical reports remain recoverable and are superseded where their claims conflict with the corrected tables above. Original sampling files do not provide a complete checkpoint-hash chain for every historical evaluation image; association with the released phase checkpoint follows the available procedural record. No new generation, training or rerun of image-evaluation algorithms is implied by this revision. Counts, Wilson intervals and derived matrix statistics are calculated from saved artifacts.\n'
+        text+='\n\nThe machine-readable evidence file records input SHA256 values, checkpoint metadata, log handling and exact archived pre-revision sources. The historical reports remain recoverable and are superseded where their claims conflict with the corrected tables above. Original sampling files do not provide a complete checkpoint-hash chain for every historical evaluation image; association with the released phase checkpoint follows the available procedural record. Counts, Wilson intervals and derived matrix statistics are calculated from saved artifacts.\n'
+        checked=reproduction_records[0]['numeric_fields_compared']
+        text+=f'\n### Verified saved-image reproduction\n\nOn 22 November 2026, the morphology/spatial analysis was rerun on all saved evaluation images for this experiment in two fresh directories (`saved-analysis-20261122-v2` and `saved-analysis-20261122-v3`). All {checked} compared numeric baseline fields matched with absolute tolerance 0.0001 and zero relative tolerance; the two fresh metric JSON records were identical in the same local environment. Per-image row counts, input/output SHA256 values and preservation of the original metrics were verified. Across all six experiments, each run analysed 4,992 images. Fidelity and the manually authored Exp4 comparison block were explicitly excluded, so this does not reproduce historical FID/KID, establish independent accuracy, or execute new sampling or training.\n\n'
+        text+=f'```powershell\n.\\.venv\\Scripts\\python.exe pipeline/reproduce_results.py --run-id my-exp{n}-review --experiments {n}\n```\n\n'
+        text+='The command refuses existing run folders and fails on missing historical inputs. Raw evaluation images and physics masks are retained locally and excluded from ordinary Git; Exp1–3 also require their recorded processed-image reference subset. A Git clone alone is sufficient for report evidence verification and published-weight inference, but does not contain every saved-image input. Read the [reproduction guide](../../docs/REPRODUCIBILITY.md) and [folder map](../../docs/PROJECT_STRUCTURE.md).\n\n'
+        text+=table(['Verified reproduction','Record'],[['Summary',link(reproduction_path)]]+[[r['run_id'],link(ROOT/r['manifest'])] for r in reproduction_records])
         selected={1,4,5,6}
         if n>=4:selected.update((2,3,7))
         if n>=3:selected.update((9,10))
@@ -410,7 +424,7 @@ For saved count matrix $A$, $A_{ij}$ counts request $i$ assigned heuristic class
         if n in (2,3):
             status=f'# Experiment {n} Current Research Record\n\nRevision: {REVISION}. Historical training is complete and a later saved descriptive evaluation exists: '+('2,000 generated images (1,000 per class).' if n==2 else '400 generated images (200 per class). The earlier closed-run statement that no final metrics existed is superseded by this later evaluation.')+f'\n\nRead [the complete research report](EXPERIMENT_{n}_FULL_REPORT.md). These are heuristic requested-label agreement and protocol-specific feature diagnostics, not independent mechanism accuracy or clean holdout validation. Earlier status and PDF/web technical records are preserved in `report_archive/20261122-original/`.\n'
             (folder/'STATUS.md').write_text(status,encoding='utf-8')
-        summary.append(dict(experiment=n,report=str(target.relative_to(ROOT)),sha256=sha(target),words=len(text.split()),input_files=len(inputs),archive_files=len(archive['entries']),corrections=narrative['errors']))
+        summary.append(dict(experiment=n,report=relative(target),sha256=sha(target),words=len(text.split()),input_files=len(inputs),archive_files=len(archive['entries']),corrections=narrative['errors']))
         print(f'Wrote Experiment {n}: {len(text.split())} words',flush=True)
     (ROOT/'experiments/report_revision_audit.json').write_text(json.dumps(dict(revision=REVISION,reports=summary,scope='Retrospective research documentation; scientific validation gaps remain explicit'),indent=2),encoding='utf-8')
 

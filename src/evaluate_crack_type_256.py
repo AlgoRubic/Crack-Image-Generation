@@ -10,6 +10,7 @@ Computes:
 from __future__ import annotations
 
 import json
+import csv
 from pathlib import Path
 
 import numpy as np
@@ -123,8 +124,11 @@ def analyze_crack_morphology(mask: np.ndarray):
     }
 
 
-def main():
+def main(output_dir: Path | None = None):
     results = {}
+    samples=[]
+    output_path=Path(output_dir)/'EVALUATION_METRICS.json' if output_dir is not None else OUT_JSON
+    output_path.parent.mkdir(parents=True,exist_ok=True)
     print("--- Evaluating Experiment 4 Generated Samples (256x256 DDIM 50-step CFG 2.5) ---\n")
 
     for cid, cname in CLASSES:
@@ -139,6 +143,7 @@ def main():
         for im_p in imgs:
             mask = extract_crack_mask(im_p)
             stat = analyze_crack_morphology(mask)
+            samples.append(dict(class_id=cid,class_name=cname,sample_file=im_p.name,**stat))
             class_stats.append(stat)
 
         n = len(class_stats)
@@ -198,10 +203,14 @@ def main():
         },
     }
 
-    with open(OUT_JSON, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
 
-    print(f"\n[SUCCESS] Quantitative metrics saved to: {OUT_JSON}")
+    if output_dir is not None and samples:
+        with (output_path.parent/'PER_SAMPLE_ERROR_LOG.csv').open('w',encoding='utf-8',newline='') as stream:
+            writer=csv.DictWriter(stream,fieldnames=sorted({k for row in samples for k in row}));writer.writeheader();writer.writerows(samples)
+    print(f"\n[SUCCESS] Quantitative metrics saved to: {output_path}")
+    return results
 
 
 if __name__ == "__main__":

@@ -5,17 +5,18 @@ Allows any reviewer or user to:
   1. Choose any experiment (`--experiment 1..6`)
   2. Choose any specific crack type (`--crack-type flexural`, `--crack-type torsion`, `--crack-type all`, etc.)
   3. Generate any number of images (`--count 1234`, `--count 16`, etc.) in memory-safe mini-batches
-  4. Use any random seed (`--seed 2026` to replicate the exact report images, or any new seed for fresh images)
+  4. Record the random seed for repeatability under matched checkpoints, sampling settings, software and device.
+     A fixed seed does not guarantee identical images across CPU/GPU or software versions.
 
 Examples:
   # Generate 1234 new flexural crack images from Experiment 5 (Level B)
-  python replicate_and_generate_suite/generate_cracks.py --experiment 5 --crack-type flexural --count 1234 --seed 999
+  python pipeline/generate_cracks.py --experiment 5 --crack-type flexural --count 1234 --seed 999
 
   # Generate 16 flexure_shear crack images from Experiment 6 (Level C: Spatial-Physics)
-  python replicate_and_generate_suite/generate_cracks.py --experiment 6 --crack-type flexure_shear --count 16 --seed 2026
+  python pipeline/generate_cracks.py --experiment 6 --crack-type flexure_shear --count 16 --seed 2026
 
-  # Replicate all 7 classes of Experiment 6 (16 images per class)
-  python replicate_and_generate_suite/generate_cracks.py --experiment 6 --crack-type all --count 16 --seed 2026
+  # Generate all 7 classes of Experiment 6 (16 images per class)
+  python pipeline/generate_cracks.py --experiment 6 --crack-type all --count 16 --seed 2026
 """
 from __future__ import annotations
 
@@ -192,7 +193,7 @@ def main() -> None:
         "--output-dir",
         type=str,
         default=None,
-        help="Custom output folder (defaults to replicate_and_generate_suite/generated_outputs/exp<N>)",
+        help="Custom output folder (defaults to experiments/<experiment>/inference/seed<seed>)",
     )
     args = parser.parse_args()
     if args.count < 1 or not 2 <= args.steps <= 1000 or not math.isfinite(args.cfg_scale) or args.cfg_scale < 0 or not 0 <= args.seed < 2**32:
@@ -208,7 +209,11 @@ def main() -> None:
     out_base = (
         Path(args.output_dir)
         if args.output_dir
-        else SUITE_DIR / "generated_outputs" / f"exp{exp_id}"
+        else ROOT / 'experiments' / {
+            1: 'unconditional_ddpm', 2: 'conditional_ddpm', 3: 'conditional_ddpm_128_augmented',
+            4: 'crack_type_conditional', 5: 'structural_mechanism_ddpm',
+            6: 'exp6_level_c_spatial_physics',
+        }[exp_id] / 'inference' / f'seed{args.seed}'
     )
     out_base.mkdir(parents=True, exist_ok=True)
     manifest_path=out_base/'inference_manifest.json'

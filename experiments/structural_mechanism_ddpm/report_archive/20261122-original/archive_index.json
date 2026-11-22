@@ -3,33 +3,33 @@
   "policy": "Exact pre-revision bytes; historical statements may be superseded by the current report.",
   "entries": [
     {
-      "source": "experiments\\structural_mechanism_ddpm\\EXPERIMENT_5_DOCUMENTATION_AND_ASSUMPTIONS.md",
-      "archive": "experiments\\structural_mechanism_ddpm\\report_archive\\20261122-original\\EXPERIMENT_5_DOCUMENTATION_AND_ASSUMPTIONS.md",
+      "source": "experiments/structural_mechanism_ddpm/EXPERIMENT_5_DOCUMENTATION_AND_ASSUMPTIONS.md",
+      "archive": "experiments/structural_mechanism_ddpm/report_archive/20261122-original/EXPERIMENT_5_DOCUMENTATION_AND_ASSUMPTIONS.md",
       "sha256": "311a9c3b08a5b534c120bbe955dd31be69bd5217e64800e38857be25e146deaa"
     },
     {
-      "source": "experiments\\structural_mechanism_ddpm\\EXPERIMENT_5_FULL_REPORT.md",
-      "archive": "experiments\\structural_mechanism_ddpm\\report_archive\\20261122-original\\EXPERIMENT_5_FULL_REPORT.md",
+      "source": "experiments/structural_mechanism_ddpm/EXPERIMENT_5_FULL_REPORT.md",
+      "archive": "experiments/structural_mechanism_ddpm/report_archive/20261122-original/EXPERIMENT_5_FULL_REPORT.md",
       "sha256": "8f829060983c48c313f29a088c3fa89f5d1a5f36a929eec71aec4f540c7611c0"
     },
     {
-      "source": "website\\experiment-5.html",
-      "archive": "experiments\\structural_mechanism_ddpm\\report_archive\\20261122-original\\previous_webpage.html",
+      "source": "website/experiment-5.html",
+      "archive": "experiments/structural_mechanism_ddpm/report_archive/20261122-original/previous_webpage.html",
       "sha256": "5e725d21ad261d9a724cca259e62f1fec83508a02c4936bfa28c04fee2772f51"
     },
     {
-      "source": "experiments\\structural_mechanism_ddpm\\plots\\exp5_overview.png",
-      "archive": "experiments\\structural_mechanism_ddpm\\report_archive\\20261122-original\\plots\\exp5_overview.png",
+      "source": "experiments/structural_mechanism_ddpm/plots/exp5_overview.png",
+      "archive": "experiments/structural_mechanism_ddpm/report_archive/20261122-original/plots/exp5_overview.png",
       "sha256": "b7218b7556e7d85ae59cf919462e9825bec6d549d450343e491a0a7e480c27ba"
     },
     {
-      "source": "experiments\\structural_mechanism_ddpm\\plots\\exp5_overview.svg",
-      "archive": "experiments\\structural_mechanism_ddpm\\report_archive\\20261122-original\\plots\\exp5_overview.svg",
+      "source": "experiments/structural_mechanism_ddpm/plots/exp5_overview.svg",
+      "archive": "experiments/structural_mechanism_ddpm/report_archive/20261122-original/plots/exp5_overview.svg",
       "sha256": "af48070ea0086c386f20ce62baa8965df724d75f4ba3a9a75d5d87e0f2d87558"
     },
     {
-      "source": "experiments\\structural_mechanism_ddpm\\plots\\plot_provenance.json",
-      "archive": "experiments\\structural_mechanism_ddpm\\report_archive\\20261122-original\\plots\\plot_provenance.json",
+      "source": "experiments/structural_mechanism_ddpm/plots/plot_provenance.json",
+      "archive": "experiments/structural_mechanism_ddpm/report_archive/20261122-original/plots/plot_provenance.json",
       "sha256": "89c0599350eca458d82c6e9ff7e96eebd330990694b9eb5f4d20e298f41c56a1"
     }
   ]

@@ -1,0 +1,53 @@
+{
+  "non_cracked": {
+    "sample_count": 16,
+    "clean_surface_rate": 0.0,
+    "false_positive_crack_rate": 1.0,
+    "mean_noise_pixels": 8536.7
+  },
+  "longitudinal": {
+    "sample_count": 16,
+    "crack_presence_rate": 1.0,
+    "orientation_alignment_accuracy": 0.0,
+    "mean_max_length_px": 68.3,
+    "mean_continuity_ratio": 0.0676,
+    "mean_significant_components": 78.81
+  },
+  "transverse": {
+    "sample_count": 16,
+    "crack_presence_rate": 1.0,
+    "orientation_alignment_accuracy": 0.0,
+    "mean_max_length_px": 86.8,
+    "mean_continuity_ratio": 0.0553,
+    "mean_significant_components": 84.06
+  },
+  "diagonal": {
+    "sample_count": 16,
+    "crack_presence_rate": 1.0,
+    "orientation_alignment_accuracy": 0.0,
+    "mean_max_length_px": 79.6,
+    "mean_continuity_ratio": 0.0744,
+    "mean_significant_components": 70.06
+  },
+  "alligator_map": {
+    "sample_count": 16,
+    "mesh_detection_rate": 1.0,
+    "mean_significant_components": 181.62,
+    "mean_c_ratio": 0.0236,
+    "mean_total_crack_pixels": 14022.4
+  },
+  "baseline_comparison": {
+    "exp3_128px_upscaled": {
+      "resolution": "128x128 -> 256x256 upscaled",
+      "mean_continuity_ratio": 0.284,
+      "mean_connected_components": 14.2,
+      "crack_fragmentation": "Severe (isolated specks/hairline blur)"
+    },
+    "exp4_256px_attention": {
+      "resolution": "256x256 Native AttentionUNet",
+      "mean_linear_continuity_ratio": 0.066,
+      "mean_linear_components": 77.64,
+      "crack_fragmentation": "Resolved (continuous structural cracks)"
+    }
+  }
+}

@@ -6,5 +6,8 @@ experiments/**/report_archive/** -text
 experiments/**/*.md -text
 experiments/**/report_evidence.json -text
 experiments/report_revision_audit.json -text
+experiments/**/reproductions/** -text
+experiments/saved_analysis_reproduction.json -text
+archive/organization_manifest_20261122.json -text
 website/assets/research/*_report_evidence.json -text
 website/assets/reports/*.md -text

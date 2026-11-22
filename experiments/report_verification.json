@@ -4,44 +4,44 @@
   "reports": [
     {
       "experiment": 1,
-      "words": 2540,
+      "words": 2727,
       "archive_files": 6,
-      "input_files": 14,
+      "input_files": 19,
       "per_sample_rows": 1000
     },
     {
       "experiment": 2,
-      "words": 2578,
+      "words": 2765,
       "archive_files": 7,
-      "input_files": 15,
+      "input_files": 20,
       "per_sample_rows": 2000
     },
     {
       "experiment": 3,
-      "words": 2536,
+      "words": 2723,
       "archive_files": 6,
-      "input_files": 17,
+      "input_files": 22,
       "per_sample_rows": 400
     },
     {
       "experiment": 4,
-      "words": 2565,
+      "words": 2752,
       "archive_files": 7,
-      "input_files": 19,
+      "input_files": 24,
       "per_sample_rows": null
     },
     {
       "experiment": 5,
-      "words": 2972,
+      "words": 3159,
       "archive_files": 6,
-      "input_files": 22,
+      "input_files": 27,
       "per_sample_rows": null
     },
     {
       "experiment": 6,
-      "words": 4111,
+      "words": 4298,
       "archive_files": 9,
-      "input_files": 28,
+      "input_files": 33,
       "per_sample_rows": 1400
     }
   ],

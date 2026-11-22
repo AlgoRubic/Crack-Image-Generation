@@ -1,0 +1,371 @@
+{
+  "purpose": "Local legacy material separated from the active pipeline; every file retained byte-for-byte",
+  "files": [
+    {
+      "original": "replicate_and_generate_suite/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/AGENTS.md",
+      "sha256": "172e7dee016ba7a6732ea87214c859e72be31af99e68bb83d695f5722ecd21e7",
+      "bytes": 299
+    },
+    {
+      "original": "replicate_and_generate_suite/generate_cracks.py",
+      "archived": "archive/legacy_replication_suite/generate_cracks.py",
+      "sha256": "839b7fbb2029cd0e844505f7545bb6f041632273b933846b73648a9335e46397",
+      "bytes": 14068
+    },
+    {
+      "original": "replicate_and_generate_suite/README_REPLICATION_AND_DATASETS.md",
+      "archived": "archive/legacy_replication_suite/README_REPLICATION_AND_DATASETS.md",
+      "sha256": "6967f9b5194a53bb67d1890b37f59141e94706ab2f4d0e27e7dcb02fe2499e2e",
+      "bytes": 7698
+    },
+    {
+      "original": "replicate_and_generate_suite/README.md",
+      "archived": "archive/legacy_replication_suite/README.md",
+      "sha256": "608b7f42c5324d35f6300a79d1beed7d94a6d7d554502441ca19deaeba25c446",
+      "bytes": 7782
+    },
+    {
+      "original": "replicate_and_generate_suite/core/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/core/AGENTS.md",
+      "sha256": "42bf4a794585720bcd402c799b6ba1f72f3a3e71bd9c8043ce0e3adb039f012e",
+      "bytes": 280
+    },
+    {
+      "original": "replicate_and_generate_suite/core/dataset.py",
+      "archived": "archive/legacy_replication_suite/core/dataset.py",
+      "sha256": "a85d7441b3c74a6e79f964f6ad1806bd2881bcac08ea520f61130399c212509c",
+      "bytes": 1049
+    },
+    {
+      "original": "replicate_and_generate_suite/core/diffusion.py",
+      "archived": "archive/legacy_replication_suite/core/diffusion.py",
+      "sha256": "75a1db33a52e03a1bb01eff664621d1e6572f167ad2cf13d63699ee27821ec83",
+      "bytes": 1872
+    },
+    {
+      "original": "replicate_and_generate_suite/core/model_attention.py",
+      "archived": "archive/legacy_replication_suite/core/model_attention.py",
+      "sha256": "3e373843f4e50bf93fc4a03a5f7785b9a4fe9ee241c0264acfa349d77112f4db",
+      "bytes": 8066
+    },
+    {
+      "original": "replicate_and_generate_suite/core/model.py",
+      "archived": "archive/legacy_replication_suite/core/model.py",
+      "sha256": "e4cdf62564c516ed5ef1c4c98961a4da02e9a940a26e9f776979779295d65c60",
+      "bytes": 4512
+    },
+    {
+      "original": "replicate_and_generate_suite/core/physics_trajectory_solver.py",
+      "archived": "archive/legacy_replication_suite/core/physics_trajectory_solver.py",
+      "sha256": "8e0ae618b40358717c294f2463f63e63a9ffa3c0e94c7d49f891cf2fe921514b",
+      "bytes": 16705
+    },
+    {
+      "original": "replicate_and_generate_suite/core/README.md",
+      "archived": "archive/legacy_replication_suite/core/README.md",
+      "sha256": "bf76729f18944b9d751f5b83d1c0ce5dd1571733f3119431595be6a6b5ed68b2",
+      "bytes": 1026
+    },
+    {
+      "original": "replicate_and_generate_suite/exp1_unconditional_64/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/exp1_unconditional_64/AGENTS.md",
+      "sha256": "2a183334546e5465e5412b331fcb8fdf07ac828ab4da869b1a720a8fd3999864",
+      "bytes": 677
+    },
+    {
+      "original": "replicate_and_generate_suite/exp1_unconditional_64/evaluate_baseline.py",
+      "archived": "archive/legacy_replication_suite/exp1_unconditional_64/evaluate_baseline.py",
+      "sha256": "cda3512ce66103321135c6dfa4b28a598f8e0eee4e5555038d53ff4823052ca1",
+      "bytes": 2322
+    },
+    {
+      "original": "replicate_and_generate_suite/exp1_unconditional_64/preprocess_images.py",
+      "archived": "archive/legacy_replication_suite/exp1_unconditional_64/preprocess_images.py",
+      "sha256": "39a67412478de107b86d84e2040e2a32fbc90c808b01f7f9d9d9f69e228c944d",
+      "bytes": 2801
+    },
+    {
+      "original": "replicate_and_generate_suite/exp1_unconditional_64/README.md",
+      "archived": "archive/legacy_replication_suite/exp1_unconditional_64/README.md",
+      "sha256": "1958c388f399d9ba2a99f38c66e64c9593c6d51049cedd3c255f569da67ffedf",
+      "bytes": 2739
+    },
+    {
+      "original": "replicate_and_generate_suite/exp1_unconditional_64/sample.py",
+      "archived": "archive/legacy_replication_suite/exp1_unconditional_64/sample.py",
+      "sha256": "21a46966427e7fe79e3a1f0832eaf40bf914fd78b0b8b5d5376f762bc1ee940c",
+      "bytes": 2616
+    },
+    {
+      "original": "replicate_and_generate_suite/exp1_unconditional_64/train.py",
+      "archived": "archive/legacy_replication_suite/exp1_unconditional_64/train.py",
+      "sha256": "f5c14d0c469ecbc8dfd2b25aba1145193748ed5cea2947641ae533b1f352b785",
+      "bytes": 4858
+    },
+    {
+      "original": "replicate_and_generate_suite/exp2_conditional_64/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/exp2_conditional_64/AGENTS.md",
+      "sha256": "818515d0a1d5bab64e2af4a92f5c927c5761a6d5de5bc765288d165b89353ab4",
+      "bytes": 651
+    },
+    {
+      "original": "replicate_and_generate_suite/exp2_conditional_64/evaluate_metrics.py",
+      "archived": "archive/legacy_replication_suite/exp2_conditional_64/evaluate_metrics.py",
+      "sha256": "2b84e2f742a24677f261b954ddd1eb711cebd037062b043a96334a1754f842b5",
+      "bytes": 3904
+    },
+    {
+      "original": "replicate_and_generate_suite/exp2_conditional_64/README.md",
+      "archived": "archive/legacy_replication_suite/exp2_conditional_64/README.md",
+      "sha256": "9490b8da9fd68d618d83e422eedc1f24f2f7530c7f89f8532f8116f23e2450d0",
+      "bytes": 3041
+    },
+    {
+      "original": "replicate_and_generate_suite/exp2_conditional_64/sample_conditional.py",
+      "archived": "archive/legacy_replication_suite/exp2_conditional_64/sample_conditional.py",
+      "sha256": "ea529ff55654f37b3ad0347240fe821622698ceafaa0ede8c6c9a486581fe946",
+      "bytes": 2540
+    },
+    {
+      "original": "replicate_and_generate_suite/exp2_conditional_64/train_conditional.py",
+      "archived": "archive/legacy_replication_suite/exp2_conditional_64/train_conditional.py",
+      "sha256": "f70e5fe856516c93dddf6ddb64603060bc13a96af18ad313ed049973cb5e566e",
+      "bytes": 4006
+    },
+    {
+      "original": "replicate_and_generate_suite/exp3_conditional_128/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/exp3_conditional_128/AGENTS.md",
+      "sha256": "fbc9696ad16b33aac5a5fc158f718f716b501e69c92324d96ed7d5c0f434e464",
+      "bytes": 686
+    },
+    {
+      "original": "replicate_and_generate_suite/exp3_conditional_128/generate_eval_128.py",
+      "archived": "archive/legacy_replication_suite/exp3_conditional_128/generate_eval_128.py",
+      "sha256": "2e6bad97c083ab771e9b695a05d38c0a520ee817fd5136c5d13d2554dae8f278",
+      "bytes": 4631
+    },
+    {
+      "original": "replicate_and_generate_suite/exp3_conditional_128/prepare_experiment3_128.py",
+      "archived": "archive/legacy_replication_suite/exp3_conditional_128/prepare_experiment3_128.py",
+      "sha256": "f032bb8c2fabf59a3dbf6f50e539258f7ec51aa4bb9b8f82538959897b7c3490",
+      "bytes": 3298
+    },
+    {
+      "original": "replicate_and_generate_suite/exp3_conditional_128/README.md",
+      "archived": "archive/legacy_replication_suite/exp3_conditional_128/README.md",
+      "sha256": "8057b8f5973faa3304b6f18f45dcedd932b9a473858e2249fd0113a94756416c",
+      "bytes": 3058
+    },
+    {
+      "original": "replicate_and_generate_suite/exp3_conditional_128/train_conditional_128_augmented.py",
+      "archived": "archive/legacy_replication_suite/exp3_conditional_128/train_conditional_128_augmented.py",
+      "sha256": "30d4f5d087954eea5010e3c27944fc2b0c264a69daef174c16818616446c5e93",
+      "bytes": 4128
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/AGENTS.md",
+      "sha256": "09638846f4a4eeff341f796689bbc56504075ed98253ae63b14505a97ccc3f8d",
+      "bytes": 700
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/evaluate_crack_type_256.py",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/evaluate_crack_type_256.py",
+      "sha256": "70947889796d5c240bb11ae632168018dfacf13d84d67834fa9c46f9170c8211",
+      "bytes": 8090
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/prepare_experiment4_256.py",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/prepare_experiment4_256.py",
+      "sha256": "eb3098aa61e6cc3b939e55c47ec45573ced35a32f56fe5ac4099c2b54c394bc9",
+      "bytes": 9478
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/README.md",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/README.md",
+      "sha256": "9ebaf2e689c7244c2c5ecf386dd6fb858a5d5ea51dfddc73926b974e7478897a",
+      "bytes": 3925
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/sample_crack_type_256.py",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/sample_crack_type_256.py",
+      "sha256": "4955055195abf048504e02653c3152184209da96c6b78795e97cfb649f13d421",
+      "bytes": 4378
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/train_crack_type_256.py",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/train_crack_type_256.py",
+      "sha256": "7656154bb26a5cc89697558c59634e9c211e98863dee1c9d73fc9e0eceb0bdec",
+      "bytes": 7216
+    },
+    {
+      "original": "replicate_and_generate_suite/exp4_level_a_morphology_256/__pycache__/sample_crack_type_256.cpython-310.pyc",
+      "archived": "archive/legacy_replication_suite/exp4_level_a_morphology_256/__pycache__/sample_crack_type_256.cpython-310.pyc",
+      "sha256": "62c5e5260627ad78d74cca185e652cb6af4acd2fae851f8d1eb9bc95b9d9001a",
+      "bytes": 3812
+    },
+    {
+      "original": "replicate_and_generate_suite/exp5_level_b_mechanisms_256/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/exp5_level_b_mechanisms_256/AGENTS.md",
+      "sha256": "843a438e69d77aad762c26784588722095653c0933a3598bafc89d30c4dcbc6a",
+      "bytes": 715
+    },
+    {
+      "original": "replicate_and_generate_suite/exp5_level_b_mechanisms_256/evaluate_exp5_mechanisms_256.py",
+      "archived": "archive/legacy_replication_suite/exp5_level_b_mechanisms_256/evaluate_exp5_mechanisms_256.py",
+      "sha256": "53786342a4264f4f5cf217a3e4c8fd3847d7731d5c1c01c15858f28b447a970e",
+      "bytes": 9831
+    },
+    {
+      "original": "replicate_and_generate_suite/exp5_level_b_mechanisms_256/prepare_experiment5_mechanisms.py",
+      "archived": "archive/legacy_replication_suite/exp5_level_b_mechanisms_256/prepare_experiment5_mechanisms.py",
+      "sha256": "c368694d1be17f7e76acbf69cc92c7185a9366f7f2e22b97aa5a28e1ba40994c",
+      "bytes": 19529
+    },
+    {
+      "original": "replicate_and_generate_suite/exp5_level_b_mechanisms_256/README.md",
+      "archived": "archive/legacy_replication_suite/exp5_level_b_mechanisms_256/README.md",
+      "sha256": "109d6cbe172688e04e7243299c56f53e31f0d9688c6871d89d031698179a837f",
+      "bytes": 4522
+    },
+    {
+      "original": "replicate_and_generate_suite/exp5_level_b_mechanisms_256/sample_exp5_mechanisms_256.py",
+      "archived": "archive/legacy_replication_suite/exp5_level_b_mechanisms_256/sample_exp5_mechanisms_256.py",
+      "sha256": "378f1810de14fccddc7fe31f1c493ea2caace540c3375eda12c72bb911c671d6",
+      "bytes": 2691
+    },
+    {
+      "original": "replicate_and_generate_suite/exp5_level_b_mechanisms_256/train_exp5_mechanisms_256.py",
+      "archived": "archive/legacy_replication_suite/exp5_level_b_mechanisms_256/train_exp5_mechanisms_256.py",
+      "sha256": "ec751b95216601af5a5329b8875b784e49bfe4c6f531c18171de1bc0b0779316",
+      "bytes": 9848
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/AGENTS.md",
+      "sha256": "8d9288ed7dad522269f793701aa3833f83f6f7046c6774a6b5fe65882f464159",
+      "bytes": 782
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/evaluate_exp6_spatial_physics_256.py",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/evaluate_exp6_spatial_physics_256.py",
+      "sha256": "08cc555eb1fd91d05019c8193f9df0d21280209cb402894202de5d408b0b0fb8",
+      "bytes": 34529
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/physics_trajectory_solver.py",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/physics_trajectory_solver.py",
+      "sha256": "8e0ae618b40358717c294f2463f63e63a9ffa3c0e94c7d49f891cf2fe921514b",
+      "bytes": 16705
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/README.md",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/README.md",
+      "sha256": "52a66a6b062c501b5bc5d4e47af9063206e7c8369b3bbcafe5de756e3a5527e6",
+      "bytes": 5924
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/sample_exp6_spatial_physics_256.py",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/sample_exp6_spatial_physics_256.py",
+      "sha256": "9a49207c49172e4cecbd9a41222a9335264004656fc4606e962f3b04f646b6d1",
+      "bytes": 8804
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/train_exp6_spatial_physics_256.py",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/train_exp6_spatial_physics_256.py",
+      "sha256": "0c0f3cc42aa411db5d3a48bb6eba64fed9341fd68cab64642ba793419672a314",
+      "bytes": 12649
+    },
+    {
+      "original": "replicate_and_generate_suite/exp6_level_c_spatial_physics_256/__pycache__/sample_exp6_spatial_physics_256.cpython-310.pyc",
+      "archived": "archive/legacy_replication_suite/exp6_level_c_spatial_physics_256/__pycache__/sample_exp6_spatial_physics_256.cpython-310.pyc",
+      "sha256": "d9e44dd0ae7191d0407e8e8134b83ad280bea4ff9cacfd830d37fd29d62493f7",
+      "bytes": 7022
+    },
+    {
+      "original": "replicate_and_generate_suite/generated_outputs/exp6/flexural_256_grid.png",
+      "archived": "archive/legacy_replication_suite/generated_outputs/exp6/flexural_256_grid.png",
+      "sha256": "487a341fe9dc3e0cb0c43e6261f11ac4e3fca060b39ba2fca02fca789d6092c5",
+      "bytes": 188864
+    },
+    {
+      "original": "replicate_and_generate_suite/generated_outputs/exp6/flexural/sample_0000.png",
+      "archived": "archive/legacy_replication_suite/generated_outputs/exp6/flexural/sample_0000.png",
+      "sha256": "f12c9909e2bc7a63ac9cc785e659a6b825bcf5e6b1d16e3655d8e7bcbca88f7d",
+      "bytes": 44931
+    },
+    {
+      "original": "replicate_and_generate_suite/generated_outputs/exp6/flexural/sample_0001.png",
+      "archived": "archive/legacy_replication_suite/generated_outputs/exp6/flexural/sample_0001.png",
+      "sha256": "9e55a8bf5353409de096ae257fda102d3be770c2d1b00b659644b9d4a58597ec",
+      "bytes": 129530
+    },
+    {
+      "original": "replicate_and_generate_suite/generated_outputs/exp6/flexural_physics_masks/phys_0000.npy",
+      "archived": "archive/legacy_replication_suite/generated_outputs/exp6/flexural_physics_masks/phys_0000.npy",
+      "sha256": "6160e04505d5438e884f5aaa5bddc8b248d8c055fb0cf58c2377d1e5a7714a14",
+      "bytes": 524416
+    },
+    {
+      "original": "replicate_and_generate_suite/generated_outputs/exp6/flexural_physics_masks/phys_0001.npy",
+      "archived": "archive/legacy_replication_suite/generated_outputs/exp6/flexural_physics_masks/phys_0001.npy",
+      "sha256": "aecc584288cb894652f2ae06c34b4dd2b0188fae1bde67c8acaf96aef319a35a",
+      "bytes": 524416
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/AGENTS.md",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/AGENTS.md",
+      "sha256": "3962d69162a7b4766254cd62650fc19939a6ffc2e757fec1aa31ac9236f6a28f",
+      "bytes": 103
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/exp1_unconditional_64_epoch050.pt",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/exp1_unconditional_64_epoch050.pt",
+      "sha256": "55fac363939c270cfb4d6e9c4e9dc645a1407b3749f9acb5611477d5f9dd2e9a",
+      "bytes": 39180921
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/exp2_conditional_64_epoch050.pt",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/exp2_conditional_64_epoch050.pt",
+      "sha256": "6ff346e549a0186b50a509d61e5d311b4ceb63cab77870c9f3b149f5935cc3bb",
+      "bytes": 13059310
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/exp3_conditional_128_epoch050.pt",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/exp3_conditional_128_epoch050.pt",
+      "sha256": "f6c3e5ffd855e53cb5a9e2b6f77db5630d96db27dd6b0a37e26555f127f41252",
+      "bytes": 13060424
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/exp4_level_a_morphology_256_epoch050.pt",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/exp4_level_a_morphology_256_epoch050.pt",
+      "sha256": "a5983d5eac819b3dcfdb3537f7fcf5bb5b16716eaf5f72ee3ebb8bd31d4b52e6",
+      "bytes": 166045969
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/exp5_level_b_mechanisms_256_epoch025.pt",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/exp5_level_b_mechanisms_256_epoch025.pt",
+      "sha256": "ab353ef287065595d52eb4884b818c5c2deb52c6256568030db9f5706ab40e8f",
+      "bytes": 166050681
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/exp6_level_c_spatial_physics_256_epoch015.pt",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/exp6_level_c_spatial_physics_256_epoch015.pt",
+      "sha256": "a70f8eea4385c8ecdaf028ed748cb5b5ac8db3747ee8da85e10f218bfd48f7c6",
+      "bytes": 166063381
+    },
+    {
+      "original": "replicate_and_generate_suite/pretrained_checkpoints/README.md",
+      "archived": "archive/legacy_replication_suite/pretrained_checkpoints/README.md",
+      "sha256": "2fb2191ecad06b67b6547e74b15e6a4212c770970327f3654c009ef23b88fa2b",
+      "bytes": 239
+    },
+    {
+      "original": "src/generate_docs_and_agents.py",
+      "archived": "archive/legacy_tools/generate_docs_and_agents.py",
+      "sha256": "72fe844fc40326e6402e3d17897485c96c7f25e6638127ad7a039b3d0b1aa991",
+      "bytes": 35537
+    }
+  ]
+}

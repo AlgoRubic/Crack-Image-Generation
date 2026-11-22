@@ -3,10 +3,10 @@
   "reports": [
     {
       "experiment": 1,
-      "report": "experiments\\unconditional_ddpm\\EXPERIMENT_1_FULL_REPORT.md",
-      "sha256": "2f389ad5426d5e820b43f15d73ca59e480861e19e3dd3d8d116423628b1ff269",
-      "words": 2540,
-      "input_files": 14,
+      "report": "experiments/unconditional_ddpm/EXPERIMENT_1_FULL_REPORT.md",
+      "sha256": "23978fc9d0f225754ba1030dce92d340b68646dd2bf433b2ad16ab41b499027b",
+      "words": 2727,
+      "input_files": 19,
       "archive_files": 6,
       "corrections": [
         [
@@ -25,10 +25,10 @@
     },
     {
       "experiment": 2,
-      "report": "experiments\\conditional_ddpm\\EXPERIMENT_2_FULL_REPORT.md",
-      "sha256": "c9af5419d873442419bccccda60c108aecd65cdcfd55db93e8a62d10c63d777f",
-      "words": 2578,
-      "input_files": 15,
+      "report": "experiments/conditional_ddpm/EXPERIMENT_2_FULL_REPORT.md",
+      "sha256": "db8d57f82d4e9fb74e394ce4088a1a5e8ad9d3b1cff179f7cf3df6e84188392f",
+      "words": 2765,
+      "input_files": 20,
       "archive_files": 7,
       "corrections": [
         [
@@ -47,10 +47,10 @@
     },
     {
       "experiment": 3,
-      "report": "experiments\\conditional_ddpm_128_augmented\\EXPERIMENT_3_FULL_REPORT.md",
-      "sha256": "8c06e07f7838057c091d93ab92698b04731ad8fd1ffd560a8307328a2997da76",
-      "words": 2536,
-      "input_files": 17,
+      "report": "experiments/conditional_ddpm_128_augmented/EXPERIMENT_3_FULL_REPORT.md",
+      "sha256": "73ef262db72ce97b4b0417ec5976ea786f766e2d2e9be3c158bf33cbf35ab90f",
+      "words": 2723,
+      "input_files": 22,
       "archive_files": 6,
       "corrections": [
         [
@@ -69,10 +69,10 @@
     },
     {
       "experiment": 4,
-      "report": "experiments\\crack_type_conditional\\EXPERIMENT_4_FULL_REPORT.md",
-      "sha256": "c73a25859e9dea80bea92c180d3aaf6d9aedc42eb42a8da693288ab707d2ac19",
-      "words": 2565,
-      "input_files": 19,
+      "report": "experiments/crack_type_conditional/EXPERIMENT_4_FULL_REPORT.md",
+      "sha256": "85190ceb2d3dd1bbe1fa140a86055a4bacdbe10ccc7ee99c5890c8737da11f7e",
+      "words": 2752,
+      "input_files": 24,
       "archive_files": 7,
       "corrections": [
         [
@@ -95,10 +95,10 @@
     },
     {
       "experiment": 5,
-      "report": "experiments\\structural_mechanism_ddpm\\EXPERIMENT_5_FULL_REPORT.md",
-      "sha256": "73a17fd06b73b72b1edac2c628369103ce6f8b907ab4fa347e853ddfb6d593a4",
-      "words": 2972,
-      "input_files": 22,
+      "report": "experiments/structural_mechanism_ddpm/EXPERIMENT_5_FULL_REPORT.md",
+      "sha256": "fd34bf0040d2c8ae5bc02adb20101fb7e628cdc66134b38b51116b41787dc953",
+      "words": 3159,
+      "input_files": 27,
       "archive_files": 6,
       "corrections": [
         [
@@ -121,10 +121,10 @@
     },
     {
       "experiment": 6,
-      "report": "experiments\\exp6_level_c_spatial_physics\\EXPERIMENT_6_FULL_REPORT.md",
-      "sha256": "bd819524b6ab63eda1fd80f2051842d35b4925660b1610baa19c9f7cc1e49d63",
-      "words": 4111,
-      "input_files": 28,
+      "report": "experiments/exp6_level_c_spatial_physics/EXPERIMENT_6_FULL_REPORT.md",
+      "sha256": "b8558e1b8f7658ecad791a90da0ec7d79cdf65773802953fef2afec2e9013f11",
+      "words": 4298,
+      "input_files": 33,
       "archive_files": 9,
       "corrections": [
         [
